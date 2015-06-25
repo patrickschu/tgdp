@@ -1,0 +1,78 @@
+for entry in dicti:
+	print entry
+	print "\n", entry
+	files=dicti[entry].split(",")
+	#this will be the speaker file, named after speaker number
+	outputfile=codecs.open("tgpcorpus_speaker_noquestions//"+str(entry)+".txt", "a", "utf-8")
+	#read author etc out of filename
+		#regex
+	#lists to collect info from indiviudal files
+	entryspeakertier=[]
+	entryinterviewertier=[]
+	entryfilelist=[]
+	entryauthorlist=[]
+	entrydatelist=[]
+	entrytext=[]
+	for fili in files:
+		#inputfile=codecs.open("test//"+str(fili)+".txt", "a", "utf-8")
+		#REGEXES
+		speakerextract=re.compile("(\d)-(\d+)-(\d+)-(\d+)")
+		#another regex to extract numbers
+		numberextract=re.compile("\d+")
+		#results
+		x=speakerextract.findall(fili)[0][0]
+		speakernumber=speakerextract.findall(fili)[0][1]
+		y=speakerextract.findall(fili)[0][2]
+		filenumber=speakerextract.findall(fili)[0][3]
+		#content=inputfile.read()
+		#make pympi object called "t"
+		t=pympi.Elan.Eaf("test//"+fili)
+		
+		author=t.annotation_document['AUTHOR']
+		date=t.annotation_document['DATE']
+		#add results to entrylist
+		entryfilelist.append(filenumber)
+		entryauthorlist.append(author)
+		entrydatelist.append(date)
+		#were tryin to extract the parenttiers
+		#collect them in list parenttiers
+		parenttiers=[]
+		tiers=t.get_tier_names()
+		#print "tiers", len(tiers)
+		for tier in tiers:
+		#gives us a dict with parameters, we check if parent in there that way we isolate the parent tiers
+			parameters=t.get_parameters_for_tier(tier)
+			if 'PARENT_REF' not in parameters:
+				parenttiers.append(tier)
+		#print "parenttiers", len(parenttiers)
+		#maybe we could do "get parameters" here as #well
+			speakertier=[tier for tier in parenttiers if (speakernumber in tier and "Speaker" in tier)  or (speakernumber in tier and "speaker" in tier)]
+			interviewertier=[tier for tier in parenttiers if "Inter" in tier or "inter" in tier]
+			interviewernumber=[numberextract.findall(tier) for tier in interviewertier]
+			interviewernumber=[x for y in interviewernumber for x in y]
+		entryspeakertier.append((",").join(speakertier))
+		entryinterviewertier.append((",").join(interviewernumber))
+		print entryinterviewertier
+		text=t.get_annotation_data_for_tier(speakertier[0])
+		for thing in text:
+			entrytext.append(thing[2])
+	#make sets to get rid of duplicates
+	entryspeakerset=set(entryspeakertier)
+	entryinterviewerset= set(entryinterviewertier)
+	entryauthorset=set(entryauthorlist)
+	entryfileset=set(files)
+	entryfilenumberset=setcleaner(set(entryfilelist))
+	entrydateset=set(entrydatelist)
+	outputfile.write("<file"
+		"> <speaker="+unicode(entry)+
+		"> <interviewer="+(",").join(setcleaner(entryinterviewerset))+
+		"> <filenumber="+(",").join(entryfilenumberset)+
+		"> <filename="+(",").join(entryfileset)+
+		"> <extractedtier="+(",").join(entryspeakerset)+
+		"> <author="+(",").join(setcleaner(entryauthorset))+
+		"> <date="+(",").join(entrydateset)+
+		"> <text> "+(" ").join(entrytext)+
+		" </text> </file>")
+	outputfile.close()
+	if len(speakertier) < 1:
+		print speakertier
