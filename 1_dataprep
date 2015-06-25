@@ -1,1 +1,11 @@
+## CHecking out the data structure
+roots=[];directories=[];filenames=[]
+##
+for root, directory, filename in os.walk("interviews"):
+	roots.append(root)
+	directories.append(directory)
+	filenames.append(filename)
+	
 
+##Note; The XML issue is to do with prefix binding: Older files lack "xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+##
