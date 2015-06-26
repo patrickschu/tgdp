@@ -8,4 +8,32 @@ for root, directory, filename in os.walk("interviews"):
 	
 
 ##Note; The XML issue is to do with prefix binding: Older files lack "xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-##
+##Repairing XMLs
+
+for item in roots:
+	print item
+	contents=os.listdir(item)
+	for thing in contents:
+		try:
+			# we open the file, read it
+			inputfile=codecs.open(item+"\\"+thing, "r", "utf-8")
+			inputtext=inputfile.read()
+			versionfinder=re.compile("VERSION=\"(\d.\d)\"")
+			version=versionfinder.findall(inputtext)
+			#looks like only files with version 2.0 are affected
+			if version[0]=="2.0":
+				faulty=re.compile("VERSION=\"\d.\d\"\s+xsi:noNamespaceSchemaLocation=")
+				correct="VERSION=\"2.0\"\n    xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\n        xsi:noNamespaceSchemaLocation="
+				correctedtext=re.sub(faulty, correct, inputtext)
+			else:
+				correctedtext=inputtext
+			#we put all of the processed files in a folder called test
+			outputfile=codecs.open("test\\"+thing, "w", "utf-8")
+			outputfile.write(correctedtext)
+			outputfile.close()
+		except IOError,err:
+			print thing
+			print err
+			
+			
+####
