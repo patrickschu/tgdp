@@ -1,0 +1,13 @@
+#make a dictionary ("dicti") that collects all files per speaker
+
+files=os.listdir("test")
+
+for fili in files:
+	speakerextract=re.compile("(\d)-(\d+)-(\d+)-(\d+)")
+	speaker=speakerextract.findall(fili)[0][1]
+	print speaker
+	if speaker not in dicti:
+		dicti[speaker]=[fili]
+		print "adding", speaker
+	else:
+		dicti[str(speaker)].append(fili)
