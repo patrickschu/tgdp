@@ -11,3 +11,16 @@ for fili in files:
 		print "adding", speaker
 	else:
 		dicti[str(speaker)].append(fili)
+
+
+##sorting the dictionary entries so we get them in chronological order, put them in dicti1
+
+sorter=re.compile("-(\d+)-a.eaf")
+
+for thing in dicti:
+	try:
+		entry=dicti[thing]
+		dicti1[thing]=sorted(entry, key=lambda item: int(sorter.findall(item)[0]))
+	except IndexError, err:
+		print thing, err
+		
