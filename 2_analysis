@@ -1,0 +1,19 @@
+##Basic Analysis such as counting words
+
+#Making a dictionary
+for entry in dicti1:
+	print "speaker", entry
+	inputfile=codecs.open("speakers_712//"+str(entry)+".txt", "r", "utf-8")
+	inputtext=inputfile.read()
+	textfinder=re.compile("<text>(.*?)</text>", re.DOTALL)
+	inputtext=textfinder.findall(inputtext)
+	words=inputtext[0].split(" ")
+	print "wordcount", len(words)
+	for word in words:
+		if word in dicti:
+			dicti[word]=int(dicti[word])+1
+		if word not in dicti:
+			dicti[word]=1
+	print "--------------\n\n"
+	
+	
