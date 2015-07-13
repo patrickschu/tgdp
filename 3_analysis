@@ -63,5 +63,66 @@ for entry in dicti1:
 			#print "added:", word
 	print "--------------\n\n"
 	
+#building the loan word dictionary
+
+for entry in dicti1:
+	print "speaker", entry
+	from nltk.stem.snowball import GermanStemmer
+	inputfile=codecs.open("speakers_712//"+str(entry)+".txt", "r", "utf-8")
+	inputtext=inputfile.read()
+	textfinder=re.compile("<text>(.*?)</text>", re.DOTALL)
+	realtext=textfinder.findall(inputtext)
+	loanfinder=re.compile("\[.*?\]", re.DOTALL)
+	loantext=loanfinder.findall(realtext[0])
+	loantext1=" ".join(loantext)
+	words=re.split("\s+", loantext1.lower())
+	#print "words before:", len(words1)
+	
+	#words1=[i for i in words if i not in ["...",",",".",":","(???)", "?", "-"]]
+
+	##watch the regex! it considers umlauts "non alphabetic"
+	#words3=[re.sub(r"\W", '', i) for i in words1]
+	#print "words3", len(words3)
+	words2=[re.sub(r"[^a-zäöüß]","", i) for i in words]
+	words3=[i for i in words2 if i !=""]
+	for word in words3:
+		if word in loangermandicti:
+			loangermandicti[word]=int(loangermandicti[word])+1
+		if word not in loangermandicti:
+			loangermandicti[word]=1
+			print "added:", word
+	print "--------------\n\n"
+	
+#building the lemmatized loan word dictionary
+
+for entry in dicti1:
+	print "speaker", entry
+	from nltk.stem import WordNetLemmatizer
+	lemmatizer=WordNetLemmatizer()
+	inputfile=codecs.open("speakers_712//"+str(entry)+".txt", "r", "utf-8")
+	inputtext=inputfile.read()
+	textfinder=re.compile("<text>(.*?)</text>", re.DOTALL)
+	realtext=textfinder.findall(inputtext)
+	loanfinder=re.compile("\[.*?\]", re.DOTALL)
+	loantext=loanfinder.findall(realtext[0])
+	loantext1=" ".join(loantext)
+	words=re.split("\s+", loantext1.lower())
+	#print "words before:", len(words1)
+	
+	#words1=[i for i in words if i not in ["...",",",".",":","(???)", "?", "-"]]
+
+	##watch the regex! it considers umlauts "non alphabetic"
+	#words3=[re.sub(r"\W", '', i) for i in words1]
+	#print "words3", len(words3)
+	words2=[re.sub(r"[^a-zäöüß]","", i) for i in words]
+	words3=[i for i in words2 if i !=""]
+	lemmata=[lemmatizer.lemmatize(i) for i in words3]
+	for word in lemmata:
+		if word in lemmagermandicti:
+			lemmagermandicti[word]=int(lemmagermandicti[word])+1
+		if word not in lemmagermandicti:
+			lemmagermandicti[word]=1
+			print "added:", word
+	print "--------------\n\n"
 	
 	
