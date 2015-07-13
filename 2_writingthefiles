@@ -1,7 +1,7 @@
 ##Writing the corpus files
 
 #extracting annotations & writing the actual corpus files
-##WATCH OUT: THIS DOES NOT SORT THE ANNOTATIONS PROPERLY. cf updated code below. This is just here for historical purposes
+##WATCH OUT: THIS FIRST PIECE OF CODE DOES NOT SORT THE ANNOTATIONS PROPERLY. Do not use, instead use updated code below. This is just here for historical purposes
 
 for entry in dicti1:
 	#setting up output remember to change to unicode
