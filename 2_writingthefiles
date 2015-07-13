@@ -1,7 +1,139 @@
 ##Writing the corpus files
 
+#extracting annotations & writing the actual corpus files
+##WATCH OUT: THIS DOES NOT SORT THE ANNOTATIONS PROPERLY. cf updated code below. This is just here for historical purposes
+
+for entry in dicti1:
+	#setting up output remember to change to unicode
+	outputfile=codecs.open("speakers_712//"+str(entry)+"_extract_712.txt", "w", "utf-8")
+	#set up lists we will need later
+	filelist=dicti1[entry]
+	authors=[]
+	dates=[]
+	tierslist=[]
+	parents=[]
+	textextract=[]
+	files=[]
+	for fili in filelist:
+		#making the pympi file
+		filecontent=pympi.Elan.Eaf("test//"+fili)
+		#extracting relevant data
+		author=filecontent.annotation_document['AUTHOR']
+		date=filecontent.annotation_document['DATE']
+		tiers=filecontent.get_tier_names()
+		#okay we eliminate all tiers that have parents and keep those that include the entry, i.e. the speaker number we are currently collecting
+		parenttiers=[i for i in filecontent.get_tier_names() if "PARENT_REF" not in filecontent.get_parameters_for_tier(i) and str(entry) in i.lower()]
+		#we need different procedures depending on how many results the first extraction method gives us.
+		#zeros work
+		if len(parenttiers) == 0:
+			parenttiers=[i for i in filecontent.get_tier_names() if "PARENT_REF" not in filecontent.get_parameters_for_tier(i) and "speaker" in i.lower() and "speaker 2" not in i.lower() and "speaker 3" not in i.lower() and "speaker x" not in i.lower() and "translation" not in i.lower() and "codeswitching" not in i.lower()and "comment" not in i.lower() and "ipa" not in i.lower()]
+			#f.write(str(entry)+"\t"+str(fili)+"\t"+str(parenttiers)+"\n")
+		if len(parenttiers) == 1:
+		       parenttiers=parenttiers
+		#2 works
+		if len(parenttiers) == 2:
+			parenttiers=[i for i in parenttiers if "speaker" in i.lower() and "translation" not in i.lower() and "ipa" not in i.lower() and "husband" not in i.lower() and "comment" not in i.lower() and "code" not in i.lower() and "b" not in i.lower()]
+			#f.write(str(entry)+"\t"+str(fili)+"\t"+str(parenttiers)+"\n")
+		#multis work
+		if len(parenttiers) > 2:
+			parenttiers=[i for i in parenttiers if "speaker" in i.lower() and "code" not in i.lower() and "ipa" not in i.lower() and "comment" not in i.lower() and "35b" not in i.lower()]
+			#f.write(str(entry)+"\t"+str(fili)+"\t"+str(parenttiers)+"\n")
+		#extracting the annotation for the parenttier, i.e. the speaker
+		annotation=filecontent.get_annotation_data_for_tier(parenttiers[0])
+		annotationtext=[text for (start,end,text) in annotation]
+		#getting all the data into one list for output
+		authors.append(author)
+		dates.append(date)
+		tierslist.append(tiers)
+		parents.append(parenttiers[0])
+		if len(parenttiers) != 1:
+			print "parenttier length is weird", fili
+		textextract.append(annotationtext)
+		if len(textextract) ==0:
+			print fili
+		files.append(fili)
+	textextract1=[" ".join(item) for item in textextract]
+	textextract2=" ".join(textextract1)
+	authors1=", ".join(set(authors))
+	dates1=", ".join(set(dates))
+	#print len(parents)
+	#print parents[0]
+	parents1=", ".join(parents)
+	files1=", ".join(files)
+	outputfile.write("<file> <speaker="+str(entry)+"> <authors="+authors1+"> <files_used="+files1+"> <extracted_tiers="+parents1+"> <dates="+dates1+"> <text> "+textextract2+" </text> </file>")
+	outputfile.close()
 
 
+##this is the good code to write speaker-only files
+
+for entry in dicti1:
+	#setting up output remember to change to unicode
+	outputfile=codecs.open("speakers_712//"+str(entry)+".txt", "w", "utf-8")
+	#set up lists we will need later
+	filelist=dicti1[entry]
+	authors=[]
+	dates=[]
+	tierslist=[]
+	parents=[]
+	textextract=[]
+	files=[]
+	for fili in filelist:
+		#making the pympi file
+		filecontent=pympi.Elan.Eaf("test//"+fili)
+		#extracting relevant data
+		author=filecontent.annotation_document['AUTHOR']
+		date=filecontent.annotation_document['DATE']
+		tiers=filecontent.get_tier_names()
+		#okay we eliminate all tiers that have parents and keep those that include the entry, i.e. the speaker number we are currently collecting
+		parenttiers=[i for i in filecontent.get_tier_names() if "PARENT_REF" not in filecontent.get_parameters_for_tier(i) and str(entry) in i.lower()]
+		#we need different procedures depending on how many results the first extraction method gives us.
+		#zeros work
+		if len(parenttiers) == 0:
+			parenttiers=[i for i in filecontent.get_tier_names() if "PARENT_REF" not in filecontent.get_parameters_for_tier(i) and "speaker" in i.lower() and "speaker 2" not in i.lower() and "speaker 3" not in i.lower() and "speaker x" not in i.lower() and "translation" not in i.lower() and "codeswitching" not in i.lower()and "comment" not in i.lower() and "ipa" not in i.lower()]
+			#f.write(str(entry)+"\t"+str(fili)+"\t"+str(parenttiers)+"\n")
+		if len(parenttiers) == 1:
+		       parenttiers=parenttiers
+		#2 works
+		if len(parenttiers) == 2:
+			parenttiers=[i for i in parenttiers if "speaker" in i.lower() and "translation" not in i.lower() and "ipa" not in i.lower() and "husband" not in i.lower() and "comment" not in i.lower() and "code" not in i.lower() and "b" not in i.lower()]
+			#f.write(str(entry)+"\t"+str(fili)+"\t"+str(parenttiers)+"\n")
+		#multis work
+		if len(parenttiers) > 2:
+			parenttiers=[i for i in parenttiers if "speaker" in i.lower() and "code" not in i.lower() and "ipa" not in i.lower() and "comment" not in i.lower() and "35b" not in i.lower()]
+			#f.write(str(entry)+"\t"+str(fili)+"\t"+str(parenttiers)+"\n")
+		#extracting the annotation for the parenttier, i.e. the speaker
+		annotation=filecontent.get_annotation_data_for_tier(parenttiers[0])
+		annotationsorted=sorted(annotation)
+		#print annotation[0]
+		annotationtext=[text for (start,end,text) in annotationsorted]
+		#print type(annotationtext)
+		#getting all the data into one list for output
+		authors.append(author)
+		dates.append(date)
+		tierslist.append(tiers)
+		parents.append(parenttiers[0])
+		if len(parenttiers) != 1:
+			print "parenttier length is weird", fili
+		textextract.append(annotationtext)
+		if len(textextract) ==0:
+			print fili
+		files.append(fili)
+	textextract1=[" ".join(item) for item in textextract]
+	textextract2=" ".join(textextract1)
+	#print "fili" , len(files)
+	#print len(textextract)
+	#print len(textextract2)
+	#print textextract2[:10]
+	#print type(textextract2)
+	#print "--------------\n\n"
+	authors1=", ".join(set(authors))
+	dates1=", ".join(set(dates))
+	#print len(parents)
+	#print parents[0]
+	parents1=", ".join(parents)
+	files1=", ".join(files)
+	outputfile.write("<file> <speaker="+str(entry)+"> <authors="+authors1+"> <files_used="+files1+"> <extracted_tiers="+parents1+"> <dates="+dates1+"> <text> "+textextract2+" </text> </file>")
+	outputfile.close()
 
 
 
