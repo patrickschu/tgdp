@@ -32,5 +32,36 @@ for entry in dicti1:
 
 t=sorted(germandicti, key=germandicti.get, reverse=True)
 
+#creating dictionary with stems
 
+for entry in dicti1:
+	print "speaker", entry
+	from nltk.stem.snowball import GermanStemmer
+	stemmer=GermanStemmer()
+	inputfile=codecs.open("speakers_712//"+str(entry)+".txt", "r", "utf-8")
+	inputtext=inputfile.read()
+	textfinder=re.compile("<text>(.*?)</text>", re.DOTALL)
+	inputtext=textfinder.findall(inputtext)
+	###ok
+	words=re.split("\s+", inputtext[0].lower())
+	#print "words before:", len(words1)
+	
+	#words1=[i for i in words if i not in ["...",",",".",":","(???)", "?", "-"]]
+
+	##watch the regex! it considers umlauts "non alphabetic"
+	#words3=[re.sub(r"\W", '', i) for i in words1]
+	#print "words3", len(words3)
+	words2=[re.sub(r"[^a-zäöüß]","", i) for i in words]
+	words3=[i for i in words2 if i !=""]
+	wordstems=[stemmer.stem(i) for i in words3]
+	#t= words[0:100]
+	for word in wordstems:
+		if word in stemgermandicti:
+			stemgermandicti[word]=int(stemgermandicti[word])+1
+		if word not in stemgermandicti:
+			stemgermandicti[word]=1
+			#print "added:", word
+	print "--------------\n\n"
+	
+	
 	
