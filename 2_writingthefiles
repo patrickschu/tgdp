@@ -1,0 +1,132 @@
+##Writing the corpus files
+
+
+
+
+
+
+
+
+
+
+
+
+##This one extracts the interviewer in addition to the speaker
+for entry in dicti1:
+	#setting up output remember to change to unicode
+	outputfile=codecs.open("speakers_interviewers_712\\"+str(entry)+".txt", "w", "utf-8")
+	#set up lists we will need later
+	filelist=dicti1[entry]
+	authors=[]
+	dates=[]
+	tierslist=[]
+	parents=[]
+	textextract=[]
+	files=[]
+	interviewer=[]
+	ivannotation_temp=[]
+	for fili in filelist:
+		#making the pympi file
+		filecontent=pympi.Elan.Eaf("test//"+fili)
+		#extracting relevant data
+		author=filecontent.annotation_document['AUTHOR']
+		date=filecontent.annotation_document['DATE']
+		tiers=filecontent.get_tier_names()
+		#okay we eliminate all tiers that have parents and keep those that include the entry, i.e. the speaker number we are currently collecting
+		parenttiers=[i for i in filecontent.get_tier_names() if "PARENT_REF" not in filecontent.get_parameters_for_tier(i) and str(entry) in i.lower()]
+		#we need different procedures depending on how many results the first extraction method gives us.
+		#zeros work
+		if len(parenttiers) == 0:
+			parenttiers=[i for i in filecontent.get_tier_names() if "PARENT_REF" not in filecontent.get_parameters_for_tier(i) and "speaker" in i.lower() and "speaker 2" not in i.lower() and "speaker 3" not in i.lower() and "speaker x" not in i.lower() and "translation" not in i.lower() and "codeswitching" not in i.lower()and "comment" not in i.lower() and "ipa" not in i.lower()]
+			#f.write(str(entry)+"\t"+str(fili)+"\t"+str(parenttiers)+"\n")
+		if len(parenttiers) == 1:
+		       parenttiers=parenttiers
+		#2 works
+		if len(parenttiers) == 2:
+			parenttiers=[i for i in parenttiers if "speaker" in i.lower() and "translation" not in i.lower() and "ipa" not in i.lower() and "husband" not in i.lower() and "comment" not in i.lower() and "code" not in i.lower() and "b" not in i.lower()]
+			#f.write(str(entry)+"\t"+str(fili)+"\t"+str(parenttiers)+"\n")
+		#multis work
+		if len(parenttiers) > 2:
+			parenttiers=[i for i in parenttiers if "speaker" in i.lower() and "code" not in i.lower() and "ipa" not in i.lower() and "comment" not in i.lower() and "35b" not in i.lower()]
+			#f.write(str(entry)+"\t"+str(fili)+"\t"+str(parenttiers)+"\n")
+		
+		##here beginneth the interviewer part
+		interviewerextract=re.compile("(\d+)-(\d+)-(\d+)-(\d+)")
+		interviewernumber=interviewerextract.findall(fili)[0][0]
+		interviewertiers=[i for i in filecontent.get_tier_names() if "PARENT_REF" not in filecontent.get_parameters_for_tier(i) and "interviewer" in i.lower() and "translation" not in i.lower()]
+		#print fili
+		#zeros work
+		if len(interviewertiers) ==0:
+			interviewertiers1=[i for i in filecontent.get_tier_names() if "PARENT_REF" not in filecontent.get_parameters_for_tier(i) and "inte" in i.lower()]
+		#f.write(str(entry)+"\t"+str(fili)+"\t"+str(interviewertiers1)+"\n")
+		#ones work
+		if len(interviewertiers) ==1:
+			interviewertiers1=interviewertiers
+			#f.write(str(entry)+"\t"+str(fili)+"\t"+str(interviewertiers1)+"\n")
+		#twos work
+		if len(interviewertiers)==2:
+			interviewertiers1=[i for i in filecontent.get_tier_names() if "PARENT_REF" not in filecontent.get_parameters_for_tier(i) and "interviewer" in i.lower() and "translation" not in i.lower()]
+			#f.write(str(entry)+"\t"+str(fili)+"\t"+str(interviewertiers1)+"\n")
+		#multiples gibts nicht
+		if len(interviewertiers) > 2:
+		       	print fili
+			print interviewertiers
+			print filecontent.get_tier_names()
+			print "----------\n"
+	
+		if len(interviewertiers1) == 0:
+			print entry
+			print fili, interviewertiers1
+			print filecontent.get_tier_names()
+			print "--------\n"
+		#extracting for the interviewer
+		#print len(interviewertiers1)
+		ivannotation=[filecontent.get_annotation_data_for_tier(i) for i in interviewertiers1]
+		if len(ivannotation) >1:
+			ivannotation1=ivannotation[0]+ivannotation[1]
+		if len(ivannotation) ==1 :
+			ivannotation1=ivannotation[0]
+		#extracting the annotation for the parenttier, i.e. the speaker
+		
+		if ivannotation1:
+			ivannotation=[(start, end, "<<"+text+">>") for start,end,text in ivannotation1]
+		else:
+			ivannotation=[(0,0,"<< >>")]
+
+		annotation=filecontent.get_annotation_data_for_tier(parenttiers[0])
+		
+		#print ivannotation[0]
+		#
+		#print "iv", len(ivannotation2)
+		#print "speaker", len(annotation)
+		combinedannotation=annotation+ivannotation
+		#print combinedannotation[0]
+		#print "combined", len(combinedannotation)
+		annotationsorted=sorted(combinedannotation)
+		#print annotationsorted[0]
+		#print len(annotationsorted)
+		annotationtext=[text for (start,end,text) in annotationsorted]
+		#getting all the data into one list for output
+		interviewer.append(" ".join(interviewertiers1[0:len(interviewertiers1)]))
+		authors.append(author)
+		dates.append(date)
+		tierslist.append(tiers)
+		parents.append(parenttiers[0])
+		if len(parenttiers) != 1:
+			print "parenttier length is weird", fili
+		textextract.append(annotationtext)
+		if len(textextract) ==0:
+			print fili
+		files.append(fili)	
+	textextract1=[" ".join(item) for item in textextract]
+	textextract2=" ".join(textextract1)
+	interviewers1=", ".join(interviewer)
+	authors1=", ".join(set(authors))
+	dates1=", ".join(set(dates))
+	#print len(parents)
+	#print parents[0]
+	parents1=", ".join(parents)
+	files1=", ".join(files)
+	print entry
+	outputfile.write("<file> <speaker="+str(entry)+"> <interviewer="+str(interviewernumber)+"> <files_used="+files1+"> <extracted_tiers="+parents1+"> <extracted_interviewertiers="+interviewers1+">  <authors="+authors1+"> <dates="+dates1+"> <text> "+textextract2+" </text> </file>")
+	outputfile.close()
