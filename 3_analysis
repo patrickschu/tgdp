@@ -28,5 +28,9 @@ for entry in dicti1:
 	print "--------------\n\n"
 	
 
-	
+#sorting the dictionary
+
+t=sorted(germandicti, key=germandicti.get, reverse=True)
+
+
 	
