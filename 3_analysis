@@ -11,21 +11,22 @@ for entry in dicti1:
 	words=re.split("\s+", inputtext[0].lower())
 	#print "words before:", len(words1)
 	
-	words1=[i for i in words if i not in ["...",",",".",":","(???)", "?", "-"]]
+	#words1=[i for i in words if i not in ["...",",",".",":","(???)", "?", "-"]]
 
 	##watch the regex! it considers umlauts "non alphabetic"
 	#words3=[re.sub(r"\W", '', i) for i in words1]
 	#print "words3", len(words3)
-	words2=[re.sub(r"[^a-zäöüß]", '', i) for i in words1]
-	#print "words2", len(words2)
-	#print "wordcount", len(words)
+	words2=[re.sub(r"[^a-zäöüß]","", i) for i in words]
+	words3=[i for i in words2 if i !=""]
 	#t= words[0:100]
-	for word in words2:
+	for word in words3:
 		if word in germandicti:
 			germandicti[word]=int(germandicti[word])+1
 		if word not in germandicti:
 			germandicti[word]=1
-			print "added:", word
+			#print "added:", word
 	print "--------------\n\n"
+	
+
 	
 	
