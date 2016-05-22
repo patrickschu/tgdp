@@ -7,7 +7,7 @@ create scripts to
 - select, access data from the web site, thru MYSQL(?)
 
 - convert data to input applicable to mapping software and output as spreadsheet
-		but: numerical versus nominal versus X
+		note numerical versus nominal versus X
 		
 - create templates of mapping settings
 
