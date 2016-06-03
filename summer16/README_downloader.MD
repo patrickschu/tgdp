@@ -20,8 +20,8 @@ For instance,
 
     python downloader.py http://www.google.com ~/Desktop/dataset
 
-will download all zip files found on google.com to the folder dataset which is located on the Desktop. 
-The downloaders output will look like this:
+will download all zip files found on *google.com* to the folder *dataset* which is located on the Desktop. 
+The downloader's output will look like this:
 
     842 files to be downloaded
     File xzy.zip downloaded to Desktop/dataset
