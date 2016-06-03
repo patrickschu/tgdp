@@ -6,7 +6,7 @@ Most of it will already be on there, the rest you can download for free.
 
 It's easiest run to these tools from the **command line**. On a Mac, all you need to do is open the Terminal (search for *Terminal.app* in the "Applications" folder). On Windows, you can use the command line tool (just type *cmd* into the "All Programs" window) or install [Cygwin](https://www.cygwin.com/) (free), which is essentially a small Linux you can run inside your Windows environment. Within Cygwin, you can just follow the instructions for Mac. 
 
-All the code is written in [Python](https://www.python.org/). Mac computers come with **Python** pre-installed. If you are running Windows, you might have to [download](https://www.python.org/downloads/windows/) and install a copy of Python first (which is free).  
+All the code is written in [Python](https://www.python.org/). Mac computers come with Python pre-installed. If you are running Windows, you might have to [download](https://www.python.org/downloads/windows/) and install a copy of Python first (which is free).  
 You will also, and this is the only real headache you will have to suffer through, [change](http://www.anthonydebarros.com/2015/08/16/setting-up-python-in-windows-10/) the command line settings. 
 
 You will see that all scrips come in two versions: One for Python 2, and one for Python 3. The file name will end in *_py2.py* or *_py3.py* respectively. This is necessary because while a lot of people have moved on to version 3 of Python, most Mac computers still run version 2. 
@@ -23,16 +23,16 @@ Now we will use the Terminal to run the script with the right setting. We will c
 
 on the Mac:
 
-cd ~/User/Downloads
+    cd ~/User/Downloads
 
 
 
-cd stands for change directory; the ~/ is short for your user folder on a Mac and thus the top directory for Desktop, Downloads, Documents, etc. 
+`cd` stands for change directory; the `~/` is short for your user folder on a Mac and thus the top directory for Desktop, Downloads, Documents, etc. 
 
 on Windows:
 
-cd \Users\YOURUSERNAME\Downloads
+    cd \Users\YOURUSERNAME\Downloads
 
-cd stands for change directory; replace the capitalized letters with your own user name. You can find it by locating your user fold in the Windows explorer by opening your Windows folder, then the Users folder. 
+`cd` stands for change directory; replace the capitalized letters with your own user name. You can find it by locating your user folder in the Windows explorer by opening your Windows folder, then the Users folder. 
 
-Hint: type cd .. on both systems to take a step back, ls on a Mac and dir on Windows to look at the contents of the folder you are in. Basic shell commands are listed for the Mac here and for Windows here.
+Hint: type `cd ..` on both systems to take a step back, `ls` on a Mac and `dir` on Windows to look at the contents of the folder you are currently in. Basic shell commands are listed for the Mac XX and for Windows XX.
