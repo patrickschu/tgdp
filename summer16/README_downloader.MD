@@ -2,7 +2,9 @@
 
 ###Description
 The downloader downloads zipped files from a web site to a specified folder.
-Returns a list containing the files names of the files found. 
+
+It Returns a list containing the files names of the files found. 
+
 Arguments:
 
     link -- needs to be a URL of the format "http://xy.z", pointing to a web site containing .zip files. 
