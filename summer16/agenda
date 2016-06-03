@@ -1,3 +1,19 @@
+## Programs should be easily executable in shell, copy&paste (Linux, Mac, Cygwin, Win?)
+## No outside program installation necessary
+## Clear error messages
+
+I STEP 1
+Downloading dataset
+Python script
+
+II STEP 2
+Extracting files needed based on criteria (e.g. Fredericksburg files only)
+
+
+III STEPS 
+Make measurements 
+Produce spreadsheet for Mapping application
+
 
 
 CREATE WORKFLOW FOR DIALECT MAPS
