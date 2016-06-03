@@ -5,6 +5,7 @@ The downloader downloads zipped files from a web site to a specified folder. It 
 
 Arguments:
 
+    downloader(link, directory):
     link -- needs to be a URL of the format "http://xy.z", pointing to a web site containing .zip files. 
     directory -- an existing folder, this is where the files will be downloaded to.
 
