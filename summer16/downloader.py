@@ -4,11 +4,25 @@
 from bs4 import BeautifulSoup
 import urllib
 import time
+import os
+import requests
 
-
-def linkopener(link):
+def main(link, directory):
+	"""
+	The downloader downloads zip-files from a web site to a specified folder.
+	Returns a list containing the files names of the files found. 
+	Arguments:
+	link -- needs to be a URL of the format "http://xy.z", pointing to a web site containing .zip files. 
+	directory -- an existing folder, this is where the files will be downloaded to
+	"""
+	#catching errors
+	directory=os.path.expanduser(str(directory))
+	if not os.path.isdir(directory):
+		raise IOError("{} is not a valid directory. Make sure the folder exists at that location".format(directory))
 	if not link.startswith("http://"):
  		link="http://"+link
+	if requests.head(link).status_code != 200:
+		raise IOError("The link supplied ({}) does not seem valid (status is {}).\nPlease double-check!".format(link, resp.status_code))
 	files_to_download=[]
 	inputlink=urllib.urlopen(link).read()
 	soup=BeautifulSoup(inputlink, "html.parser")
@@ -17,24 +31,22 @@ def linkopener(link):
 		if l.get('href').endswith(".zip"):
  			print(l.get('href'))
  			files_to_download.append(l.get('href'))
- 	for f in files_to_download[:10]:
- 		urllib.urlretrieve(link+f, '/Users/ps22344/Desktop/down/'+f)
- 		print "File {} downloaded to {}".format(f, "assi")
- 		time.sleep(600)
- 		print "now sleeping"
- 	fullfiles_to_download=[link+f for f in files_to_download]
- 	return(fullfiles_to_download)
+ 	if len(files_to_download) > 0:
+ 		print "{} files to be downloaded".format(len(files_to_download))
+ 	 	for f in files_to_download[33:55]:
+			urllib.urlretrieve(link+f, os.path.join(directory,f))
+			print "File {} downloaded to {}".format(f, directory)
+			print "now sleeping"
+			time.sleep(150)
+	else:
+		print "No .zip files found on this web site. Double-check the link supplied."
+ 	result=[link+f for f in files_to_download]
+ 	return(result)
+
+
+
 	
-urllib.urlretrieve('http://www.cs.utexas.edu/~eberlein/cs305j/topic3.pdf', '/Users/ps22344/down')
+main("http://dev.laits.utexas.edu/dev_cpittman/tgdp/", "~/Desktop/down")
 
-
-
-
-
-
-
-def main(link, directory):
-	t=linkopener(link)
-	print "here we go", t
-	
-main("http://dev.laits.utexas.edu/dev_cpittman/tgdp/", "assi")
+if __name__ == "__main__":
+    main(*sys.argv[1:])
