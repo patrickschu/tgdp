@@ -11,6 +11,7 @@ Arguments:
 
 ###How to use the Dataset Downloader
 Run it in an shell. Basic setup and shell operations are described here (XXX).
+
 The Downloader takes a URL and a target directory as input. Thus
 
     python downloader.py link directory
