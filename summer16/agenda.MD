@@ -12,6 +12,7 @@ Develop dialects maps for Texas English; in the process produce tools for future
 ####I STEP 1
 Downloading big datasets
 [Python script](https://raw.githubusercontent.com/patrickschu/tgdp/master/summer16/downloader.py)
+
 DONE
 
 ####II STEP 2
