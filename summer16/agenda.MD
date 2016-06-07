@@ -9,15 +9,16 @@ Develop dialects maps for Texas English; in the process produce tools for future
 - No outside program installation or computing expertise necessary;
 - Clear error messages, documentation
 
-I STEP 1
+####I STEP 1
 Downloading big datasets
-Python script
+[Python script](https://raw.githubusercontent.com/patrickschu/tgdp/master/summer16/downloader.py)
+DONE
 
-II STEP 2
+####II STEP 2
 Extracting files needed based on criteria (e.g. Fredericksburg files only)
 
 
-III STEPS 
+####III STEPS 
 Make measurements 
 Produce spreadsheet for Mapping application, e.g. Gabmap
 
