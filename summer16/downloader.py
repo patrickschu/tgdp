@@ -33,11 +33,11 @@ def main(link, directory):
  			files_to_download.append(l.get('href'))
  	if len(files_to_download) > 0:
  		print "{} files to be downloaded".format(len(files_to_download))
- 	 	for f in files_to_download[33:55]:
+ 	 	for f in files_to_download[56:len(files_to_download)]:
 			urllib.urlretrieve(link+f, os.path.join(directory,f))
 			print "File {} downloaded to {}".format(f, directory)
 			print "now sleeping"
-			time.sleep(150)
+			time.sleep(300)
 	else:
 		print "No .zip files found on this web site. Double-check the link supplied."
  	result=[link+f for f in files_to_download]
@@ -48,5 +48,5 @@ def main(link, directory):
 	
 main("http://dev.laits.utexas.edu/dev_cpittman/tgdp/", "~/Desktop/down")
 
-if __name__ == "__main__":
-    main(*sys.argv[1:])
+# if __name__ == "__main__":
+#     main(*sys.argv[1:])
