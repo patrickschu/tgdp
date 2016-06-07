@@ -1,11 +1,12 @@
 
-#Agenda
-###Develop dialects maps for Texas English; in the process develop tools for future use on any data from speechislands website
-### Requirements
+##Agenda
+####Develop dialects maps for Texas English; in the process develop tools for future use on any data from speechislands website
+####Requirements
 
--Programs should be easily executable in shell, per copy&paste commands (Linux, Mac, Cygwin, Win)
--No outside program installation or computing expertise necessary;
--Clear error messages, documentation
+- Tools should be easily executable in shell, per copy&paste commands (Linux, Mac, Cygwin, Win)
+
+- No outside program installation or computing expertise necessary;
+- Clear error messages, documentation
 
 I STEP 1
 Downloading big datasets
