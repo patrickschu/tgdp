@@ -2,31 +2,60 @@ import json
 import os
 import codecs
 import re
+import argparse
+import sys
 from pprint import pprint
 
-### 
-#delete header at beginning
-def filepicker(inputfile_json, output_directory, *args):
-	data = {
-   'name' : 'ACME',
-   'shares' : 100,
-   'price' : 542.23
-	}
-	t=json.dumps(data)
-	f=json.loads(t)
-	print f.keys()
-	inputfile=codecs.open(inputfile_json, "r", "utf-8")
-	text=inputfile.read()
-	newtext=text.replace(r"\'", "'")
-	data=json.loads(newtext)
-	print data[0]
+
+
+
+#args = parser.parse_args()
+
+
+def main(inputfile):
+	print "external args"
+# 	for i in kwargs:
+# 		print i
+	
+	
+	# 	print parser
+	#pre-processing
+	inputdata=codecs.open(os.path.expanduser(inputfile), "r", "utf-8").read()
+	#print inputdata
+ 	inputdata=re.findall("\[\{.*\}\]", inputdata)[0]
+ 	print "length", len(inputdata)
+# 		
+# 	#fixing faulty JSON encoding
+ 	# if args.repair_formatting:
+	inputdata = re.sub(r'(?<!\\)\\(?!["\\/bfnrt]|u[0-9a-fA-F]{4})', r'', inputdata)
+	# 
+ 	jsondata=json.loads(inputdata)
+# 		
+	informantdicti={}
 	count=0
-	dicti={}
-	for d in data:
-		dicti[count]=d
-		count=count+1
-	print len(dicti)
-	print dicti[100]
+ 	for item in jsondata:
+ 		#print type(item)
+ 		informantdicti[count]=item
+ 		count=count+1
+ 	#collect keys, i.e. possible input 
+  	keys=[v.keys() for k,v in informantdicti.items()]
+  	#flatten list
+  	keys=[item for listi in keys for item in listi]
+   	parser = argparse.ArgumentParser()
+	parser.add_argument('inputfile', help='Location of JSON file')
+	parser.add_argument('--repair_formatting', default=True, help='Fixes mis-formatted JSON files. Accepted input: True or False'	)
+
+
+	keys=list(set(keys))
+  	for key in keys:
+  		print key
+  	 	parser.add_argument("--"+key, help="Argument {} has these options, it is ".format(key))
+	args = parser.parse_args()
+	print "our args"
+	print args	
+ 	
+ 
+
 	
 	# outputfile=codecs.open("aaaa.txt", "w", "utf-8")
 # 	outputfile.write(newtext)
@@ -44,9 +73,11 @@ def filepicker(inputfile_json, output_directory, *args):
 # 		jsonobject=json.loads(t)
 # 		print type(jsonobject)
 
+if __name__ == "__main__":
+    main(sys.argv[1])
+    
 
-
-filepicker('/Users/ps22344/Downloads/database/informants.json', 'assi')
+#filepicker('database/informants.json', 'assi', 'assi', 'dicki')
 
 
 
