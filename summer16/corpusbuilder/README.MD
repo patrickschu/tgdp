@@ -1,4 +1,4 @@
-#The corpusbuilder
+#The Corpusbuilder
 Takes a collection of zip files and a JSON-file to build a corpus according to user criteria. 
 
 ##Description
