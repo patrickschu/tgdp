@@ -3,10 +3,11 @@ Takes a collection of zip files and a JSON-file to build a corpus according to u
 
 ##Description
 The corpusbuilder takes the following arguments:
-     corpusbuilder (inputfile, repair_formatting = True, **kwargs)
+     corpusbuilder (json_file, input_folder, output_folder, --repair_formatting=True, **kwargs)
     
-    
-    inputfile --- Location of the JSON file.
+    json_file --- Location of the JSON file.
+    input_folder --- Path to a folder of zip files that will be used to build your corpus.
+    output_folder --- Path to a (preferably empty) folder that your corpusfiles will be copied into.
     repair_formatting  --- Fixes mis-formatted JSON files. Accepted input: True or False, defaults to True.
     criteria  --- A variable number of conditions on any of the criteria (such as date of birth, gender, ...) contained in the input JSON file. The input needs to be formatted like so: --criterion "operator, condition", e.g. --DOB "> 1900". Detailed description here. 
 
@@ -19,6 +20,10 @@ All the possible criteria and their options for the specific setting are describ
 
 
 ##How to run it
+
+This examples shows the basic setup: 
+
+python filepicker.py 'Downloads/informants.json' --gender "=M"
 
 
 
