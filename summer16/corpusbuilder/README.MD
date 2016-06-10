@@ -60,51 +60,21 @@ Numerical values allow for more fine-grained comparision. The following example 
 - The possible constraints can vary from dataset to dataset. The Texas German corpus contains the following categories: 
 
 >--language_home (e.g. german, unknown, english)
+
 >--current_residence (e.g doss, floresville, universal city)
+
 > --is_locked (e.g. 1,0)
-                       
-  --gender GENDER       Possible input to the argument 'gender' includes:
-                        None, m, f
-  --created_at CREATED_AT
-                        Possible input to the argument 'created_at' includes:
-                        2016-05-05 16:41:00, None, 2016-05-05 16:58:47,
-                        2016-05-05 17:03:10, 2016-05-05 12:46:02, 0000-00-00
-                        00:00:00, 2015-11-16 12:17:57
-  --updated_at UPDATED_AT
-                        Possible input to the argument 'updated_at' includes:
-                        2015-02-04 13:23:59, 2015-03-04 15:16:48, 2015-03-04
-                        17:08:08, 2015-03-09 13:52:06, 2016-05-05 12:27:22,
-                        2015-03-04 17:25:30, 2015-03-04 17:14:11, 2015-03-04
-                        17:05:28, 2015-03-04 14:11:36, 0000-00-00 00:00:00,
-                        2015-03-04 17:03:44, 2015-03-04 16:08:36, 2016-05-05
-                        16:26:07, 2015-03-04 16:57:23, 2015-03-09 14:35:28,
-                        2014-11-18 12:33:51, None, 2016-05-05 16:58:47,
-                        2016-05-05 17:03:10, 2015-03-09 16:30:23, 2015-01-27
-                        12:01:57, 2015-03-04 17:06:44, 2015-03-09 14:51:32,
-                        2015-03-04 17:07:18, 2015-02-25 15:24:43, 2015-11-16
-                        12:17:57, 2015-03-09 14:02:15, 2015-03-04 17:13:25,
-                        2015-03-04 17:04:35, 2016-05-05 16:41:00, 2015-03-04
-                        16:11:48, 2015-11-16 16:34:05, 2015-03-04 15:39:22,
-                        2015-03-04 13:50:59, 2015-03-09 13:22:13, 2014-11-13
-                        14:15:51, 2015-02-24 18:26:41
-  --childhood_residence CHILDHOOD_RESIDENCE
-                        Possible input to the argument 'childhood_residence'
-                        includes: clifton, geronemo, bastrop county (home),
-                        aleman, burton, bulverde, hebbronville, farm, rural,
-                        schulenburg, comal county, dewitt co, waco, gonzales,
-                        bellville, jim wells co, san antonio, la grange, None,
-                        fredericksburg, converse, cibolo, tynan, near brenham,
-                        new braunfels, frelsburg, sattler, comal county, town,
-                        urban, gonzales county, freiburg, gillespie county
-  --island_id ISLAND_ID
-                        Possible input to the argument 'island_id' includes:
-                        1, 0, None
-  --DOB DOB             Possible input to the argument 'DOB' includes: 1908,
-                        1920, 1921, 1922, 1923, 1924, 1925, 1926, 1927, 1928,
-                        1929, 1959, 1948, 1912, 1942, 1943, 1940, 1941, 1946,
-                        1947, 1944, 1945, 0, 1933, 1932, 1931, 1930, 1937,
-                        1936, 1935, 1934, 1910, 1939, 1938, 1915, 1958, 1917,
-                        1916, 1949, 1919, 1918, 1999, 1951
+
+>--gender (e.g. m, f) 
+
+>--created_at (e.g. 2016-05-05 16:41:00, 2016-05-05 16:58:47)
+
+>--updated_at (e.g. 2015-02-04 13:23:59, 2015-03-04 15:16:48)
+
+> --childhood_residence (e.g. clifton, geronemo, rural)
+
+> --island_id (e.g. 1, 0)
+>--DOB (e.g. 1908, 1920, 1921)
   --language_school LANGUAGE_SCHOOL
                         Possible input to the argument 'language_school'
                         includes: german, unknown, None, english
