@@ -33,7 +33,7 @@ def main(link, directory):
  			files_to_download.append(l.get('href'))
  	if len(files_to_download) > 0:
  		print "{} files to be downloaded".format(len(files_to_download))
- 	 	for f in files_to_download[56:len(files_to_download)]:
+ 	 	for f in files_to_download:
 			urllib.urlretrieve(link+f, os.path.join(directory,f))
 			print "File {} downloaded to {}".format(f, directory)
 			print "now sleeping"
