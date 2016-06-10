@@ -46,18 +46,18 @@ Capitalization does not matter.
 The following comparison operators are allowed: 
 
 >"<": less than
-
-"<=": less than or equal to
-
-">=": more than or equal to
-
-">": more than
-
-"==": equal to
-
-"=":  equal to
-
-"!=": not equal to
+>
+>"<=": less than or equal to
+>
+>">=": more than or equal to
+>
+>">": more than
+>
+>"==": equal to
+>
+>"=":  equal to
+>
+>"!=": not equal to
 
 
 
