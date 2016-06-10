@@ -58,37 +58,11 @@ Numerical values allow for more fine-grained comparision. The following example 
 >"!=": not equal to
 
 - The possible constraints can vary from dataset to dataset. The Texas German corpus contains the following categories: 
-- 
-> --language_home 
-                        e.g. german, unknown, None, english
->  --current_residence CURRENT_RESIDENCE
-                        Possible input to the argument 'current_residence'
-                        includes: , doss, floresville, universal city,
-                        sisterdall, columbus, tx, frelsburg/fayetteville,
-                        sisterdale, kirby, fredericksburg, wharton, hamilton,
-                        solms, giddings, hamilton county, garden ridge,
-                        converse, tx, boerne, 8 mile creek, comal co.,
-                        giddings, tx, goliad co., wimberly, tx, olfem, tx,
-                        columbus, pittsburgh, pa, ranch east of
-                        fredericksburg, bulverde, freyburg/black jack, mason,
-                        cave creek, gill. co., None, kirby, tx, castroville,
-                        cave creek, frelsburg, stonewall, wimberly, texas,
-                        doss, texas, dripping springs, conroe, warda, tx,
-                        wall, cat spring, clifton, miles, tx, lee county,
-                        lagrange, schulenburg, new braunfels, waldeck, between
-                        wall & san angelo, fisher, tx, hamilton county, tx,
-                        luckenbach, la grange, freyburg, converse, gidings,
-                        mcqueeny, spring branch, san angelo, tx, houston, tx,
-                        cherry springs, geronimo, new braunfels, tx, san
-                        marcos, serbin, tx, winchester, tx, mcgregor, comal
-                        county, offen, tx, comfort, san antonio, fr, marion,
-                        tx, mission valley, midland, tx, freyburg/schulenburg,
-                        victoria, seguin, rio medina, wall, tx, leroy,
-                        bracken, warrenton, round top, cedar park, freyburg,
-                        tx, comal co.
-  --is_locked IS_LOCKED
-                        Possible input to the argument 'is_locked' includes:
-                        1, 0, None
+
+>--language_home (e.g. german, unknown, english)
+>--current_residence (e.g doss, floresville, universal city)
+> --is_locked (e.g. 1,0)
+                       
   --gender GENDER       Possible input to the argument 'gender' includes:
                         None, m, f
   --created_at CREATED_AT
