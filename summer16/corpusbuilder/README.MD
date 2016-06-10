@@ -40,7 +40,9 @@ Numerical values allow for more fine-grained comparision. The following example 
 
 
 ## Notes:
-1. The possible constraints can vary from dataset to dataset. The Texas German corpus contains the following categories: 
+**1. The possible constraints can vary from dataset to dataset.** Type `python corpusbuilder.py [...] --help` to see which ones are available in your dataset. 
+
+The Texas German corpus can be sorted by the following categories:
 
 >--language_home (e.g. german, unknown, english)
 
@@ -68,12 +70,7 @@ Numerical values allow for more fine-grained comparision. The following example 
 
 >--informant_id (e.g. 344, 345)
 
-
-
-2. Capitalization does not matter. *Fredericksburg* is treated the same as *fredericksburg*. 
-
-
-3. The following comparison operators are allowed: 
+**2. The following comparisons are possible:**
 
 >"<": less than
 >
@@ -89,5 +86,5 @@ Numerical values allow for more fine-grained comparision. The following example 
 >
 >"!=": not equal to
 
-
+**3. Capitalization does not matter.** *Fredericksburg* is treated the same as *fredericksburg*. 
 
