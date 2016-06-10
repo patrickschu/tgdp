@@ -1,7 +1,7 @@
-#The Corpusbuilder
+# The Corpusbuilder
 Takes a collection of zip files and a JSON-file to build a corpus according to user criteria. 
 
-##Description
+## Description
 The corpusbuilder takes the following arguments:
 
      corpusbuilder (json_file, input_folder, output_folder, --repair_formatting=True, **kwargs)
@@ -20,7 +20,7 @@ All the possible criteria and their options for the specific setting are describ
 
 
 
-##How to run it
+## How to run it
 
 This example shows the basic setup: 
 
@@ -41,10 +41,23 @@ Numerical values allow for more fine-grained comparision. The following example 
  
 
 
-Guidelines:
+## Guidelines:
 Capitalization does not matter. 
 The following comparison operators are allowed: 
 
+>"<": less than
+
+"<=": less than or equal to
+
+">=": more than or equal to
+
+">": more than
+
+"==": equal to
+
+"=":  equal to
+
+"!=": not equal to
 
 
 
