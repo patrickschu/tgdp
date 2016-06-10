@@ -22,13 +22,28 @@ All the possible criteria and their options for the specific setting are describ
 
 ##How to run it
 
-This examples shows the basic setup: 
+This example shows the basic setup: 
 
     python corpusbuilder.py '~/Downloads/informants.json' '~/Downloads/inputfolder' '~/Downloads/outputfolder' --gender "=M"
 
-This will search through all the informant data stored in ~/Downloads/informants.json. Since we specified that --gender should be "=M", it will extract all the data associated with speakers that have gender set to "M", i.e. male speakers. It will then go into  ~/Downloads/inputfolder, which we specified as our inputfolder. It will then copy all the files associated with male speakers into ~/Downloads/outputfolder, our output_folder. This is our new corpus. 
+This will search through all the informant metadata stored in ~/Downloads/informants.json. Since we specified that --gender should be "=M", it will extract all the data associated with speakers that have gender set to "M", i.e. male speakers. It will then go into  ~/Downloads/inputfolder, which we specified as our inputfolder. It will then copy all the files associated with male speakers into ~/Downloads/outputfolder, our output_folder. This is our new corpus. 
+
+More refined settings are possible. This example will extract all male speakers who currently live in Fredericksburg. 
+
+    python corpusbuilder.py [...] --gender "=M" --current_residence "=fredericksburg"
+
+(Note that inputfile etc have been omitted for better readability here; they need to be specified every time the program is run).
+
+Numerical values allow for more fine-grained comparision. The following example will extract all recordings of male speakers born between 1900 and 1940. 
+
+    python corpusbuilder.py [...] --gender "=M" --DOB ">=1900" --DOB "<1941"
+
+ 
 
 
+Guidelines:
+Capitalization does not matter. 
+The following comparison operators are allowed: 
 
 
 
