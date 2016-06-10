@@ -59,9 +59,9 @@ Numerical values allow for more fine-grained comparision. The following example 
 
 - The possible constraints can vary from dataset to dataset. The Texas German corpus contains the following categories: 
 - 
-> language_home 
+> --language_home 
                         e.g. german, unknown, None, english
-  --current_residence CURRENT_RESIDENCE
+>  --current_residence CURRENT_RESIDENCE
                         Possible input to the argument 'current_residence'
                         includes: , doss, floresville, universal city,
                         sisterdall, columbus, tx, frelsburg/fayetteville,
