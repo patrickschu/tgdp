@@ -40,24 +40,7 @@ Numerical values allow for more fine-grained comparision. The following example 
 
 
 ## Notes:
-- Capitalization does not matter. *Fredericksburg* is treated the same as *fredericksburg*. 
-- The following comparison operators are allowed: 
-
->"<": less than
->
->"<=": less than or equal to
->
->">=": more than or equal to
->
->">": more than
->
->"==": equal to
->
->"=":  equal to
->
->"!=": not equal to
-
-- The possible constraints can vary from dataset to dataset. The Texas German corpus contains the following categories: 
+1. The possible constraints can vary from dataset to dataset. The Texas German corpus contains the following categories: 
 
 >--language_home (e.g. german, unknown, english)
 
@@ -84,5 +67,27 @@ Numerical values allow for more fine-grained comparision. The following example 
 >--questionnaire (e.g. {"interview_id":"X","upload_status":"none","informant_id":"X","first_name":"X"," [...]}
 
 >--informant_id (e.g. 344, 345)
+
+
+
+2. Capitalization does not matter. *Fredericksburg* is treated the same as *fredericksburg*. 
+
+
+3. The following comparison operators are allowed: 
+
+>"<": less than
+>
+>"<=": less than or equal to
+>
+>">=": more than or equal to
+>
+>">": more than
+>
+>"==": equal to
+>
+>"=":  equal to
+>
+>"!=": not equal to
+
 
 
