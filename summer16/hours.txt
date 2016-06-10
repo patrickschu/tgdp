@@ -5,4 +5,5 @@ Wednesday 6/9: 5
 write download script  download data to external HD  documentation, Corpusbuilder
 Thursday 6/10: 4
 Corpusbuilder
-
+Friday 6/11: 4 c
+corups builder, documentation
