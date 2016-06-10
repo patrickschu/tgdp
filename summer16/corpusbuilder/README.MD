@@ -74,77 +74,15 @@ Numerical values allow for more fine-grained comparision. The following example 
 > --childhood_residence (e.g. clifton, geronemo, rural)
 
 > --island_id (e.g. 1, 0)
->--DOB (e.g. 1908, 1920, 1921)
-  --language_school LANGUAGE_SCHOOL
-                        Possible input to the argument 'language_school'
-                        includes: german, unknown, None, english
-  --education_complete EDUCATION_COMPLETE
-                        Possible input to the argument 'education_complete'
-                        includes: None, middle school, unknown, elementary
-                        school, college, high school, graduate, professional
-                        degree
-  --questionnaire QUESTIONNAIRE
-                        Possible input to the argument 'questionnaire'
-                        includes: , {"interview_id":"694417549","upload_status
-                        ":"none","informant_id":"26","first_name":"aldolph","m
-                        iddle_name":"","last_name":"scheel","gender":"m","date
-                        _of_birth":"1912-01-01","city_of_birth":"new braunfels
-                        ","state_of_birth":"texas","country_of_birth":"usa","s
-                        treet_address_of_residence":"481 old cimarron
-                        trail","city_of_residence":"universal city","state_of_
-                        residence":"texas","country_of_residence":"usa","phone
-                        _number":"","previous_residences":"comal county, tx","
-                        religious_affiliation":"catholic","religious_affiliati
-                        on_other":"","region_in_europe_of_origin":"michaelsrom
-                        bach, hessen, germany","first_languages_german_english
-                        _german":"german","first_languages_german_english_comm
-                        ent":"","languages_at_school_entry_german":"german","l
-                        anguages_at_school_entry_comment":"","second_language_
-                        age":"10","who_taught_second_language":"schoolteachers
-                        at honey creek catholic school","how_often_child_germa
-                        n_parents":"always","how_often_child_german_parents_co
-                        mment":"","how_often_child_english_parents":"never","h
-                        ow_often_child_english_parents_comment":"","how_often_
-                        child_german_grandparents":"always","how_often_child_g
-                        erman_grandparents_comment":"","how_often_child_englis
-                        h_grandparents":"never","how_often_child_english_grand
-                        parents_comment":"","how_often_child_german_teachers":
-                        "often","how_often_child_german_teachers_comment":"","
-                        how_often_child_english_teachers":"sometimes","how_oft
-                        en_child_english_teachers_comment":"","how_often_child
-                        _german_friends":"often","how_often_child_german_frien
-                        ds_co
-  --informant_id INFORMANT_ID
-                        Possible input to the argument 'informant_id'
-                        includes: 344, 345, 346, 347, 340, 341, 342, 343, 348,
-                        292, 199, 198, 195, 194, 197, 196, 191, 190, 193, 192,
-                        449, 448, 443, 442, 440, 447, 446, 445, 444, 108, 102,
-                        103, 101, 106, 107, 104, 105, 39, 38, 33, 32, 31, 30,
-                        37, 36, 35, 34, 438, 439, 436, 437, 434, 433, 430,
-                        431, 339, 338, 335, 334, 337, 336, 331, 330, 333, 332,
-                        6, 98, 91, 90, 93, 92, 95, 94, 97, 96, 239, 235, 233,
-                        1, 147, 144, 145, 142, 143, 140, 141, 149, 133, 132,
-                        131, 130, 137, 136, 135, 134, 139, 138, 24, 25, 26,
-                        27, 20, 21, 22, 23, 28, 29, 407, 406, 405, 404, 403,
-                        402, 401, 400, 409, 408, 379, 378, 371, 370, 373, 372,
-                        375, 374, 377, 393, 392, 88, 89, 397, 396, 395, 394,
-                        82, 83, 80, 81, 86, 87, 84, 85, 7, None, 245, 244,
-                        247, 241, 240, 249, 248, 450, 451, 453, 454, 455, 179,
-                        178, 177, 176, 175, 174, 173, 172, 171, 170, 182, 183,
-                        180, 181, 186, 187, 184, 185, 188, 189, 11, 10, 13,
-                        12, 15, 14, 17, 16, 19, 18, 322, 323, 320, 321, 326,
-                        327, 328, 329, 201, 200, 202, 205, 204, 207, 206, 209,
-                        208, 77, 76, 75, 74, 73, 72, 71, 70, 79, 78, 2, 8,
-                        120, 121, 122, 123, 124, 125, 126, 127, 128, 129, 414,
-                        415, 416, 417, 410, 411, 412, 413, 319, 318, 313, 312,
-                        311, 310, 317, 316, 315, 314, 3, 368, 369, 366, 367,
-                        365, 380, 381, 382, 384, 385, 386, 387, 388, 389, 60,
-                        61, 62, 63, 64, 65, 66, 67, 252, 69, 250, 251, 253,
-                        254, 255, 168, 169, 164, 165, 166, 167, 160, 161, 162,
-                        163, 9, 352, 350, 216, 214, 215, 212, 213, 210, 211,
-                        219, 4, 281, 283, 282, 285, 284, 287, 286, 262, 261,
-                        268, 59, 58, 55, 54, 57, 56, 51, 50, 53, 52, 115, 114,
-                        117, 116
 
+>--DOB (e.g. 1908, 1920, 1921) 
+
+>--language_school (e.g. german, unknown)
+
+>--education_complete (e.g. middle school, unknown, elementary school)
+
+>--questionnaire (e.g. {"interview_id":"X","upload_status":"none","informant_id":"X","first_name":"X"," [...]}
+
+>--informant_id (e.g. 344, 345)
 
 
