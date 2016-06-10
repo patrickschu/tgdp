@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 import json
 import os
 import codecs
@@ -5,54 +7,57 @@ import re
 import argparse
 import sys
 import operator
+import shutil
 from pprint import pprint
 
-#helper functions
+
+#these all need to inpoutted
+# inputdir="/Volumes/TXGDP/down"
+# outputdir=os.path.expanduser("~/Desktop/testi")	
+speaker_regex="\d+-(\d+)-\d+.zip"
 
 
-
+def main(json_file):
+	inputdata=codecs.open(os.path.expanduser(json_file), "r", "utf-8").read()
+	inputdata=re.findall("\[\{.*\}\]", inputdata)[0]
+	print "length", len(inputdata)
 	
-
-
-
-
-def main(inputfile):
-	inputdata=codecs.open(os.path.expanduser(inputfile), "r", "utf-8").read()
- 	inputdata=re.findall("\[\{.*\}\]", inputdata)[0]
- 	print "length", len(inputdata)
-# 		
-# 	#fixing faulty JSON encoding
- 	# if args.repair_formatting:
+	#fixing faulty JSON encoding
+	# if args.repair_formatting:
+	# thank you SO: http://stackoverflow.com/questions/37689400/dealing-with-mis-escaped-characters-in-json
 	inputdata = re.sub(r'(?<!\\)\\(?!["\\/bfnrt]|u[0-9a-fA-F]{4})', r'', inputdata)
-	# 
- 	jsondata=json.loads(inputdata)
-# 		
+	jsondata=json.loads(inputdata)
 	informantdicti={}
 	count=0
- 	for datapoint in jsondata:
- 		count=count+1
- 		informantdicti[count]={k:v.lower() if isinstance(v,basestring) else v for k,v in datapoint.items() }
- 		
- 	for entry in informantdicti:
- 		informantdicti[entry]['DOB']=informantdicti[entry]['DOB'].split("-")[0]
+	for datapoint in jsondata:
+		count=count+1
+		informantdicti[count]={k:v.lower() if isinstance(v,basestring) else v for k,v in datapoint.items() }
+	for entry in informantdicti:
+		informantdicti[entry]['DOB']=int(informantdicti[entry]['DOB'].split("-")[0])
+		print informantdicti[entry]['DOB']
 
- 	print informantdicti[166]
- 	#collect keys, i.e. possible input 
-  	keys=[v.keys() for k,v in informantdicti.items()]
-  	#flatten list
-  	keys=[item for listi in keys for item in listi]
-   	parser = argparse.ArgumentParser()
-	parser.add_argument('inputfile', help='Location of JSON file')
+	#collect keys, i.e. possible input 
+	keys=[v.keys() for k,v in informantdicti.items()]
+	#flatten list
+	keys=[item for listi in keys for item in listi]
+	parser = argparse.ArgumentParser()
+	parser.add_argument('json_file', help='Location of JSON file')
+	parser.add_argument('input_folder', help='A folder of zip files that will be used to build your corpus')
+	parser.add_argument('output_folder', help='A (preferably empty) folder that your corpusfiles will be copied into')
 	parser.add_argument('--repair_formatting', default=True, help='Fixes mis-formatted JSON files. Accepted input: True or False'	)
 	informantdicti[0]={'gender':None, 'DOB':1999}
-
+	print informantdicti[131]
 	keys=list(set(keys))
-  	for key in keys:
-  	 	parser.add_argument("--"+key, type=str, help="Possible input to the argument '{}' includes: {:.1500} ".format(key, ", ".join(set([str(informantdicti[e].get(key)) for e in informantdicti]))))
+	for key in keys:
+		parser.add_argument("--"+key, type=str, help="Possible input to the argument '{}' includes: {:.1500} ".format(key, ", ".join(set([str(informantdicti[e].get(key)) for e in informantdicti]))))
 	args = parser.parse_args()
 	argsdict=vars(args)
+	inputdir=os.path.expanduser(argsdict['input_folder'])
+	inputfilis=[i for i in os.listdir(inputdir) if re.match(speaker_regex, i)]
+	outputdir=os.path.expanduser(argsdict['output_folder'])
 	print "our args"
-	#iterate over all arguments
+	#iterate over all arguments, collect in resultlist
+	resultlist=[]
 	for entry in [e for e in argsdict if argsdict[e] and e in keys]:
 		print "\n", entry, argsdict[entry],"\n"
 		#establish type of entry: str or int
@@ -67,20 +72,43 @@ def main(inputfile):
 			print matcher
 			print [type (i) for i in matcher]
 			results, no_value, no_key = valuegetter(informantdicti, entry, matcher[0], str(matcher[1]))	
-			
+			resultlist.append(results)
 		elif re.match(intinput, argsdict[entry]):
 			print "int matched", entry
 			matcher=re.findall(intinput, argsdict[entry])[0]
 			print [type (i) for i in matcher]
-			results, no_value, no_key = valuegetter(informantdicti, entry, matcher[0], int(matcher[1]))	
-			print results
+			results, no_value, no_key = valuegetter(informantdicti, entry, matcher[0], int(matcher[1]))
+			resultlist.append(results)
 		else:
 			print "Alarm: No match for", entry
+		#print results.keys()
+	resultlist=[i.keys() for i in resultlist]
+	print resultlist
+	sharedresultlist=set.intersection(*[set(i) for i in resultlist])
+	for item in sharedresultlist:
+		print item
+		speaker_id=str(informantdicti[item]["informant_id"])
+		print speaker_id
+		#r=[len(re.findall(speaker_regex, i)) for i in inputfilis]
+		files_to_copy=[i for i in inputfilis if re.findall(speaker_regex, i)[0] == speaker_id]
+		print "files to copy", len(files_to_copy)
+		if len(files_to_copy) > 0:
+			for fili in files_to_copy:
+				shutil.copy2(os.path.join(inputdir, fili), os.path.join(outputdir,fili))
+				print "Copied '{}' to '{}'".format(os.path.join(inputdir, fili), os.path.join(outputdir,fili))
+		else:
+			print "There are no files associated with speaker ID {} in location '{}'`".format(speaker_id, inputdir)
+		
+
+	#10-171-3
+
+	filenamesdict={
+	speaker_regex:"\d+-(\d+)-\d+.zip"
+	}
 
 
 
-
-
+#helper functions
 #the operatordict matches functions to inputstrings
 operatordict={
 "<":operator.lt,
