@@ -10,7 +10,8 @@ The corpusbuilder takes the following arguments:
     input_folder --- Path to a folder of zip files that will be used to build your corpus.
     output_folder --- Path to a (preferably empty) folder that your corpusfiles will be copied into.
     repair_formatting  --- Fixes mis-formatted JSON files. Accepted input: True or False, defaults to True.
-    criteria  --- A variable number of conditions on any of the criteria (such as date of birth, gender, ...) contained in the input JSON file. The input needs to be formatted like so: --criterion "operator, condition", e.g. --DOB "> 1900". Detailed description here. 
+    criteria  --- A variable number of conditions on any of the criteria (such as date of birth, gender, ...) contained in the input JSON file. 
+    The input needs to be formatted like so: --criterion "operator, condition", e.g. --DOB "> 1900". Detailed description [here](https://github.com/patrickschu/tgdp/blob/master/summer16/corpusbuilder/README.MD#how-to-run-it). 
 
 All the possible criteria and their options for the specific setting are described in the help file which can be accessed by typing
 
