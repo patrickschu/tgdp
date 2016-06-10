@@ -40,15 +40,15 @@ Numerical values allow for more fine-grained comparision. The following example 
 
 
 ## Notes:
-**1. The possible constraints can vary from dataset to dataset.** Type `python corpusbuilder.py [...] --help` to see which ones are available in your dataset. 
+**1. The possible constraints can vary from dataset to dataset.** 
 
-The Texas German corpus can be sorted by the following categories:
+Type `python corpusbuilder.py [...] --help` to see which ones are available in your dataset. The Texas German corpus can be sorted by the following categories:
 
 >--language_home (e.g. german, unknown, english)
 
 >--current_residence (e.g doss, floresville, universal city)
 
-> --is_locked (e.g. 1,0)
+>--is_locked (e.g. 1,0)
 
 >--gender (e.g. m, f) 
 
@@ -56,9 +56,9 @@ The Texas German corpus can be sorted by the following categories:
 
 >--updated_at (e.g. 2015-02-04 13:23:59, 2015-03-04 15:16:48)
 
-> --childhood_residence (e.g. clifton, geronemo, rural)
+>--childhood_residence (e.g. clifton, geronemo, rural)
 
-> --island_id (e.g. 1, 0)
+>--island_id (e.g. 1, 0)
 
 >--DOB (e.g. 1908, 1920, 1921) 
 
