@@ -25,7 +25,7 @@ This example shows the basic setup for the corpusbuilder specificially:
 
     python corpusbuilder.py '~/Downloads/informants.json' '~/Downloads/inputfolder' '~/Downloads/outputfolder' --gender "=M"
 
-This will search through all the informant metadata stored in `~/Downloads/informants.json`. Since we specified that `--gender` should be `"=M"`, it will extract all the data associated with speakers that have gender set to "M", i.e. male speakers. It will then go into  `~/Downloads/inputfolder`, which we specified as our `input_folder`. It will then copy all the files associated with male speakers into ``~/Downloads/outputfolder`, our `output_folder`. This is our new corpus. 
+This will search through all the informant metadata stored in `~/Downloads/informants.json`. Since we specified that `--gender` should be `"=M"`, it will extract all the data associated with speakers that have gender set to "M", i.e. male speakers. HERE IS THE TEMPLATE FOR SETTINGS It will then go into  `~/Downloads/inputfolder`, which we specified as our `input_folder`. It will then copy all the files associated with male speakers into ``~/Downloads/outputfolder`, our `output_folder`. This is our new corpus. 
 
 More refined settings are possible. This example will extract all male speakers who currently live in Fredericksburg. 
 
