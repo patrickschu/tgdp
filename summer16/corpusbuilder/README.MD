@@ -58,6 +58,7 @@ Numerical values allow for more fine-grained comparision. The following example 
 >"!=": not equal to
 
 - The possible constraints can vary from dataset to dataset. The Texas German corpus contains the following categories: 
+- 
 > language_home 
                         e.g. german, unknown, None, english
   --current_residence CURRENT_RESIDENCE
