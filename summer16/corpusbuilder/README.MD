@@ -4,7 +4,7 @@ Takes a collection of zip files and a JSON-file to build a corpus according to u
 ## Description
 The corpusbuilder takes the following arguments:
 
-     corpusbuilder (json_file, input_folder, output_folder, --repair_formatting=True, **kwargs)
+    corpusbuilder (json_file, input_folder, output_folder, --repair_formatting=True, **kwargs)
     
     json_file --- Location of the JSON file.
     input_folder --- Path to a folder of zip files that will be used to build your corpus.
