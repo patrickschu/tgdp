@@ -3,6 +3,7 @@ Takes a collection of zip files and a JSON-file to build a corpus according to u
 
 ##Description
 The corpusbuilder takes the following arguments:
+
      corpusbuilder (json_file, input_folder, output_folder, --repair_formatting=True, **kwargs)
     
     json_file --- Location of the JSON file.
@@ -23,7 +24,11 @@ All the possible criteria and their options for the specific setting are describ
 
 This examples shows the basic setup: 
 
-python filepicker.py 'Downloads/informants.json' --gender "=M"
+    python corpusbuilder.py '~/Downloads/informants.json' '~/Downloads/inputfolder' '~/Downloads/outputfolder' --gender "=M"
+
+This will search through all the informant data stored in ~/Downloads/informants.json. Since we specified that --gender should be "=M", it will extract all the data associated with speakers that have gender set to "M", i.e. male speakers. It will then go into  ~/Downloads/inputfolder, which we specified as our inputfolder. It will then copy all the files associated with male speakers into ~/Downloads/outputfolder, our output_folder. This is our new corpus. 
+
+
 
 
 
