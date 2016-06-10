@@ -41,9 +41,9 @@ Numerical values allow for more fine-grained comparision. The following example 
  
 
 
-## Guidelines:
-Capitalization does not matter. 
-The following comparison operators are allowed: 
+## Notes:
+- Capitalization does not matter. 
+- The following comparison operators are allowed: 
 
 >"<": less than
 >
