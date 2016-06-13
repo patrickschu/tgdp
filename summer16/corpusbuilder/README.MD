@@ -31,7 +31,7 @@ More refined settings are possible. This example will extract all male speakers 
 
 Numerical values allow for more fine-grained comparision. The following example will extract all recordings of male speakers born between 1900 and 1940. 
 
-    python corpusbuilder.py [...] --gender "=M" --DOB ">=1900" --DOB "<1941"
+    python corpusbuilder.py --gender "=M" --DOB ">=1900" --DOB "<1941"
 
  
 
