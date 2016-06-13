@@ -39,7 +39,7 @@ Numerical values allow for more fine-grained comparision. The following example 
 ## Notes:
 **1. The possible constraints can vary from dataset to dataset.** 
 
-Type `python corpusbuilder.py [...] --help` to see which ones are available in your dataset. The Texas German corpus can be sorted by the following categories:
+Type `python corpusbuilder.py --help` to see which ones are available in your dataset. The Texas German corpus can be sorted by the following categories:
 
 >--language_home (e.g. german, unknown, english)
 
