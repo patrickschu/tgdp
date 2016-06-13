@@ -7,3 +7,5 @@ Thursday 6/10: 4
 Corpusbuilder
 Friday 6/11: 4 c
 corups builder, documentation
+Mon 6/13: 5
+coepus builder interface, testing
