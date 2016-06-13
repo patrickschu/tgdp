@@ -1,90 +1,181 @@
+#!/usr/bin/env python
+
 import json
 import os
 import codecs
 import re
 import argparse
 import sys
+import operator
+import shutil
 from pprint import pprint
+import time
+
+##NOTE THAT THIS IS DIFFERENT in PY3
+
+import Tkinter 
+import tkFileDialog
 
 
 
 
-#args = parser.parse_args()
+#these all need to inpoutted
+# inputdir="/Volumes/TXGDP/down"
+# outputdir=os.path.expanduser("~/Desktop/testi")	
+speaker_regex="\d+-(\d+)-\d+.zip"
+header="\n-----\n"
+
+def check_input(*args):
+	for arg in args:
+		if not os.path.isdir(arg):
+			raise IOError("The directory '{}' can't be found. Make sure it exists at this location.".format(arg))
 
 
-def main(inputfile):
-	print "external args"
-# 	for i in kwargs:
-# 		print i
-	
-	
-	# 	print parser
-	#pre-processing
-	inputdata=codecs.open(os.path.expanduser(inputfile), "r", "utf-8").read()
-	#print inputdata
- 	inputdata=re.findall("\[\{.*\}\]", inputdata)[0]
- 	print "length", len(inputdata)
-# 		
-# 	#fixing faulty JSON encoding
- 	# if args.repair_formatting:
-	inputdata = re.sub(r'(?<!\\)\\(?!["\\/bfnrt]|u[0-9a-fA-F]{4})', r'', inputdata)
-	# 
- 	jsondata=json.loads(inputdata)
-# 		
+
+def jsonreader(json_file, repair_formatting):
+	#we need to test jsonfile for realness
+	inputdata=codecs.open(json_file, "r", "utf-8").read()
+	#get rid of metadata in JSON doc
+	inputdata=re.findall("\[\{.*\}\]", inputdata)
+	if len(inputdata) < 1:
+		raise IOError("Cannot extract the JSON data. Make sure the relevant section starts with '[{' and ends with '}]'.")
+	inputdata=inputdata[0]
+	print "Reading JSON data from file '{}'. The file is {} characters long".format(json_file, len(inputdata))
+	# thank you SO: http://stackoverflow.com/questions/37689400/dealing-with-mis-escaped-characters-in-json
+	if repair_formatting:
+		print "Repair formatting on."
+		inputdata = re.sub(r'(?<!\\)\\(?!["\\/bfnrt]|u[0-9a-fA-F]{4})', r'', inputdata)
+	try: 
+		jsondata=json.loads(inputdata)
+	except ValueError, err:
+		raise ValueError("{} {}".format (err, "\nCannot read the JSON data, try setting 'repair_formatting' to 'True'."))
 	informantdicti={}
 	count=0
- 	for item in jsondata:
- 		#print type(item)
- 		informantdicti[count]=item
- 		count=count+1
- 	#collect keys, i.e. possible input 
-  	keys=[v.keys() for k,v in informantdicti.items()]
-  	#flatten list
-  	keys=[item for listi in keys for item in listi]
-   	parser = argparse.ArgumentParser()
-	parser.add_argument('inputfile', help='Location of JSON file')
-	parser.add_argument('--repair_formatting', default=True, help='Fixes mis-formatted JSON files. Accepted input: True or False'	)
+	for datapoint in jsondata:
+		count=count+1
+		informantdicti[count]={k:v.lower() if isinstance(v,basestring) else v for k,v in datapoint.items() }
+	for entry in informantdicti:
+		informantdicti[entry]['DOB']=int(informantdicti[entry]['DOB'].split("-")[0])
+	return informantdicti
 
 
+
+
+
+
+def main():
+
+	##inputting JSON
+	print header, "Running the corpusbuilder."
+	print "Please choose JSON file containing informant metadata."
+	root=Tkinter.Tk()
+	root.withdraw()
+	root.update()
+	json_file=tkFileDialog.askopenfilename(title="Please choose JSON file containing informant metadata")
+	informantdicti=jsonreader(json_file, repair_formatting=True)
+	print "Please choose a directory that contains your corpus files"
+	#collect keys, i.e. possible input 
+	keys=[v.keys() for k,v in informantdicti.items()]
+	keys=[item for listi in keys for item in listi]
+	#informantdicti[0]={'gender':None, 'DOB':1999}
 	keys=list(set(keys))
-  	for key in keys:
-  		print key
-  	 	parser.add_argument("--"+key, help="Argument {} has these options, it is ".format(key))
+	#setting up in and out
+	root=Tkinter.Tk()
+	root.withdraw()
+	inputdir = tkFileDialog.askdirectory(title="Inputfolder: Please choose a directory that contains your corpus files")
+	
+	print "Please choose a directory to copy files into."
+	root=Tkinter.Tk()
+	root.withdraw()
+	root.update()
+	outputdir = tkFileDialog.askdirectory(title="Outputfolder: Please choose a directory to copy files into")
+	print "{}'{}' set as input folder".format(header, inputdir)
+	print "'{}' set as output folder {}".format(outputdir, header)
+	check_input(inputdir, outputdir)
+	inputfilis=[i for i in os.listdir(inputdir) if re.match(speaker_regex, i)]
+	#set up input arguments
+	parser = argparse.ArgumentParser()
+	for key in keys:
+		parser.add_argument("--"+key, type=str, help="Possible input to the argument '{}' includes: {:.1500} ".format(key, ", ".join(set([str(informantdicti[e].get(key)) for e in informantdicti]))))
 	args = parser.parse_args()
-	print "our args"
-	print args	
- 	
- 
+	argsdict=vars(args)
+	#iterate over all arguments, collect in resultlist
+	resultlist=[]
+	for entry in [e for e in argsdict if argsdict[e] and e in keys]:
+		intinput=re.compile("(["+"".join(operatordict.keys())+"]+)(?:\s*?)([0-9]+)")
+		strinput=re.compile("(["+"".join(operatordict.keys())+"]+)(?:\s*?)([a-z]+)")
+		if re.match(strinput, argsdict[entry].lower()):
+			#what if they try to use > or < with a string
+			matcher=re.findall(strinput, argsdict[entry].lower())[0]
+			print "Matching ", entry, " ".join(matcher)
+			results, no_value, no_key = valuegetter(informantdicti, entry, matcher[0], str(matcher[1]))	
+			resultlist.append(results)
+		elif re.match(intinput, argsdict[entry]):
+			matcher=re.findall(intinput, argsdict[entry])[0]
+			print "Matching ", entry, " ".join(matcher)
+			results, no_value, no_key = valuegetter(informantdicti, entry, matcher[0], int(matcher[1]))
+			resultlist.append(results)
+		else:
+			print "\nError: No match for the input ", entry
+	resultlist=[i.keys() for i in resultlist]
+	sharedresultlist=set.intersection(*[set(i) for i in resultlist])
+	print "{}{} speakers meet the criteria:".format(header, len(sharedresultlist))
+	sharedresultspeakers=[str(informantdicti[i]["informant_id"]) for i in sharedresultlist]
+	print "IDs {}".format(", ".join(sharedresultspeakers))
+	for speaker_id in sharedresultspeakers:
+		print speaker_id
+		#speaker_id=str(informantdicti[item]["informant_id"])
+		#r=[len(re.findall(speaker_regex, i)) for i in inputfilis]
+		files_to_copy=[i for i in inputfilis if re.findall(speaker_regex, i)[0] == speaker_id]
+		#print "{} files will be copied from '{}'".format(len(files_to_copy), inputdir)
+		if len(files_to_copy) > 0:
+			for fili in files_to_copy:
+				shutil.copy2(os.path.join(inputdir, fili), os.path.join(outputdir,fili))
+				print "Copied '{}' to '{}'".format(os.path.join(inputdir, fili), os.path.join(outputdir,fili))
+		else:
+			print "There are no files associated with speaker ID {} in location '{}'`".format(speaker_id, inputdir)
+		
+	print header, "Corpus builder exited."
+	#10-171-3
 
-	
-	# outputfile=codecs.open("aaaa.txt", "w", "utf-8")
-# 	outputfile.write(newtext)
-#   	
-# 	t=json.dumps(data)
-# 	f=json.loads(t)
-# 	print f.keys()
-	
-	
+	filenamesdict={
+	speaker_regex:"\d+-(\d+)-\d+.zip"
+	}
 
 
-	# with open(os.path.expanduser(inputfile_json), "r") as f:
-# 		input=json.load(f)
-		# t=json.dumps(input)
-# 		jsonobject=json.loads(t)
-# 		print type(jsonobject)
+
+#helper functions
+#the operatordict matches functions to inputstrings
+operatordict={
+"<":operator.lt,
+"<=": operator.le,
+"==":operator.eq,
+"=":operator.eq,
+"!=":operator.ne,
+">=":operator.ge,
+">":operator.gt
+}
+
+def valuegetter(dict, key, operator_string, value):
+	#for each parameter, this returns the matches from the informant dictionary
+	if not operatordict.get(operator_string, None):
+		raise TypeError("The operator '{}', supplied with the parameter '{}', is not valid\n". format(operator_string, key))
+	else:
+		operator=operatordict[operator_string]
+		results={i:dict[i] for i in dict if operator(dict[i].get(key, None),value)}
+		
+		no_value={i for i in dict if dict[i].get(key)==None}
+		if no_value:
+			print "There are no values for this parameter in these files: ", [str(i) for i in no_value]
+		no_key={i for i in dict if key not in dict[i].keys()}
+		if no_key:
+			print "There is no such category in these files: ", [str(i) for i in no_key]
+		return results, no_value, no_key
+
+
 
 if __name__ == "__main__":
-    main(sys.argv[1])
-    
-
-#filepicker('database/informants.json', 'assi', 'assi', 'dicki')
-
-
-
-
-
-
-
+    main()
 
 
 

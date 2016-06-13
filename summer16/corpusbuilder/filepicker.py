@@ -10,6 +10,13 @@ import operator
 import shutil
 from pprint import pprint
 
+##NOTE THAT THIS IS DIFFERENT in PY3
+
+#import Tkinter
+import tkFileDialog
+
+
+
 
 #these all need to inpoutted
 # inputdir="/Volumes/TXGDP/down"
@@ -17,11 +24,17 @@ from pprint import pprint
 speaker_regex="\d+-(\d+)-\d+.zip"
 
 
+def check_input(*args):
+	print "checking input"
+	for arg in args:
+		if not os.path.isdir(arg):
+			raise IOError("The directory '{}' can't be found. Make sure it exists at this location.".format(arg))
+
 def main(json_file):
 	inputdata=codecs.open(os.path.expanduser(json_file), "r", "utf-8").read()
+	#get rid of metadata in JSON doc
 	inputdata=re.findall("\[\{.*\}\]", inputdata)[0]
 	print "length", len(inputdata)
-	
 	#fixing faulty JSON encoding
 	# if args.repair_formatting:
 	# thank you SO: http://stackoverflow.com/questions/37689400/dealing-with-mis-escaped-characters-in-json
@@ -34,7 +47,7 @@ def main(json_file):
 		informantdicti[count]={k:v.lower() if isinstance(v,basestring) else v for k,v in datapoint.items() }
 	for entry in informantdicti:
 		informantdicti[entry]['DOB']=int(informantdicti[entry]['DOB'].split("-")[0])
-		print informantdicti[entry]['DOB']
+		#print informantdicti[entry]['DOB']
 
 	#collect keys, i.e. possible input 
 	keys=[v.keys() for k,v in informantdicti.items()]
@@ -53,13 +66,20 @@ def main(json_file):
 	args = parser.parse_args()
 	argsdict=vars(args)
 	inputdir=os.path.expanduser(argsdict['input_folder'])
-	inputfilis=[i for i in os.listdir(inputdir) if re.match(speaker_regex, i)]
+	
 	outputdir=os.path.expanduser(argsdict['output_folder'])
+	#json_file=tkFileDialog.askopenfile(title="Please choose the JSON file containing the informant metadata")
+	#we need to test jsonfile for realness
+	#inputdir = tkFileDialog.askdirectory(title="Inputfolder: Please choose a folder that contains your corpus files")
+	#outputdir = tkFileDialog.askdirectory(title="Outputfolder: Please choose a folder to copy files into")
+	print "dirname", dirname
+	check_input(inputdir, outputdir)
+	inputfilis=[i for i in os.listdir(inputdir) if re.match(speaker_regex, i)]
 	print "our args"
 	#iterate over all arguments, collect in resultlist
 	resultlist=[]
 	for entry in [e for e in argsdict if argsdict[e] and e in keys]:
-		print "\n", entry, argsdict[entry],"\n"
+		#print "\n", entry, argsdict[entry],"\n"
 		#establish type of entry: str or int
 		#think about lowercasing
 		intinput=re.compile("(["+"".join(operatordict.keys())+"]+)(?:\s*?)([0-9]+)")
@@ -86,9 +106,9 @@ def main(json_file):
 	print resultlist
 	sharedresultlist=set.intersection(*[set(i) for i in resultlist])
 	for item in sharedresultlist:
-		print item
+		#print item
 		speaker_id=str(informantdicti[item]["informant_id"])
-		print speaker_id
+		#print speaker_id
 		#r=[len(re.findall(speaker_regex, i)) for i in inputfilis]
 		files_to_copy=[i for i in inputfilis if re.findall(speaker_regex, i)[0] == speaker_id]
 		print "files to copy", len(files_to_copy)
@@ -127,10 +147,13 @@ def valuegetter(dict, key, operator_string, value):
 	else:
 		operator=operatordict[operator_string]
 		results={i:dict[i] for i in dict if operator(dict[i].get(key, None),value)}
+		
 		no_value={i for i in dict if dict[i].get(key)==None}
-		print "There are no values for this parameter in these files", [(i, dict[i]) for i in no_value]
+		if no_value:
+			print "There are no values for this parameter in these files: ", [str(i) for i in no_value]
 		no_key={i for i in dict if key not in dict[i].keys()}
-		print "There is no such category in these files", [(i, dict[i]) for i in no_key]
+		if no_key:
+			print "There is no such category in these files: ", [str(i) for i in no_key]
 		return results, no_value, no_key
 
 
