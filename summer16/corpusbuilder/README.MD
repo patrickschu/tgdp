@@ -6,7 +6,7 @@ The corpusbuilder takes the following arguments:
 
     corpusbuilder (json_file, input_folder, output_folder, --repair_formatting=True, **kwargs)
     
-    json_file, input_folder and output_folder are set through a graphical interface after the script is started. 
+    json_file, input_folder and output_folder --- set through a graphical interface after the script is started. 
     repair_formatting  --- Fixes mis-formatted JSON files. Accepted input: True or False, defaults to True.
     criteria  --- A variable number of conditions on any of the criteria (such as date of birth, gender, ...) contained in the input JSON file. 
     The input needs to be formatted like so: --criterion "operator, condition", e.g. --DOB "> 1900". Detailed description [here](https://github.com/patrickschu/tgdp/blob/master/summer16/corpusbuilder/README.MD#how-to-run-it). 
