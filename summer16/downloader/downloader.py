@@ -44,9 +44,5 @@ def main(link, directory):
  	return(result)
 
 
-
-	
-main("http://dev.laits.utexas.edu/dev_cpittman/tgdp/", "~/Desktop/down")
-
-# if __name__ == "__main__":
-#     main(*sys.argv[1:])
+if __name__ == "__main__":
+    main(*sys.argv[1:])
