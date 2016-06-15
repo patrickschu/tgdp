@@ -17,4 +17,7 @@ coepus builder interface, testing
 Tu 6/14: 6
 corpus builder, creating files by location
 
+Wed 6/14: 3
+building dataset byt location
+
 
