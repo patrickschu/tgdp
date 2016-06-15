@@ -1,5 +1,5 @@
 # The Corpusbuilder
-Takes a collection of zip or wav files and a [JSON](http://www.json.org/)-file to build a corpus according to user criteria. 
+Takes a collection of zip or wav files and a [JSON](http://www.json.org/)-file with metadata to build a corpus according to user criteria. 
 
 This is useful if you have a big corpus and would like to extract speaker interviews by characteristics, e.g. all speakers from one location, all speakers born before a certain date, of a certain gender, or a combination of those. 
 
