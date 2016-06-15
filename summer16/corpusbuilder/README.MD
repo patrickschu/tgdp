@@ -1,5 +1,5 @@
 # The Corpusbuilder
-Takes a collection of zip files and a JSON-file to build a corpus according to user criteria. 
+Takes a collection of zip or wav files and a JSON-file to build a corpus according to user criteria. 
 
 This is useful if you have a big corpus and would like to extract speaker interviews by characteristics, e.g. all speakers from one location, all speakers born before a certain date, of a certain gender, or a combination of those. 
 
@@ -11,15 +11,14 @@ The corpusbuilder takes the following arguments:
     Basic input:
     json_file --- a [JSON](http://www.json.org/)-formatted file containing informant metadata such as place of residence, age, etc. 
     input_folder ---  a folder containing the entire corpus (files in .wav or .zip format). 
-    output_folder --- a (preferably emtpy) folder where the selected corpus files will be copied to. 
+    output_folder --- a (preferably emtpy) folder where selected corpus files will be copied to. 
     json_file, input_folder, output_folder are all set through a graphical interface after the script is started. 
-    criteria  --- A variable number of criteria (such as place of residence, age, ...) to select which files to copy from input_folder to output_folder. Any criteria contained in json_file can be used. 
-    Criteria are specified in the terminal before the script is run. 
-    The input needs to be formatted like so: --criterion "operator, condition", e.g. --DOB "> 1900". Detailed description [here](https://github.com/patrickschu/tgdp/blob/master/summer16/corpusbuilder/README.MD#how-to-run-it). 
+    criteria  --- A variable number of criteria (such as place of residence, age, ...) to select which files to copy from input_folder to output_folder. Any criteria contained in the json_file can be used. 
+    Criteria are specified in the terminal before the script is run. This input needs to be formatted like so: --criterion "operator, condition", e.g. --DOB "> 1900". Detailed description [here](https://github.com/patrickschu/tgdp/blob/master/summer16/corpusbuilder/README.MD#how-to-run-it). 
     
     Optional input:
     fix_formatting_off --- if set, switches off algorithm that fixes faulty formatting in JSON files. 
-    manual_input --- if set, accepts a text file instead of using the graphical interface. That way, a list of directories can be provided as input_folder. The text file needs to consists of one full path per line. It will be chosen through a GUI.
+    manual_input --- if set, accepts a text file with a list of directories. That way, more than one directory can be provided as input_folder. The text file needs to consist of one full path per line. The file itself will be chosen through a GUI after the script is started.
 
 All the possible criteria and their options for the specific setting are described in the help file which can be accessed by typing
 
@@ -43,6 +42,16 @@ Numerical values allow for more fine-grained comparision. The following example 
 
     python corpusbuilder.py --gender "=M" --DOB ">=1900" --DOB "<1941"
 
+Advanced settings:
+
+This turns of the algorithm that fixes errors in the JSON file's formatting. 
+
+    python corpusbuilder.py --fix_formatting_off 
+
+This setting lets the user input a text files with a list of directories instead of picking one directory through the GUI. 
+
+    python corpusbuilder.py --manual_input
+    
 All settings are described in more detail in the help file which can be accessed by running `python corpusbuilder.py --help`.
 
 ## Notes:
