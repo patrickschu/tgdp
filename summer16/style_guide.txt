@@ -1,3 +1,11 @@
 STYLE GUIDE TGDP TOOLS
 
-header=
+header="\n-----\n"
+
+parser.add_argument("--"+key, type=str, help="Possible input to the argument '{}' includes: {:.1500} ".format(key, ", ".join(set([str(informantdicti[e].get(key)) for e in informantdicti]))))
+
+
+raise TypeError("The operator '{}', supplied with the parameter '{}', is not valid\n". format(operator_string, key))
+
+print "There are no values for this parameter in these files: ", [str(i) for i in no_value]
+
