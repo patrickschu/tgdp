@@ -1,5 +1,5 @@
 # The Corpusbuilder
-Takes a collection of zip or wav files and a JSON-file to build a corpus according to user criteria. 
+Takes a collection of zip or wav files and a [JSON](http://www.json.org/)-file to build a corpus according to user criteria. 
 
 This is useful if you have a big corpus and would like to extract speaker interviews by characteristics, e.g. all speakers from one location, all speakers born before a certain date, of a certain gender, or a combination of those. 
 
@@ -9,7 +9,7 @@ The corpusbuilder takes the following arguments:
     corpusbuilder (fix_formatting_off, manual_input, json_file, input_folder, output_folder, **criteria)
     
     Basic input:
-    json_file --- a [JSON](http://www.json.org/)-formatted file containing informant metadata such as place of residence, age, etc. 
+    json_file --- a JSON-formatted file containing informant metadata such as place of residence, age, etc. 
     input_folder ---  a folder containing the entire corpus (files in .wav or .zip format). 
     output_folder --- a (preferably emtpy) folder where selected corpus files will be copied to. 
     json_file, input_folder, output_folder are all set through a graphical interface after the script is started. 
