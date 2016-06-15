@@ -9,3 +9,6 @@ Corpusbuilder
 corups builder, documentation
 Mon 6/13: 5 -2
 coepus builder interface, testing
+Tu 6/14: 6
+corpus builder, creating files by location
+
