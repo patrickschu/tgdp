@@ -1,15 +1,25 @@
 # The Corpusbuilder
-Takes a collection of zip files and a JSON-file to build a corpus according to user criteria. This is good for...
+Takes a collection of zip files and a JSON-file to build a corpus according to user criteria. 
+
+This is useful if you have a big corpus and would like to extract speaker interviews by characteristics, e.g. all speakers from one location, all speakers born before a certain date, of a certain gender, or a combination of those. 
 
 ## Description
 The corpusbuilder takes the following arguments:
 
-    corpusbuilder (json_file, input_folder, output_folder, --repair_formatting=True, **kwargs)
+    corpusbuilder (fix_formatting_off, manual_input, json_file, input_folder, output_folder, **criteria)
     
-    json_file, input_folder and output_folder --- set through a graphical interface after the script is started. 
-    repair_formatting  --- Fixes mis-formatted JSON files. Accepted input: True or False, defaults to True.
-    criteria  --- A variable number of conditions on any of the criteria (such as date of birth, gender, ...) contained in the input JSON file. 
+    Basic input:
+    json_file --- a [JSON](http://www.json.org/)-formatted file containing informant metadata such as place of residence, age, etc. 
+    input_folder ---  a folder containing the entire corpus (files in .wav or .zip format). 
+    output_folder --- a (preferably emtpy) folder where the selected corpus files will be copied to. 
+    json_file, input_folder, output_folder are all set through a graphical interface after the script is started. 
+    criteria  --- A variable number of criteria (such as place of residence, age, ...) to select which files to copy from input_folder to output_folder. Any criteria contained in json_file can be used. 
+    Criteria are specified in the terminal before the script is run. 
     The input needs to be formatted like so: --criterion "operator, condition", e.g. --DOB "> 1900". Detailed description [here](https://github.com/patrickschu/tgdp/blob/master/summer16/corpusbuilder/README.MD#how-to-run-it). 
+    
+    Optional input:
+    fix_formatting_off --- if set, switches off algorithm that fixes faulty formatting in JSON files. 
+    manual_input --- if set, accepts a text file instead of using the graphical interface. That way, a list of directories can be provided as input_folder. The text file needs to consists of one full path per line. It will be chosen through a GUI.
 
 All the possible criteria and their options for the specific setting are described in the help file which can be accessed by typing
 
@@ -23,7 +33,7 @@ This example shows the basic setup for the corpusbuilder specificially:
 
     python corpusbuilder.py --gender "=M"
 
-Since we specified that `--gender` should be `"=M"`, it will search the metadata file and extract all the data associated with speakers that have gender set to "M", i.e. male speakers. HERE IS THE TEMPLATE FOR SETTINGS. It then extracts all relevant files from the input_folder.  
+Since we specified that `--gender` should be `"=M"`, the corpusbuilder will search the metadata file and extract all the data associated with speakers that have gender set to "M", i.e. male speakers. The terminal input needs to be formatted like this: `--criterion "operator, condition"`. It then extracts all matching files from the input_folder. See [here](https://github.com/patrickschu/tgdp/tree/master/summer16/corpusbuilder#notes) for a complete list of operators. 
 
 More refined settings are possible. This example will extract all male speakers who currently live in Fredericksburg. 
 
@@ -33,8 +43,7 @@ Numerical values allow for more fine-grained comparision. The following example 
 
     python corpusbuilder.py --gender "=M" --DOB ">=1900" --DOB "<1941"
 
- 
-
+All settings are described in more detail in the help file which can be accessed by running `python corpusbuilder.py --help`.
 
 ## Notes:
 **1. The possible constraints can vary from dataset to dataset.** 
@@ -85,3 +94,4 @@ Type `python corpusbuilder.py --help` to see which ones are available in your da
 
 **3. Capitalization does not matter.** *Fredericksburg* is treated the same as *fredericksburg*. 
 
+**4. Missing data can trip you up. If you for example coding missing dates of birth as DOB = 0, this will match searches like `--DOB "<1941"` although this might not be true. 
