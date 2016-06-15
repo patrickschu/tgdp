@@ -6,6 +6,7 @@ import urllib
 import time
 import os
 import requests
+import sys
 
 def main(link, directory):
 	"""
@@ -29,18 +30,18 @@ def main(link, directory):
 	for l in [result for result in soup.find_all('a') if result.get('href')]:
 		#print l.get('href')
 		if l.get('href').endswith(".zip"):
- 			print(l.get('href'))
+ 			#print(l.get('href'))
  			files_to_download.append(l.get('href'))
  	if len(files_to_download) > 0:
  		print "{} files to be downloaded".format(len(files_to_download))
  	 	for f in files_to_download:
 			urllib.urlretrieve(link+f, os.path.join(directory,f))
 			print "File {} downloaded to {}".format(f, directory)
-			print "now sleeping"
-			time.sleep(300)
+			time.sleep(20)
 	else:
 		print "No .zip files found on this web site. Double-check the link supplied."
  	result=[link+f for f in files_to_download]
+ 	print "\nDownloader exited.\n"
  	return(result)
 
 
