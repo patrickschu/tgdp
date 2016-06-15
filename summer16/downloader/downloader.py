@@ -1,12 +1,11 @@
-#downloading stuff
-#<a href="1-1-1.zip">1-1-1.zip</a><
-
 from bs4 import BeautifulSoup
 import urllib
 import time
 import os
 import requests
 import sys
+
+header="\n-----\n"
 
 def main(link, directory):
 	"""
@@ -16,6 +15,7 @@ def main(link, directory):
 	link -- needs to be a URL of the format "http://xy.z", pointing to a web site containing .zip files. 
 	directory -- an existing folder, this is where the files will be downloaded to
 	"""
+	print header, "Running the corpusbuilder."
 	#catching errors
 	directory=os.path.expanduser(str(directory))
 	if not os.path.isdir(directory):
