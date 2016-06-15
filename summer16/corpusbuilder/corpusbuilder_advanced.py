@@ -51,7 +51,7 @@ def check_input(*args):
 
 
 
-def jsonreader(json_file, fix_formatting_off):
+def jsonreader(json_file, repair_formatting):
 	"""
 	Takes a JSON file with informant data, returns a dictionary with 1 entry per speaker ID. 
 	Output format: {1: {current_residence: XYZ, speaker_id: XZY, ..},{2:{}}
@@ -65,13 +65,13 @@ def jsonreader(json_file, fix_formatting_off):
 	inputdata=inputdata[0]
 	print "Reading JSON data from file '{}'. The file is {} characters long".format(json_file, len(inputdata))
 	# thank you SO: http://stackoverflow.com/questions/37689400/dealing-with-mis-escaped-characters-in-json
-	if not fix_formatting_off:
-		print "Fix formatting on."
+	if repair_formatting:
+		print "Repair formatting on."
 		inputdata = re.sub(r'(?<!\\)\\(?!["\\/bfnrt]|u[0-9a-fA-F]{4})', r'', inputdata)
 	try: 
 		jsondata=json.loads(inputdata)
 	except ValueError, err:
-		raise ValueError("{} {}".format (err, "\nCannot read the JSON data, try changing the setting for 'fix_formatting'."))
+		raise ValueError("{} {}".format (err, "\nCannot read the JSON data, try setting 'repair_formatting' to 'True'."))
 	informantdicti={}
 	count=0
 	for datapoint in jsondata:
@@ -111,96 +111,116 @@ def main():
 
 	##inputting JSON
 	print header, "Running the corpusbuilder."
-	parser = argparse.ArgumentParser()
-	parser.add_argument("--fix_formatting_off", action='store_true', help="If entered, this de-activates the repair function for incorrectly formatted JSON files.")
-	parser.add_argument("--manual_input", action='store_true', help="If entered, this lets you enter a list of input directories rather than interactively select one.")
-	initial_args, extras=parser.parse_known_args()
-	initial_argsdict=vars(initial_args)
 	print "Please choose JSON file containing informant metadata."
 	root=Tkinter.Tk()
 	root.withdraw()
 	root.update()
-	json_file=tkFileDialog.askopenfilename(title="Please choose JSON file containing informant metadata")
-	informantdicti=jsonreader(json_file, fix_formatting_off=initial_argsdict['fix_formatting_off'])
+	#json_file=tkFileDialog.askopenfilename(title="Please choose JSON file containing informant metadata")
+	json_file=os.path.expanduser(os.path.join("~/Desktop", "database", "informants.json"))
+	informantdicti=jsonreader(json_file, repair_formatting=True)
 	#collect keys, i.e. possible input 
 	keys=[v.keys() for k,v in informantdicti.items()]
 	keys=[item for listi in keys for item in listi]
+	
 	#informantdicti[0]={'gender':None, 'DOB':1999}
 	keys=list(set(keys))
-		
+	print keys	
 
 	#set up input arguments
+	parser = argparse.ArgumentParser()
 	for key in keys:
 		parser.add_argument("--"+key, type=str, help="Possible input to the argument '{}' includes: {:.1500} ".format(key, ", ".join(set([str(informantdicti[e].get(key)) for e in informantdicti]))))
 	args = parser.parse_args()
 	argsdict=vars(args)
 	if set(argsdict.values()) == set([None]):
 		print "Warning: You did not enter any conditions to select data. Use the '--help' command to see your options."
-	
+	print set([str(informantdicti[e].get("current_residence", None)) for e in informantdicti])
+# 	for residence in set([str(informantdicti[e].get("current_residence")) for e in informantdicti]):
+# 		if len(residence) > 0:
+# 		#print set([str(informantdicti[e].get("current_residence", None)) for e in informantdicti])
+# 			print residence
+# 			filename=os.path.expanduser(os.path.join("~/Desktop/txgdp_out", residence, "gilbert"))
+# 			print filename
+# 			os.makedirs(filename)
 	
 	
 	#setting up in and out
-	if not initial_argsdict['manual_input']:
-		print "Please choose a directory that contains your corpus files"
-		root=Tkinter.Tk()
-		root.withdraw()
-		inputdir = [tkFileDialog.askdirectory(title="Inputfolder: Please choose a directory that contains your corpus files")]
-	else:
-		print "Please choose a text file containing list of directories."
-		root=Tkinter.Tk()
-		root.withdraw()
-		root.update()
-		inputfile=tkFileDialog.askopenfilename(title="Please choose a text file containing list of directories.")
-		inputfile=open(inputfile, "r")
-		inputdirs=[]
-		for line in inputfile:
-			inputdirs.append(line.rstrip('\r\n'))
-		print "{} directories found".format(len(inputdirs))
-		inputdir=[os.path.expanduser(i) for i in inputdirs]
-		inputfile.close()
 	
-	
-	#out
+	print "Please choose a directory that contains your corpus files"
+	root=Tkinter.Tk()
+	root.withdraw()
+	##inputdir manually. only for lazy people
+	#inputdir="TXGDP/interviews" ['/Volumes/TXGDP/interviews']
+
+	inputdir=[os.path.expanduser(os.path.join("~/Desktop/gilbert_unzipped", str(i))) for i in range(1,149)]
+	#inputdir = [tkFileDialog.askdirectory(title="Inputfolder: Please choose a directory that contains your corpus files")]
+	#print inputdir
 	print "Please choose a directory to copy files into."
 	root=Tkinter.Tk()
 	root.withdraw()
 	root.update()
-	outputdir = tkFileDialog.askdirectory(title="Outputfolder: Please choose a directory to copy files into")
-	print "{}'{}' set as input folder".format(header, ", ".join(inputdir))
+	#outputdir = tkFileDialog.askdirectory(title="Outputfolder: Please choose a directory to copy files into")
+	outputdir=os.path.expanduser(os.path.join("~/Desktop", "txgdp_out"))
+	#print "{}'{}' set as input folder".format(header, ", ".join(inputdir))
 	print "'{}' set as output folder {}".format(outputdir, header)
-	check_input(outputdir,*inputdir)
+	#check_input(outputdir,*inputdir)
 	inputfilis=[]
 	for dir in inputdir:
 		inputfilis.append([i for i in os.listdir(dir) if re.match(speaker_regex, i)])
 	inputfilis=[item for listi in inputfilis for item in listi]
 	print len(inputfilis)
-	
 	#iterate over all arguments, collect in resultlist
 	resultlist=[]
-	for entry in [e for e in argsdict if argsdict[e] and e in keys]:
+	for entry in set([str(informantdicti[e].get("current_residence")) for e in informantdicti]):
+		print type(entry)
+		print entry
 		intinput=re.compile("(["+"".join(operatordict.keys())+"]+)(?:\s*?)([0-9]+)")
-		strinput=re.compile("(["+"".join(operatordict.keys())+"]+)(?:\s*?)([a-z]+)")
-		if re.match(strinput, argsdict[entry].lower()):
-			#what if they try to use > or < with a string
-			matcher=re.findall(strinput, argsdict[entry].lower())[0]
-			print "Matching ", entry, " ".join(matcher)
-			results, no_value, no_key = valuegetter(informantdicti, entry, matcher[0], str(matcher[1]))	
-			resultlist.append(results)
-		elif re.match(intinput, argsdict[entry]):
-			matcher=re.findall(intinput, argsdict[entry])[0]
-			print "Matching ", entry, " ".join(matcher)
-			results, no_value, no_key = valuegetter(informantdicti, entry, matcher[0], int(matcher[1]))
-			resultlist.append(results)
+		strinput=re.compile("(["+"".join(operatordict.keys())+"]+)(?:\s*?)(.+)")
+		if re.match(strinput, "="+entry):
+			print "match"
+			if len(entry) > 0:
+				print "length"
+				#what if they try to use > or < with a string
+				matcher=re.findall(strinput, "="+entry)[0]
+				print matcher
+				#print "Matching ", entry, " ".join(matcher)
+				print str(matcher[1])
+				#dict, key, operator_string, value
+				results, no_value, no_key = valuegetter(informantdicti, "current_residence", matcher[0], str(matcher[1]))
+				#print results	
+				resultlist.append(results)
 		else:
 			print "\nError: No match for the input ", entry
-	#note that resultlist contains the dictionary keys, which are numbers != speaker_ids
-	resultlist_keys=[i.keys() for i in resultlist]
-	sharedresultlist=set.intersection(*[set(i) for i in resultlist_keys])
+		speaker_ids= [str(informantdicti[i].get("informant_id")) for i in results]
+		print speaker_ids
+		for speaker_id in speaker_ids:
+			speaker_entry={k:v for k,v in informantdicti.items() if v.get("informant_id") == int(speaker_id)}
+			json.dump(speaker_entry, file(os.path.join(outputdir, entry, "speaker"+speaker_id+".txt"), 'w'))
+			#switch back on for basic input
+			#files_to_copy=[i for i in inputfilis if re.findall(speaker_regex, i)[0] == speaker_id]
+			for dir in inputdir:
+				#print os.listdir(dir)
+				all_files=[i for i in os.listdir(dir) if re.match(speaker_regex, i)]
+				files_to_copy=[i for i in all_files if re.findall(speaker_regex, i)[0] == speaker_id]
+				print speaker_id, files_to_copy		
+				if len(files_to_copy) > 0:
+					for fili in files_to_copy:
+						shutil.copy2(os.path.join(dir, fili), os.path.join(outputdir,entry,"gilbert",fili))
+						print "Copied '{}' to '{}'".format(os.path.join(dir, fili), os.path.join(outputdir,entry, "gilbert",fili))
+		
+			#speaker_entry={k:v for k,v in informantdicti.items() if v.get("informant_id") == int(speaker_id)}
+		
+		#json.dump(speaker_entry, file(os.path.join(outputdir,"speaker"+speaker_id+".txt"), 'w'))
+	print "resultlist", resultlist[0]
+	# resultlist_keys=[i.keys() for i in resultlist]
+# 	print "resultlist", resultlist[0]
+# 	sharedresultlist=[i.keys() for i in resultlist]
+	#sharedresultlist=set.intersection(*[set(i) for i in resultlist_keys])
 	print "{}{} speakers meet the criteria:".format(header, len(sharedresultlist))
+	
+	
 	sharedresultspeakers=[str(informantdicti[i]["informant_id"]) for i in sharedresultlist]
 	print "IDs {}".format(", ".join(sharedresultspeakers))
-	
-	#copy files, write out metadata
 	for speaker_id in sharedresultspeakers:
 		speaker_entry={k:v for k,v in informantdicti.items() if v.get("informant_id") == int(speaker_id)}
 		
@@ -216,8 +236,8 @@ def main():
 				for fili in files_to_copy:
 					shutil.copy2(os.path.join(dir, fili), os.path.join(outputdir,fili))
 					print "Copied '{}' to '{}'".format(os.path.join(dir, fili), os.path.join(outputdir,fili))
-			else:
-				print "There are no files associated with speaker ID {} in location '{}'`".format(speaker_id, inputdir)
+			# else:
+# 				print "There are no files associated with speaker ID {} in location '{}'`".format(speaker_id, inputdir)
 		
 	print header, "Corpus builder exited."
 
