@@ -115,16 +115,14 @@ def main():
 	root=Tkinter.Tk()
 	root.withdraw()
 	root.update()
-	#json_file=tkFileDialog.askopenfilename(title="Please choose JSON file containing informant metadata")
-	json_file=os.path.expanduser(os.path.join("~/Desktop", "database", "informants.json"))
+	json_file=tkFileDialog.askopenfilename(title="Please choose JSON file containing informant metadata")
 	informantdicti=jsonreader(json_file, repair_formatting=True)
 	#collect keys, i.e. possible input 
 	keys=[v.keys() for k,v in informantdicti.items()]
 	keys=[item for listi in keys for item in listi]
-	
 	#informantdicti[0]={'gender':None, 'DOB':1999}
 	keys=list(set(keys))
-	print keys	
+		
 
 	#set up input arguments
 	parser = argparse.ArgumentParser()
@@ -134,14 +132,7 @@ def main():
 	argsdict=vars(args)
 	if set(argsdict.values()) == set([None]):
 		print "Warning: You did not enter any conditions to select data. Use the '--help' command to see your options."
-	print set([str(informantdicti[e].get("current_residence", None)) for e in informantdicti])
-	# for residence in set([str(informantdicti[e].get("current_residence")) for e in informantdicti]):
-# 		if len(residence) > 0:
-# 		#print set([str(informantdicti[e].get("current_residence", None)) for e in informantdicti])
-# 			print residence
-# 			filename=os.path.expanduser(os.path.join("~/Desktop/txgdp_out", residence))
-# 			print filename
-# 			os.mkdir(filename)
+	
 	
 	
 	#setting up in and out
@@ -150,15 +141,14 @@ def main():
 	root=Tkinter.Tk()
 	root.withdraw()
 	##inputdir manually. only for lazy people
-	inputdir=[os.path.expanduser(os.path.join("~/Desktop/gilbert_unzipped", str(i))) for i in range(1,149)]
+	inputdir=[os.path.expanduser(os.path.join("~/Desktop/gilli", str(i))) for i in range(1,149)]
 	#inputdir = [tkFileDialog.askdirectory(title="Inputfolder: Please choose a directory that contains your corpus files")]
 	print "Please choose a directory to copy files into."
 	root=Tkinter.Tk()
 	root.withdraw()
 	root.update()
-	#outputdir = tkFileDialog.askdirectory(title="Outputfolder: Please choose a directory to copy files into")
-	outputdir=os.path.expanduser(os.path.join("~/Desktop", "txgdp_out"))
-	#print "{}'{}' set as input folder".format(header, ", ".join(inputdir))
+	outputdir = tkFileDialog.askdirectory(title="Outputfolder: Please choose a directory to copy files into")
+	print "{}'{}' set as input folder".format(header, ", ".join(inputdir))
 	print "'{}' set as output folder {}".format(outputdir, header)
 	check_input(outputdir,*inputdir)
 	inputfilis=[]
@@ -168,54 +158,26 @@ def main():
 	print len(inputfilis)
 	#iterate over all arguments, collect in resultlist
 	resultlist=[]
-	for entry in set([str(informantdicti[e].get("current_residence")) for e in informantdicti]):
-		print type(entry)
-		print entry
+	for entry in [e for e in argsdict if argsdict[e] and e in keys]:
 		intinput=re.compile("(["+"".join(operatordict.keys())+"]+)(?:\s*?)([0-9]+)")
-		strinput=re.compile("(["+"".join(operatordict.keys())+"]+)(?:\s*?)(.+)")
-		if re.match(strinput, "="+entry):
-			print "match"
-			if len(entry) > 0:
-				print "length"
-				#what if they try to use > or < with a string
-				matcher=re.findall(strinput, "="+entry)[0]
-				print matcher
-				#print "Matching ", entry, " ".join(matcher)
-				print str(matcher[1])
-				#dict, key, operator_string, value
-				results, no_value, no_key = valuegetter(informantdicti, "current_residence", matcher[0], str(matcher[1]))
-				#print results	
-				resultlist.append(results)
+		strinput=re.compile("(["+"".join(operatordict.keys())+"]+)(?:\s*?)([a-z]+)")
+		if re.match(strinput, argsdict[entry].lower()):
+			#what if they try to use > or < with a string
+			matcher=re.findall(strinput, argsdict[entry].lower())[0]
+			print "Matching ", entry, " ".join(matcher)
+			results, no_value, no_key = valuegetter(informantdicti, entry, matcher[0], str(matcher[1]))	
+			resultlist.append(results)
+		elif re.match(intinput, argsdict[entry]):
+			matcher=re.findall(intinput, argsdict[entry])[0]
+			print "Matching ", entry, " ".join(matcher)
+			results, no_value, no_key = valuegetter(informantdicti, entry, matcher[0], int(matcher[1]))
+			resultlist.append(results)
 		else:
 			print "\nError: No match for the input ", entry
-		speaker_ids= [str(informantdicti[i].get("informant_id")) for i in results]
-		print speaker_ids
-		for speaker_id in speaker_ids:
-			speaker_entry={k:v for k,v in informantdicti.items() if v.get("informant_id") == int(speaker_id)}
-			json.dump(speaker_entry, file(os.path.join(outputdir, entry, "speaker"+speaker_id+".txt"), 'w'))
-			#switch back on for basic input
-			#files_to_copy=[i for i in inputfilis if re.findall(speaker_regex, i)[0] == speaker_id]
-			for dir in inputdir:
-				#print os.listdir(dir)
-				all_files=[i for i in os.listdir(dir) if re.match(speaker_regex, i)]
-				files_to_copy=[i for i in all_files if re.findall(speaker_regex, i)[0] == speaker_id]
-				print speaker_id, files_to_copy		
-				if len(files_to_copy) > 0:
-					for fili in files_to_copy:
-						shutil.copy2(os.path.join(dir, fili), os.path.join(outputdir,entry,fili))
-						print "Copied '{}' to '{}'".format(os.path.join(dir, fili), os.path.join(outputdir,entry,fili))
-		
-			#speaker_entry={k:v for k,v in informantdicti.items() if v.get("informant_id") == int(speaker_id)}
-		
-		#json.dump(speaker_entry, file(os.path.join(outputdir,"speaker"+speaker_id+".txt"), 'w'))
-	print "resultlist", resultlist[0]
-	# resultlist_keys=[i.keys() for i in resultlist]
-# 	print "resultlist", resultlist[0]
-# 	sharedresultlist=[i.keys() for i in resultlist]
-	#sharedresultlist=set.intersection(*[set(i) for i in resultlist_keys])
+	#note that resultlist contains the dictionary keys, which are numbers != speaker_ids
+	resultlist_keys=[i.keys() for i in resultlist]
+	sharedresultlist=set.intersection(*[set(i) for i in resultlist_keys])
 	print "{}{} speakers meet the criteria:".format(header, len(sharedresultlist))
-	
-	
 	sharedresultspeakers=[str(informantdicti[i]["informant_id"]) for i in sharedresultlist]
 	print "IDs {}".format(", ".join(sharedresultspeakers))
 	for speaker_id in sharedresultspeakers:
