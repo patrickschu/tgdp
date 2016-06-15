@@ -1,7 +1,7 @@
 #Dataset Downloader
 
 ###Description
-The downloader downloads zipped files from a web site to a specified folder. It also returns a list containing the files names of the files found. 
+The downloader downloads zipped files from a web site to a specified folder. It also returns a list containing the names of the files found. 
 
 Arguments:
 
