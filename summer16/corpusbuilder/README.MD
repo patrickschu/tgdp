@@ -48,7 +48,7 @@ Numerical values allow for more fine-grained comparision. The following example 
 
 #### Advanced settings.
 
-This turns of the algorithm that fixes errors in the JSON file's formatting. 
+This switches off the algorithm that fixes errors in the json_file's formatting. 
 
     python corpusbuilder.py --fix_formatting_off 
 
