@@ -108,3 +108,6 @@ Type `python corpusbuilder.py --help` to see which ones are available in your da
 **3. Capitalization does not matter.** *Fredericksburg* is treated the same as *fredericksburg*. 
 
 **4. Missing data can trip you up. If you for example coding missing dates of birth as DOB = 0, this will match searches like `--DOB "<1941"` although this might not be true. 
+
+**5. File naming standards.** As of now, the corpusbuilder expects files to be named according to the template "X+-X+-X+-.[zip|wav] where X+ stands for one or more numbers. The second X+ is assumed to be the speaker ID. 
+
