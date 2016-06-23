@@ -11,13 +11,13 @@ Corpusbuilder
 ~~Friday 6/11: 4 c~~
 corups builder, documentation
 
-Mon 6/13: 5 -2
+~~Mon 6/13: 5 -2~~
 coepus builder interface, testing
 
-Tu 6/14: 6
+~~Tu 6/14: 6~~
 corpus builder, creating files by location
 
-Wed 6/14: 3
+Wed 6/14: 3 -1
 building dataset byt location
 
 
