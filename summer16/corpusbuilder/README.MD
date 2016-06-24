@@ -26,7 +26,7 @@ All the possible criteria and their options for the specific setting are describ
     
 
 ## How to run it
-Run it in a shell. See here for instructions. 
+Download [here](https://github.com/patrickschu/tgdp/blob/master/summer16/corpusbuilder/corpusbuilder_original.py). Run it in a shell. See here for instructions. 
 
 #### The basics. 
 
