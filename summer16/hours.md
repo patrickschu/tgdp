@@ -17,17 +17,7 @@ coepus builder interface, testing
 ~~Tu 6/14: 6~~
 corpus builder, creating files by location
 
-~~Wed 6/14: 3 -1~~
+Wed 6/14: 3 -1
 building dataset byt location
-
-~~6/27: 3~~
-dataset by location, digitizing gilbert
-
-6/28: 6-5
-adding gilbert translations, transcriptions, basic vowel analysis
-
-6/29: 6
-gilbert file extracter
-
 
 
