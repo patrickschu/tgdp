@@ -20,4 +20,8 @@ corpus builder, creating files by location
 Wed 6/14: 3 -1
 building dataset byt location
 
+6/27: 3
+dataset by location, digitizing gilbert
+6/28: 6
+adding gilbert translations, transcriptions, basic vowel analysis
 
