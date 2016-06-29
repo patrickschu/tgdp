@@ -22,8 +22,12 @@ building dataset byt location
 
 ~~6/27: 3~~
 dataset by location, digitizing gilbert
+
 6/28: 6-5
 adding gilbert translations, transcriptions, basic vowel analysis
-6/29: 5
+
+6/29: 6
 gilbert file extracter
+
+
 
