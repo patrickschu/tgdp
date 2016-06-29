@@ -87,7 +87,7 @@ def extracter(spreadsheet, column_name):
 		for f in files:
 			inputfiles.append(os.path.join(dirpath, f))
 			if len(inputfiles) in [1000,2000,6000,12000,24000]:
-				print "{} files processed, still working".format(len(inputfiles))
+				print "{} files processed, still working.".format(len(inputfiles))
 		
 
 	print "Found {} files".format(len(inputfiles))
@@ -97,19 +97,19 @@ def extracter(spreadsheet, column_name):
 #  		spreadsheet=pandas.read_csv(spreadsheet, encoding="utf-8")
  	numbers_to_be_extracted= spreadsheet[column_name].unique()
 
- 	print header, "Gilbert numbers to be extracted"
+ 	print header, "Gilbert numbers to be extracted:"
  	print ",".join([unicode(i) for i in numbers_to_be_extracted])
  	#finding relevant input files
  	result=[]
 	for number in numbers_to_be_extracted:
-		print "Processing", number
+		print "Processing {}.".format(number)
 		regex="(\d+)-(\d+)-(\d+)-"+number.astype('U')+"-(\D+)\.wav"
   		findings= [f for f in inputfiles if re.match(regex, os.path.split(f)[1])]
   		result= result+findings
   		for find in findings:
 	   		shutil.copy2(find, os.path.join(output_folder, os.path.split(find)[1]))
   		
-  	print header, "{} files have been copied to {}".format(len(result), output_folder)
+  	print header, "{} files have been copied to {}.".format(len(result), output_folder)
  	
  	
 	

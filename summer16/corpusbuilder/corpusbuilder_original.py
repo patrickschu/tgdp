@@ -24,6 +24,7 @@ import tkFileDialog
 regexdict={
 'speaker_regex':"\d+-(\d+)-\d+.zip"
 }
+
 speaker_regex="\d+-(\d+)-\d+.*[wav|zip]"
 header="\n-----\n"
 
@@ -43,7 +44,7 @@ operatordict={
 ###helper functions###
 def check_input(*args):
 	"""
-	Checks if directories supplied as args actually exist
+	Checks if directories supplied as args actually exist.
 	"""
 	for arg in args:
 		if not os.path.isdir(arg):
@@ -86,7 +87,7 @@ def valuegetter(dict, key, operator_string, value):
 	"""
 	Uses the operation defined in operator_string to match the input value to entries in dict.
 	It reads the operators from the operatordict. 
-	Prints warning if not value (i.e. dictionary value: None or no parameter (i.e. dictionary lacks key). 
+	Prints warning if no value (i.e. dictionary value: None) or no parameter (i.e. dictionary lacks key). 
 	Returns matches in resultlist, errors in no_value and no_key. 
 	"""
 	if not operatordict.get(operator_string, None):
