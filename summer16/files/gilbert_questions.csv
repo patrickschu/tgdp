@@ -1,0 +1,169 @@
+,gilbert_number,input_form,target_form
+0,1,a hairbrush ,die haarbuerste
+1,2,He's running now. ,er laeuft jetzt
+2,3,two goats ,zwei ziegen
+3,4,one apple ,ein apfel
+4,5,icicles ,eiszapfen
+5,6,the cooking pot ,der kochtopf
+6,7,my head ,mein kopf
+7,8,the door ,die tuer
+8,9,The table is broken. ,der tisch ist kaputt
+9,10,The animal died out in the pasture.,das tier ist auf dem feld gestorben
+10,11,The animal died out in the pasture. ,das tier ist auf dem feld gestorben
+11,12,It is too dry this year. ,es ist zu trocken dieses jahr
+12,13,water faucet ,wasserhahn
+13,14,Thursday ,donnerstag
+14,15,He took the most sausage. ,er hat am meisten wurst genommen
+15,16,a hairbrush ,eine haarbuerste
+16,17,the door ,die tuer
+17,18,two daughters ,zwei toechter
+18,19,sweet potatoes (lpomoea batatas) ,suesskartoffeln
+19,20,two cooking pots ,zwei kochtoepfe
+20,21,a hairbrush ,eine haarbuerste
+21,22,This chicken has long feathers. ,das huhn hat lange federn
+22,23,It's lying down there on the floor. ,es liegt da unten auf dem boden
+23,24,the red ants that sting ,die roten ameisen die beissen
+24,25,my head ,mein kopf
+25,26,milk ,milch
+26,27,The animal died out in the pasture.,das tier ist auf dem feld gestorben
+27,28,We went with her. ,wir sind mit ihr gegangen
+28,29,Who did we see? ,wen haben wir gesehen
+29,30,He came with me. ,er ist mit mir gekommen
+30,31,He's helping me now. ,er hilft mir jetzt
+31,32,The little children see her. ,die kleinen kinder sehen sie
+32,33,Give her two (pieces)! ,gib ihr zwei stuecke
+33,34,We went with her. ,wir sind mit ihr gegangen
+34,35,The picture belongs to them. ,das bild gehoert ihnen
+35,36,Who did we see? ,wen haben wir gesehen
+36,37,There's the man who I want to see. ,das ist der mann den ich sehen wollte
+37,38,There are the children who I gave the candy to. ,da sind die kinder denen ich die suessigkeiten gegeben habe
+38,39,This is my chair. ,das ist mein stuhl
+39,40,It is too dry this year. ,es ist zu trocken dieses jahr
+40,41,This chicken has long feathers.,das huhn hat lange federn
+41,42,The dog bit that bad man. ,der hund hat diesen boesen mann gebissen
+42,43,The dog bit the bad man. ,der hund hat diesen boesen mann gebissen
+43,44,The little children see her. ,die kleinen kinder sehen sie
+44,45,the red ants that sting ,die roten ameisen die beissen
+45,46,There is something in your left eye. ,da ist was in deinem linken auge
+46,47,Boil that egg in hot water! ,koch das ei in heissem wasser
+47,48,a bad dream ,ein schlechter traum
+48,49,This chicken has long feathers.,das huhn hat lange federn
+49,50,Hang the picture over the bed! ,haeng das bild ueber das bett
+50,51,The picture hangs over the bed. ,das bild haengt ueber dem bett
+51,52,He's putting the chair under the tree. ,er stellt den stuhl unter den baum
+52,53,He's sitting under the tree. ,er sitzt unter dem baum
+53,54,He's putting the chair beside the tree. ,er stellt den stuhl neben den baum
+54,55,He's sitting over there beside the tree. ,er sitzt da drueben neben dem baum
+55,56,Put it on the floor! ,stell es auf den boden
+56,57,It's lying down there on the floor. ,es liegt da unten auf dem boden
+57,58,He goes into the room. ,er geht in das zimmer
+58,59,He is already in the room. ,er ist schon in im zimmer
+59,60,The animal died out in the pasture.,das tier ist auf dem feld gestorben
+60,61,two windows ,zwei fenster
+61,62,two rooms ,zwei raeume
+62,63,two plates ,zwei teller
+63,64,two wagons ,zwei wagen
+64,65,two boys ,zwei jungen
+65,66,two goats ,zwei ziegen
+66,67,This chicken has long feathers. ,das huhn hat lange federn
+67,68,two cows ,zwei kuehe
+68,69,two gardens ,zwei gaerten
+69,70,two daughters ,zwei toechter
+70,71,Two heads are better than one. ,zwei koepfe sind besser als einer
+71,72,Two heads are better than one.,zwei koepfe sind besser als einer
+72,73,Two heads are better than one.,zwei koepfe sind besser als einer
+73,74,the honey ,der honig
+74,75,the door ,die tuer
+75,76,His coughing is getting worse and worse. ,sein husten wird immer schlimmer
+76,77,He's helping me now. ,er hilft mir jetzt
+77,78,He's sleeping now. ,er schlaeft jetzt
+78,79,He eats too much. ,er isst zu viel
+79,80,He's washing his hands. ,er waescht seine haende
+80,81,Look how that tree is falling down! ,schau wie der baum faellt
+81,82,He's running now. ,er laueft jetzt
+82,83,You're ruining the food! ,du verdirbst das essen
+83,84,What was his name anyway? ,wie hiess er nochmal
+84,85,This month it snowed three times. ,in diesem monat hat es drei mal geschneit
+85,86,I've known that man for many years. ,ich habe diesen mann seit jahren gekannt
+86,87,What did they name the child? ,was fuer einen namen haben sie dem kind gegeben
+87,88,Give her two (pieces)! ,gib ihr zwei stueck
+88,89,Take fifty-five dollars! ,nimm fuenfundfuenzig taler
+89,90,They're taking it away. ,sie nehmen es weg
+90,91,She caught a cold. ,sie hat eine erkaeltung bekommen
+91,92,He told us that. ,er hat uns das erzaehlt
+92,93,Look how that tree is falling down! ,schau wie der baum faellt
+93,94,They're taking it away. ,sie nehmen es weg
+94,95,You were both here yesterday. ,ihr wart beide gestern hier
+95,96,There are the children who I gave the candy to. ,da sind die kinder denen ich die suessigkeiten gegeben habe
+96,97,He arrived yesterday. ,er ist gestern angekommen
+97,98,We went home. ,wir sind nach hause gegangen
+98,99,You were both here yesterday. ,ihr wart beide gestern hier
+99,100,two daughters ,zwei toechter
+100,101,He pinches me. ,er zwickt mich
+101,102,cabbage (B.oleracea capitata) ,kohl
+102,103,a horse ,ein pferd
+103,104,Give her a lot of homemade curd cheese and some cream. ,gibt ihr eine menge quark und ein bisschen sahne
+104,105,He is already in the room. ,er ist schon in dem zimmer
+105,106,This chicken has long feathers.,das huhn hat lange federn
+106,107,Saturday ,samstag
+107,108,a (garden) rake ,ein rechen
+108,109,a stomach ache ,bauchschmerzen
+109,100,a girl ,ein maedchen
+110,111,a lightning bug (Lampyridae) ,ein gluehwuermchen
+111,112,It's ten minutes of six. ,es ist zehn vor sechs
+112,113,He took the most sausage. ,er hat am meisten wurst genommen
+113,114,a funeral ,ein begraebnis
+114,115,He's putting the chair beside the tree. ,er stellt den stuhl neben den baum
+115,116,the (kitchen) sink ,die spuele
+116,117,the drawer (of a table or dresser) ,die schublade
+117,118,The table is broken. ,der tisch ist kaputt
+118,119,"a shoemaker's awl (small, pointed tool for piercing holes in leather) ",eine ahle
+119,120,Give her a lot of homemade curd cheese and some cream.,gib ihr eine menge quark und ein bisschen sahne
+120,121,You can make pecan trees better when you graft them. ,man kann pekannussbaeume besser machen indem man sie pfropft
+121,122,It's lying down there on the floor. ,es liegt da unten auf dem boden
+122,123,the fireplace ,der kamin
+123,124,He worked too hard; he's all worn out. ,er hat zu viel gearbeitet er ist ganz erschoepft
+124,125,a pumpkin (the fruit of Cucurbita pepo) ,ein kuerbis
+125,126,a mule [offspring of a horse & a donkey] ,ein maultier
+126,127,a donkey (Equus asinus) ,ein esel
+127,128,Get that skunk (Mephitis mephitis) off my front porch! ,schaff mir das stinktier aus meinem vorgarten
+128,129,Is that a squirrel (Sciurus niger or Sciurus carolinensis) on the pecan tree? ,ist das ein eichhoernchen auf dem pekannussbaum
+129,130,stinging nettles (low plant: Urtica) ,brennnesseln
+130,131,"bull nettles (""horse nettles"", ""tread-softly"", ""mala mujer"": Solanum carolinense) ",pferdenesseln
+131,132,Get that skunk off my front porch!,schaff mir das stinktier aus meinem vorgarten
+132,133,Get that skunk off my front porch!,schaff mir das stinktier aus meinem vorgarten
+133,134,"The corn (maize, Zea mays) is good this year. ",der mais ist dieses jahr gut
+134,135,the (kitchen) sink ,die spuele
+135,136,the creek ,der bach
+136,137,the creek,der bach
+137,138,the creek,der bach
+138,139,There are the children who I gave the candy to. ,da sind die kinder denen ich die suessigkeiten gegeben habe
+139,140,Is that a squirrel on the pecan tree? (Carya illinoensis),ist das ein eichhoernchen auf dem pekannussbaum
+140,141,sweet potatoes (lpomoea batatas) ,suesskartoffeln
+141,142,a pool or pond dug out for watering livestock ,ein teich
+142,143,It is too dry this year. ,es ist zu trocken dieses jahr
+143,144,He's going to town now. ,er geht jetzt in die stadt
+144,145,We went home. ,wir sind nach hause gegangen
+145,146,It's quarter after five. ,es ist viertel nach fuenf
+146,147,A Gaul is a …? ,horse
+147,148,Do people in the community say gelt or gell(e) for nicht wahr? ,None
+148,1,Don't run through the kitchen door. ,renn nicht durch die kuechentuer
+149,2,Help me. ,hilf mir
+150,3,I saw the cockroach that was hiding under the woodpile ,ich habe die kakerlake gesehen die sich unter dem holzhaufen versteckt
+151,4,"When my father was alive, he had four hundred pecan trees. ",als mein vater noch lebte hatte er vierhundert pekannussbaeume
+152,5,The buzzard is eating the dead skunk ,der bussard isst das tote stinktier
+153,6,We will buy a hundred pounds of feed for the calves at the feed store ,im futterladen werden wir hundert pfund futter fuer die kaelber kaufen
+154,7,There's a bunch of live oaks in the pasture ,da sind einige lebenseichen auf dem feld
+155,8,Do you see the lightening bugs that are out tonight ,hast du die gluehwuermchen gesehen die heute unterwegs sind
+156,9,Will your wife come to live in your father's house after the marriage ,wird deine frau nach der hochzeit im haus deines vaters wohnen
+157,10,The people went by bus from Kerrville to Fredericksburg to pick peaches ,die leute sind mit dem bus von kerrville nach fredericksburg gefahren um pfirsiche zu ernten
+158,11,My brother's friend is walking around the ranch to check up on the sheep ,der freund meines bruders ist auf dem hof unterwegs um nach den schafen zu sehen
+159,12,The roof of our house caved in during the storm ,das dach unseres hauses ist waehrend des sturms eingebrochen
+160,13,Don't take candy from strangers! ,nimm keine suessigkeiten von fremden an
+161,14,We will harvest the crops despite the weather ,wir werden trotz des wetters ernten
+162,15,"When I was young, everyone in town spoke German ",als ich jung war hat jeder in der stadt deutsch gesprochen
+163,16,He is cutting the hedge with Herbert's tools ,er schneidet die hecke mit herberts werkzeug
+164,17,Where were you hunting coons last night ,wo hast du letzte nacht waschbaeren gejagt
+165,18,He made jerky out of the deer that he shot ,er machte trockenfleisch aus dem wild das er geschossen hat
+166,19,Where were you going without the car ,wo bist du ohne das auto hingegangen
+167,20,There are the children who I gave candy to ,da sind die kinder denen ich die suessigkeiten gegeben habe
