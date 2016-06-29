@@ -1,0 +1,11 @@
+1	a hairbrush	buerste	ue
+3	two goats ziegen	i
+8	the door	tuer	ue
+17	the door	tuer	ue
+21	a hairbrush	buerste	ue
+26	milk	milch	i
+62	two rooms	zimmer	i
+66	two goats	ziegen	i
+68	two cows	kuehe	ue
+125	a pumpkin	kuerbis	ue
+
