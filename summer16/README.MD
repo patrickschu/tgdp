@@ -56,7 +56,7 @@ Lip-rounding is mainly reflected in the F3 measurement, Ladefoged 131-32: Plot F
 
 Rounding leads to lower F2;  closer proximity of F2 and F3; lowers center of gravity for spectral peak formed by F2 and F3 (??) ; decreases bandwidth of 3rd formant, Stevens 291-292.
 
-The increased prominence of spectral peak (F2, F3, F4 for front vowels) and lowered COG of this peak, are prime acoustic correlates of rounding, Stevens 294. 
+The increased prominence of spectral peak (F2, F3, F4 for front vowels) and lowered COG of this peak, are prime acoustic correlates of rounding, Stevens 294. [Chart](https://utexas.box.com/shared/static/9ss9x9g39zk269fm9ooucdnwav7lw1vj.png)
 
 B. Measure per speaker
 - Vowel formants F1, F2, F3 --> measure points??
