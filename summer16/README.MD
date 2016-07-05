@@ -15,10 +15,12 @@ Develop dialects maps for Texas English; in the process produce tools for future
 
 - No outside program installation or computing expertise necessary;
 - Clear error messages, documentation
-
+---
 ####I STEP 1
 Downloading big datasets
+
 [Python script](https://raw.githubusercontent.com/patrickschu/tgdp/master/summer16/downloader.py)
+
 DONE
 
 ---
@@ -33,7 +35,7 @@ B. Extracting Gilbert files by phonetic criteria and word count
 
 DONE EXCEPT FOR DOCUMENTATION
 
-
+---
 ####III STEP 3
 Make measurements 
 Produce spreadsheet for Mapping application, e.g. Gabmap
