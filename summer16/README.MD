@@ -23,20 +23,29 @@ Downloading big datasets
 DONE
 
 ####II STEP 2
-Extracting files needed based on criteria (e.g. Fredericksburg files only)
+A. Extracting files needed based on criteria (e.g. Fredericksburg files only)
+[Python script](https://raw.githubusercontent.com/patrickschu/tgdp/master/summer16/corpusbuilder/corpusbuilder_original.py)
+
+DONE
+
+B. Extracting Gilbert files by phonetic criteria and word count
+[Python script](https://raw.githubusercontent.com/patrickschu/tgdp/master/summer16/gilberttools/gilbertfinder.py)
+
+DONE EXCEPT FOR DOCUMENTATION
 
 
-####III STEPS 
+####III STEP 3
 Make measurements 
 Produce spreadsheet for Mapping application, e.g. Gabmap
 
-1.Extract 
+A.Extract 
 i: versus y:, "the only difference is lip-rounding", Benware 8. 
 i versus y, "the only difference is lip-rounding", Benware 8.
-~e versus oe~
+~~e versus oe~~
 
-2. Measure per speaker: Distance unrounded vs rounded. [Vowel chart](https://utexas.box.com/shared/static/s8waxx113wxzolpbsyj2oecrf3tnu7nv.jpg) from Benware. 
-3. The difference in lip-rounding is mainly reflected in the F3 measurement, Ladefoged 131-32. Plot F1-F2, as well as F1-F3. [Chart](https://utexas.box.com/shared/static/4ihj2hyc82lu3onriwao8d390d12yndg.jpg) from Ladefoged. 
+B. Measure per speaker: Distance unrounded vs rounded. [Vowel chart](https://utexas.box.com/shared/static/s8waxx113wxzolpbsyj2oecrf3tnu7nv.jpg) from Benware. 
+C. Lip-rounding is mainly reflected in the F3 measurement, Ladefoged 131-32: Plot F1-F2, as well as F1-F3. [Chart](https://utexas.box.com/shared/static/4ihj2hyc82lu3onriwao8d390d12yndg.jpg) from Ladefoged. 
+D. Translate into spreadsheet: one measurement per location, per speaker? Cf Gabmap conventions. 
 
 
 
