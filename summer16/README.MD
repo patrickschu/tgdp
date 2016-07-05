@@ -68,7 +68,9 @@ B. Measure per speaker
 C. Translate into spreadsheet: one measurement per location, per speaker? Cf Gabmap conventions. 
 
 Stevens, K. Acoustic Phonetics, MIT Press. 
+
 Ladefoged, P. Phonetic Data Analysis, Blackwell. 
+
 Benware, W. Phonetics and Phonology of Modern German. Georgetown Press. 
 
 
