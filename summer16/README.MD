@@ -1,10 +1,6 @@
 # Summer 2016 Corpus tools
 
-Contains the [Datadownloader](https://github.com/patrickschu/tgdp/tree/master/summer16/downloader), the [Corpusbuilder](https://github.com/patrickschu/tgdp/tree/master/summer16/corpusbuilder) and the [Gilbertfinder](https://raw.githubusercontent.com/patrickschu/tgdp/master/summer16/gilberttools/gilbertfinder.py)
-
-
-
-
+Contains the [Datadownloader](https://github.com/patrickschu/tgdp/tree/master/summer16/downloader), the [Corpusbuilder](https://github.com/patrickschu/tgdp/tree/master/summer16/corpusbuilder) and the [Gilbertfinder](https://raw.githubusercontent.com/patrickschu/tgdp/master/summer16/gilberttools/gilbertfinder.py).
 
 ##Agenda
 Develop dialects maps for Texas English; in the process produce tools for future use on any data from speechislands website
