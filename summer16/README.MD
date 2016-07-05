@@ -19,9 +19,9 @@ Develop dialects maps for Texas English; in the process produce tools for future
 ####I STEP 1
 Downloading big datasets
 [Python script](https://raw.githubusercontent.com/patrickschu/tgdp/master/summer16/downloader.py)
-
 DONE
 
+---
 ####II STEP 2
 A. Extracting files needed based on criteria (e.g. Fredericksburg files only)
 [Python script](https://raw.githubusercontent.com/patrickschu/tgdp/master/summer16/corpusbuilder/corpusbuilder_original.py)
