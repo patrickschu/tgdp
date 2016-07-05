@@ -28,11 +28,13 @@ DONE
 ---
 ####II STEP 2
 A. Extracting files needed based on criteria (e.g. Fredericksburg files only)
+
 [Python script](https://raw.githubusercontent.com/patrickschu/tgdp/master/summer16/corpusbuilder/corpusbuilder_original.py)
 
 DONE
 
 B. Extracting Gilbert files by phonetic criteria and word count
+
 [Python script](https://raw.githubusercontent.com/patrickschu/tgdp/master/summer16/gilberttools/gilbertfinder.py)
 
 DONE EXCEPT FOR DOCUMENTATION
