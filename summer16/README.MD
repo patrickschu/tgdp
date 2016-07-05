@@ -46,17 +46,30 @@ i: versus y:, "the only difference is lip-rounding", Benware 8.
 
 i versus y, "the only difference is lip-rounding", Benware 8.
 
-~~e versus oe~~
+~~e versus oe, lax and tense~~
 
-B. Measure per speaker
+[Vowel chart](https://utexas.box.com/shared/static/s8waxx113wxzolpbsyj2oecrf3tnu7nv.jpg) from Benware.
 
-Distance unrounded vs rounded. [Vowel chart](https://utexas.box.com/shared/static/s8waxx113wxzolpbsyj2oecrf3tnu7nv.jpg) from Benware. 
+Liprounding lengthens front part of vocal tract, lowering frequencies of front cavity resonances. 
 
 Lip-rounding is mainly reflected in the F3 measurement, Ladefoged 131-32: Plot F1-F2, as well as F1-F3. [Chart](https://utexas.box.com/shared/static/4ihj2hyc82lu3onriwao8d390d12yndg.jpg) from Ladefoged. 
 
+Rounding leads to lower F2;  closer proximity of F2 and F3; lowers center of gravity for spectral peak formed by F2 and F3 (??) ; decreases bandwidth of 3rd formant, Stevens 291-292.
+
+The increased prominence of spectral peak (F2, F3, F4 for front vowels) and lowered COG of this peak, are prime acoustic correlates of rounding, Stevens 294. 
+
+B. Measure per speaker
+- Vowel formants F1, F2, F3 --> measure points??
+- Distance unrounded vs rounded. 
+- How merged are they. 
+
+
+
 C. Translate into spreadsheet: one measurement per location, per speaker? Cf Gabmap conventions. 
 
-
+Stevens, K. Acoustic Phonetics, MIT Press. 
+Ladefoged, P. Phonetic Data Analysis, Blackwell. 
+Benware, W. Phonetics and Phonology of Modern German. Georgetown Press. 
 
 
 
