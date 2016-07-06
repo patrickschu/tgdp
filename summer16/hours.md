@@ -20,4 +20,6 @@ corpus builder, creating files by location
 Wed 6/14: 3 -1
 building dataset byt location
 
+Tu 7/5: 8 
+
 
