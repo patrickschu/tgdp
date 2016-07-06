@@ -147,23 +147,23 @@ row,id,gilbert_number,input_form,target_form,transcription,items
 145,145,146,It's quarter after five. ,es ist viertel nach fuenf,ɛs ɪst ˈfɪʁtl̩ naːχ fʏnf,5
 146,146,147,A Gaul is a …? ,horse,None,1
 147,147,148,Do people in the community say gelt or gell(e) for nicht wahr? ,None,None,1
-148,148,1000,Don't run through the kitchen door. ,renn nicht durch die kuechentuer,ʀɛn nɪçt dʊʁç diː ˈkʏçn̩ˌtyːɐ̯,5
-149,149,2000,Help me. ,hilf mir,hɪlf miːɐ̯,2
-150,150,3000,I saw the cockroach that was hiding under the woodpile ,ich habe die kakerlake gesehen die sich unter dem holzhaufen versteckt,ɪç ˈhaːbə diː kakɐˈlaːkə ɡəˈzeːən diː zɪç ˈʊntɐ deːm hɔlʦˈhaʊ̯fn̩ fɛɐ̯ˈʃtɛkt,11
-151,151,4000,"When my father was alive, he had four hundred pecan trees. ",als mein vater noch lebte hatte er vierhundert pekannussbaeume,als maɪ̯n ˈfaːtɐ nɔχ ˈleːptə ˈhatə eːɐ̯ ˈfiːɐ̯ˌhʊndɐt pəˈkanˈnʊsˌbɔɪ̯mə,9
-152,152,5000,The buzzard is eating the dead skunk ,der bussard isst das tote stinktier,deːɐ̯ ˈbʊsaʁt ɪst das ˈtoːtə ˈʃtɪŋkˌtiːɐ̯,6
-153,153,6000,We will buy a hundred pounds of feed for the calves at the feed store ,im futterladen werden wir hundert pfund futter fuer die kaelber kaufen,ɪm ˈfʊtɐˈlaːdn̩ ˈveːɐ̯dn̩ viːɐ̯ ˈhʊndɐt pfʊnt ˈfʊtɐ fyːɐ̯ diː ˈkɛlbɐ ˈkaʊ̯fn̩,11
-154,154,7000,There's a bunch of live oaks in the pasture ,da sind einige lebenseichen auf dem feld,daː zɪnt ˈaɪ̯nɪɡə ˈleːbn̩sˌʔaɪ̯çn̩ aʊ̯f deːm fɛlt,7
-155,155,8000,Do you see the lightening bugs that are out tonight ,hast du die gluehwuermchen gesehen die heute unterwegs sind,hast duː diː ˈɡlyːˌvʏʁmçən ɡəˈzeːən diː ˈhɔɪ̯tə ʊntɐˈveːks zɪnt,9
-156,156,9000,Will your wife come to live in your father's house after the marriage ,wird deine frau nach der hochzeit im haus deines vaters wohnen,vɪʁt ˈdaɪ̯nə fʀaʊ̯ naːχ deːɐ̯ ˈhɔχˌʦaɪ̯t ɪm ˈhaʊ̯s ˈdaɪ̯nəs ˈfaːtɐs ˈvoːnən,11
-157,157,10000,The people went by bus from Kerrville to Fredericksburg to pick peaches ,die leute sind mit dem bus von kerrville nach fredericksburg gefahren um pfirsiche zu ernten,diː ˈlɔɪ̯tə zɪnt mɪt deːm bus fɔn None naːχ None ɡəˈfaːʀən ʊm ˈpfɪʁzɪçə ʦuː ˈɛʁntən,15
-158,158,11000,My brother's friend is walking around the ranch to check up on the sheep ,der freund meines bruders ist auf dem hof unterwegs um nach den schafen zu sehen,deːɐ̯ fʀɔɪ̯nt ˈmaɪ̯nəs ˈbʀuːdɐs ɪst aʊ̯f deːm hoːf ʊntɐˈveːks ʊm naːχ deːn ˈʃaːfn̩ ʦuː ˈzeːən,15
-159,159,12000,The roof of our house caved in during the storm ,das dach unseres hauses ist waehrend des sturms eingebrochen,das dax ˈʊnzəʀəs ˈhaʊ̯zəs ɪst ˈvɛːʀənt dɛs ʃtʊʁms ˈaɪ̯nɡəˌbʀɔχn̩,9
-160,160,13000,Don't take candy from strangers! ,nimm keine suessigkeiten von fremden an,nɪm ˈkaɪ̯nə ˈzyːsɪçˌkaɪ̯tn̩ fɔn ˈfʀɛmdn̩ an,6
-161,161,14000,We will harvest the crops despite the weather ,wir werden trotz des wetters ernten,viːɐ̯ ˈveːɐ̯dn̩ tʀɔʦ dɛs ˈvɛtɐs ˈɛʁntən,6
-162,162,15000,"When I was young, everyone in town spoke German ",als ich jung war hat jeder in der stadt deutsch gesprochen,als ɪç jʊŋ vaːɐ̯ hat ˈjeːdɐ ɪn deːɐ̯ ʃtat dɔɪ̯ʧ ɡəˈʃpʀɔχn̩,11
-163,163,16000,He is cutting the hedge with Herbert's tools ,er schneidet die hecke mit herberts werkzeug,eːɐ̯ ˈʃnaɪ̯dət diː ˈhɛkə mɪt … ˈvɛʁkˌʦɔɪ̯k,7
-164,164,17000,Where were you hunting coons last night ,wo hast du letzte nacht waschbaeren gejagt,voː hast duː ˈlɛʦtə naχt ˈvaʃˌbɛːʀən ɡəˈjaːkt,7
-165,165,18000,He made jerky out of the deer that he shot ,er machte trockenfleisch aus dem wild das er geschossen hat,eːɐ̯ ˈmaχtə ˈtʀɔkn̩flaɪ̯ʃ aʊ̯s deːm vɪlt das eːɐ̯ ɡəˈʃɔsn̩ hat,10
-166,166,19000,Where were you going without the car ,wo bist du ohne das auto hingegangen,voː bɪst duː ˈoːnə das ˈaːuto ˈhɪnˌɡeɡaŋən,7
-167,167,20000,There are the children who I gave candy to ,da sind die kinder denen ich die suessigkeiten gegeben habe,daː zɪnt diː ˈkɪndɐ ˈdeːnən ɪç diː ˈzyːsɪçˌkaɪ̯tn̩ ɡəˈɡeːbn̩ ˈhaːbə,10
+148,148,1,Don't run through the kitchen door. ,renn nicht durch die kuechentuer,ʀɛn nɪçt dʊʁç diː ˈkʏçn̩ˌtyːɐ̯,5
+149,149,2,Help me. ,hilf mir,hɪlf miːɐ̯,2
+150,150,3,I saw the cockroach that was hiding under the woodpile ,ich habe die kakerlake gesehen die sich unter dem holzhaufen versteckt,ɪç ˈhaːbə diː kakɐˈlaːkə ɡəˈzeːən diː zɪç ˈʊntɐ deːm hɔlʦˈhaʊ̯fn̩ fɛɐ̯ˈʃtɛkt,11
+151,151,4,"When my father was alive, he had four hundred pecan trees. ",als mein vater noch lebte hatte er vierhundert pekannussbaeume,als maɪ̯n ˈfaːtɐ nɔχ ˈleːptə ˈhatə eːɐ̯ ˈfiːɐ̯ˌhʊndɐt pəˈkanˈnʊsˌbɔɪ̯mə,9
+152,152,5,The buzzard is eating the dead skunk ,der bussard isst das tote stinktier,deːɐ̯ ˈbʊsaʁt ɪst das ˈtoːtə ˈʃtɪŋkˌtiːɐ̯,6
+153,153,6,We will buy a hundred pounds of feed for the calves at the feed store ,im futterladen werden wir hundert pfund futter fuer die kaelber kaufen,ɪm ˈfʊtɐˈlaːdn̩ ˈveːɐ̯dn̩ viːɐ̯ ˈhʊndɐt pfʊnt ˈfʊtɐ fyːɐ̯ diː ˈkɛlbɐ ˈkaʊ̯fn̩,11
+154,154,7,There's a bunch of live oaks in the pasture ,da sind einige lebenseichen auf dem feld,daː zɪnt ˈaɪ̯nɪɡə ˈleːbn̩sˌʔaɪ̯çn̩ aʊ̯f deːm fɛlt,7
+155,155,8,Do you see the lightening bugs that are out tonight ,hast du die gluehwuermchen gesehen die heute unterwegs sind,hast duː diː ˈɡlyːˌvʏʁmçən ɡəˈzeːən diː ˈhɔɪ̯tə ʊntɐˈveːks zɪnt,9
+156,156,9,Will your wife come to live in your father's house after the marriage ,wird deine frau nach der hochzeit im haus deines vaters wohnen,vɪʁt ˈdaɪ̯nə fʀaʊ̯ naːχ deːɐ̯ ˈhɔχˌʦaɪ̯t ɪm ˈhaʊ̯s ˈdaɪ̯nəs ˈfaːtɐs ˈvoːnən,11
+157,157,10,The people went by bus from Kerrville to Fredericksburg to pick peaches ,die leute sind mit dem bus von kerrville nach fredericksburg gefahren um pfirsiche zu ernten,diː ˈlɔɪ̯tə zɪnt mɪt deːm bus fɔn None naːχ None ɡəˈfaːʀən ʊm ˈpfɪʁzɪçə ʦuː ˈɛʁntən,15
+158,158,11,My brother's friend is walking around the ranch to check up on the sheep ,der freund meines bruders ist auf dem hof unterwegs um nach den schafen zu sehen,deːɐ̯ fʀɔɪ̯nt ˈmaɪ̯nəs ˈbʀuːdɐs ɪst aʊ̯f deːm hoːf ʊntɐˈveːks ʊm naːχ deːn ˈʃaːfn̩ ʦuː ˈzeːən,15
+159,159,12,The roof of our house caved in during the storm ,das dach unseres hauses ist waehrend des sturms eingebrochen,das dax ˈʊnzəʀəs ˈhaʊ̯zəs ɪst ˈvɛːʀənt dɛs ʃtʊʁms ˈaɪ̯nɡəˌbʀɔχn̩,9
+160,160,13,Don't take candy from strangers! ,nimm keine suessigkeiten von fremden an,nɪm ˈkaɪ̯nə ˈzyːsɪçˌkaɪ̯tn̩ fɔn ˈfʀɛmdn̩ an,6
+161,161,14,We will harvest the crops despite the weather ,wir werden trotz des wetters ernten,viːɐ̯ ˈveːɐ̯dn̩ tʀɔʦ dɛs ˈvɛtɐs ˈɛʁntən,6
+162,162,15,"When I was young, everyone in town spoke German ",als ich jung war hat jeder in der stadt deutsch gesprochen,als ɪç jʊŋ vaːɐ̯ hat ˈjeːdɐ ɪn deːɐ̯ ʃtat dɔɪ̯ʧ ɡəˈʃpʀɔχn̩,11
+163,163,16,He is cutting the hedge with Herbert's tools ,er schneidet die hecke mit herberts werkzeug,eːɐ̯ ˈʃnaɪ̯dət diː ˈhɛkə mɪt … ˈvɛʁkˌʦɔɪ̯k,7
+164,164,17,Where were you hunting coons last night ,wo hast du letzte nacht waschbaeren gejagt,voː hast duː ˈlɛʦtə naχt ˈvaʃˌbɛːʀən ɡəˈjaːkt,7
+165,165,18,He made jerky out of the deer that he shot ,er machte trockenfleisch aus dem wild das er geschossen hat,eːɐ̯ ˈmaχtə ˈtʀɔkn̩flaɪ̯ʃ aʊ̯s deːm vɪlt das eːɐ̯ ɡəˈʃɔsn̩ hat,10
+166,166,19,Where were you going without the car ,wo bist du ohne das auto hingegangen,voː bɪst duː ˈoːnə das ˈaːuto ˈhɪnˌɡeɡaŋən,7
+167,167,20,There are the children who I gave candy to ,da sind die kinder denen ich die suessigkeiten gegeben habe,daː zɪnt diː ˈkɪndɐ ˈdeːnən ɪç diː ˈzyːsɪçˌkaɪ̯tn̩ ɡəˈɡeːbn̩ ˈhaːbə,10
