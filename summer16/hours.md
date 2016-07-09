@@ -20,4 +20,13 @@ corpus builder, creating files by location
 Wed 6/14: 3 -1
 building dataset byt location
 
+???
+
+7/5: 8 extracting data, gilbertfinder.py
+
+7/6:6 gilbertfinder, Praat test
+
+7/7: 5 vowel and Praat issues,
+
+
 
