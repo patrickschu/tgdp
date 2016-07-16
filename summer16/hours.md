@@ -20,13 +20,19 @@ corpus builder, creating files by location
 Wed 6/14: 3 -1
 building dataset byt location
 
-???
+~~6/27: 3~~
+  dataset by location, digitizing gilbert
+  
+  6/28: 6-5
+  adding gilbert translations, transcriptions, basic vowel analysis
 
-7/5: 8 extracting data, gilbertfinder.py
+ 6/29: 6
+  gilbert file extracter
+  
+  
+  7/5: 8 extracting data, gilbertfinder.py
 
 7/6:6 gilbertfinder, Praat test
 
 7/7: 5 vowel and Praat issues,
-
-
 
