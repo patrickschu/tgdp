@@ -9,7 +9,7 @@ tree=etree.parse('/Users/ps22344/Downloads/tgdp-master/summer16/TXGDP.kml')
 #tree=etree.parse('/Users/ps22344/Desktop/untitled text 13.xml')
 r= tree.xpath('//gx:altitudeMode/text()', namespaces={'gx':"http://www.google.com/kml/ext/2.2"})
 print r
-f=tree.xpath('//klm:Placemark/name', namespaces={"klm":"http://www.opengis.net/kml/2.2"})
+f=tree.xpath('//klm:Placemark/klm:name/text()', namespaces={"klm":"http://www.opengis.net/kml/2.2"})
 print f
 #print tree.xpath('//title/text()')
 

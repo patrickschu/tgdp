@@ -18,6 +18,28 @@ import json
 #tools
 header="\n\n---\n"
 
+
+textgrid_template=
+"""File type = "ooTextFile"
+Object class = "TextGrid"
+
+xmin = 0 
+xmax = 1 
+tiers? <exists> 
+size = 1 
+item []: 
+    item [1]:
+        class = "IntervalTier" 
+        name = "Transcript" 
+        xmin = 0 
+        xmax = 1 
+        intervals: size = 1 
+        intervals [1]:
+            xmin = 0 
+            xmax = 1 
+            text = "die tuer" 
+"""
+
 #the operatordict matches functions to inputstrings
 operatordict={
 "<":operator.lt,
@@ -66,7 +88,6 @@ def jsonreader(json_file, fix_formatting_off):
 		informantdicti[entry]['DOB']=int(informantdicti[entry]['DOB'].split("-")[0])
 	return informantdicti
 	
-	
 def gilbertfileanalyzer(filename, informant_dicti):
 	"""
 	The gilbertfileanalyzer takes the name of a Gilbert sound file and a dictionary w/ informant metadata.
@@ -90,8 +111,6 @@ def gilbertfileanalyzer(filename, informant_dicti):
 	location, gender, dob = [meta.get('current_residence', None), meta.get('gender', None), meta.get('DOB', None)]
 	return speaker_number, gilbert_number, iver_number, location, gender, dob
 
-
-
 def extracter(spreadsheet, column_name, sound):
 	"""
 	The extracter moves files.
@@ -109,13 +128,13 @@ def extracter(spreadsheet, column_name, sound):
 	#better if we had this as json as well
 	gilbertdata=pandas.read_csv('/Users/ps22344/Downloads/tgdp-master/summer16/files/gilbert_questions_withtrans_final.csv', encoding="utf-8")
 	#make a func that automates this Tkinter bizness
-	print "Please choose a directory that contains your sound files."
+	print "Please choose a directory that contains your sound files.", header
 	# root=Tkinter.Tk()
 # 	root.withdraw()
 # 	root.update()
 # 	input_folder=tkFileDialog.askdirectory(title="Inputfolder: Please choose a directory that contains your corpus files")
 	input_folder='/Users/ps22344/Desktop/txgdp_by_location_more_than_3_spkrs'
-	print "Please choose a directory that you want your files to be copied into."
+	print "Please choose a directory that you want your files to be copied into.", header
 	root=Tkinter.Tk()
 	root.withdraw()
 	root.update()
@@ -142,7 +161,7 @@ def extracter(spreadsheet, column_name, sound):
 	#finding relevant input files
 	result=[]
 	for number in numbers_to_be_extracted:
-		print "Processing {}, creating folder '{}'.".format(number, number)
+		print header, "Processing {}, creating folder '{}'.".format(number, number)
 		os.mkdir(os.path.join(output_folder, unicode(number)))
 		#MAKE A SPREADSHEET NAMED AFTER GILBERT FILE
 		gilbert_sentence=gilbertdata[gilbertdata['gilbert_number']==number]
@@ -171,7 +190,7 @@ def extracter(spreadsheet, column_name, sound):
 			os.path.split(find)[1]
 			shutil.copy2(find, os.path.join(output_folder, unicode(number), os.path.split(find)[1]))
 			speaker_number, gilbert_number, iver_number, location, gender, dob=gilbertfileanalyzer(os.path.split(find)[1], informantdicti)
-			
+			#i think the iloc[0] is just grabbing the first instance as they're all the same anyway?
 			column_dict['id'].append(os.path.split(find)[1])
 			column_dict['file_name'].append(find)
 			column_dict['speaker_number'].append(speaker_number)
@@ -185,48 +204,21 @@ def extracter(spreadsheet, column_name, sound):
  			column_dict['target_form'].append(gilbert_sentence['target_form'].iloc[0])
  			column_dict['transcription'].append(gilbert_sentence['transcription'].iloc[0])
  			
- 			splitstring=list(gilbert_sentence['transcription'].iloc[0])
- 			#print splitstring
- 			indexi=splitstring.index(sound.decode('utf-8'))
- 			#print indexi
- 			# pre=splitstring[indexi-1]
-#  			
-#  			#post=splitstring[indexi+1]
- 			
- 			#print pre, post
- 			
- 			
- 			
- 			column_dict['pre_sound'].append(splitstring[indexi-1])
- 			column_dict['post_sound'].append(splitstring[indexi+1])
-		
-		
-		
-# 		test="aɪnə"
-# 		#test="eine"
-# 		print test
-# 		variable="ɪ"
-# 		print variable
-# 		rr= list(test.decode('utf-8'))
-# 		print rr
-# 		s=rr.index(variable.decode('utf-8'))
-# 		print s
-# 		pre=rr[s-1]
-# 		post=rr[s+1]
-# 		print pre, post
-# 		
-#		print column_dict
+ 			fullstring=gilbert_sentence['transcription'].iloc[0]
+ 			indexi= fullstring.index(sound)
+  			column_dict['pre_sound'].append(fullstring[indexi-1])
+ 			column_dict['post_sound'].append(fullstring[indexi+len(sound)])
+
 		for e in column_dict:
 			print e, 'length', len(column_dict[e])
 		metadata_spreadsheet=pandas.DataFrame(column_dict)
-		#print metadata_spreadsheet
 		metadata_spreadsheet.to_csv(os.path.join(output_folder, unicode(number), str(number)+".csv"), encoding="utf-8")
+		#add textgrid output here
 	print header, "{} files have been copied to {}.".format(len(result), output_folder)
 
 
 ###MAIN###
 
-##Note that some gilbert_numbers apply to several sentences. (all up to #20).
 def main():
 	"""
 	Matches gilbert_sentences as contained in the inputfile to user input. 
@@ -249,7 +241,7 @@ def main():
 	for c in inputdata.columns:
 		parser.add_argument("--"+c, type=lambda s: unicode(s, 'utf8'))
 	parser.add_argument("--move_data", action='store_true', help="If this flag is set, files that match criteria are copied from input_folder to output_folder. input_folder and output_folder are set through graphical interface.")
-	parser.add_argument("--output_csv", action='store_true', help="If set, this flag is set, a csv file containing the sentences that match the criteria is written. The output_folder is set through graphical interface.")
+	parser.add_argument("--output_csv", action='store_true', help="If this flag is set, a csv file containing the sentences that match the criteria is written. The output_folder is set through graphical interface.")
 	args= parser.parse_args()
 	argsdict= vars(args)
 	intinput=re.compile(ur"(["+"".join(operatordict.keys())+"]+)(?:\s*?)([0-9]+)", re.UNICODE)
@@ -264,6 +256,7 @@ def main():
 		if re.match(strinput, argsdict[item]):
 			#what if they try to use > or < with a string
 			matcher=re.findall(strinput, argsdict[item])[0]
+			variable=matcher[1]
 			print "Matching string", item, " ".join(matcher)
 			outputdata=pandas.merge(outputdata, inputdata[inputdata[item].str.contains(matcher[1])], how='inner')
 		elif re.match(intinput, argsdict[item]):
@@ -271,7 +264,7 @@ def main():
 			print "Matching number", item, " ".join(matcher)
 			outputdata=pandas.merge(outputdata, inputdata[operatordict[matcher[0]](inputdata[item], float(matcher[1]))], how='inner')
 		else:
-			print "\nError: No match for the input", item
+			raise TypeError("\nError: No match for the input in {}. Make sure to format input like so: --condition 'operator criterion' e.g. --items '>3'".format(item))
 	print header, "Resulting dataset:"
 	print outputdata	
 	if argsdict['output_csv']:
@@ -286,12 +279,7 @@ def main():
 		print header, "Written csv spreadsheet to {}".format(output_csv)
 	if argsdict['move_data']:
 		print header, "move_data is activated."
-		extracter(outputdata, 'gilbert_number', 'ɪ')
-	
-	
- 
-#main('/Users/ps22344/Downloads/tgdp-master/summer16/files/gilbert_questions_withtrans_final.csv', 'transcription', 'deːɐ̯', '/Users/ps22344/Downloads/tgdp-master/summer16/files/testsentencefinder.csv')
-
+		extracter(outputdata, 'gilbert_number', variable)
 
 if __name__ == "__main__":
 	main()
