@@ -23,16 +23,20 @@ building dataset byt location
 ~~6/27: 3~~
   dataset by location, digitizing gilbert
   
-  6/28: 6-5
+~~  6/28: 6 ~~
   adding gilbert translations, transcriptions, basic vowel analysis
 
- 6/29: 6
+~~ 6/29: 6 ~~
   gilbert file extracter
   
   
-  7/5: 8 extracting data, gilbertfinder.py
+~~7/5: 8 extracting data, gilbertfinder.py ~~
 
-7/6:6 gilbertfinder, Praat test
+~~ 7/6:6gilbertfinder, Praat test ~~
 
-7/7: 5 vowel and Praat issues,
+~~7/7: 5 vowel and Praat issues,~~
+
+7/18: 8 vowel measurements Praat scripting
+
+7/19: 4 Python Textgrid
 
