@@ -15,7 +15,7 @@ Make Praat match them automatically
 
 ###Use the [dataadder](https://raw.githubusercontent.com/patrickschu/tgdp/master/summer16/gilberttools/dataadder_0717.py) to automatically enter measurements into the spreadsheet.
 Upload files to [Box](https://utexas.box.com/s/avmuz7tr96lckzwu9xoogvbnh7x6ae0u)
-
+Call it gilbertsound_X.csv
 
 ###Plot vowel chart in R using the R script
 Make F1/F2 and F1/F3 plots

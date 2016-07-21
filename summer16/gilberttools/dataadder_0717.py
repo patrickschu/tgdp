@@ -17,20 +17,23 @@ suffix={
 
 #	dob	file_name	gender	gilbert_number	id	input_form	iver_number	location	post_sound	pre_sound	speaker_number	target_form	transcription	variable
 
+
+#Dataadder output struggles with last line (Notes); sometimes empty, sometimes NA (as it should be), sometimes with values (long files bleed over). 
 def dataadder(input_spread, file_name_column, input_folder, cat_to_add="new_column"):
 	"""
 	The dataadder merges data from the input_folder into the input_spread. 
-	It takes a spreadsheet with metadata, one column of which, named file_name_column, contains file names .
-	It then adds the measurements contained in files containing the file name and adds them to the spreadhsheet. 
+	It takes a spreadsheet input_spread with metadata, one column of which, named file_name_column, contains file names .
+	It adds the measurements contained in files containing the file name and adds them to the spreadsheet. 
 	Note that this works with any IDing characteristic. 
+	??Do we need cat_to_add??
 	"""
 	inputspread=pandas.read_csv(input_spread, encoding="utf-8")
 	for h in colheaders.rstrip("\n").split("\t"):
 		inputspread[h]="NA"
 	print len(colheaders.rstrip("\n").split("\t"))
 	inputfolder=os.path.expanduser(input_folder)
-	inputfilis=[f.decode('utf-8') for f in os.listdir(inputfolder) if not f.startswith(".")]
-		
+	inputfilis=[f.decode('utf-8') for f in os.listdir(inputfolder) if f.endswith("_vowels.txt") and not f.startswith(".")]
+	print inputfilis	
 	for fili in inputfilis:
  		print fili
  		matches= [line for line in inputspread[file_name_column] if re.sub(suffix["input_spread"], suffix["input_folder"], line) == fili]
@@ -40,12 +43,15 @@ def dataadder(input_spread, file_name_column, input_folder, cat_to_add="new_colu
 		if len(matches) > 1:
 			print header, "Warning! More than one match for file '{}' in '{}'".format(fili, input_spread) ,header
 		#investigate: will this break if the files does not exist?
-		filiread=codecs.open(os.path.join(inputfolder, fili), "r", "utf-16").read()
-		print len(filiread.rstrip("\n").split("\t"))
-		inputspread.loc[inputspread[file_name_column]==matches[0], colheaders.rstrip("\n").split("\t")]=filiread.rstrip("\n").split("\t")
-	print inputspread
-	with open("aseftgregtergtertret.csv", "w") as outputspread:
+		try:
+			filiread=codecs.open(os.path.join(inputfolder, fili), "r", "utf-16").read()
+			print 'Length', len(filiread.rstrip("\n").split("\t")), "ought to be '18'"
+			inputspread.loc[inputspread[file_name_column]==matches[0], colheaders.rstrip("\n").split("\t")]=filiread.rstrip("\n").split("\t")[:18]
+		except UnicodeError, err:
+			print fili, "\nUNICODE ISSUE -- THIS SUCKS SO HARD:", err			
+	print header, inputspread
+	with open("gilbertsound_16.csv", "w") as outputspread:
 		inputspread.to_csv(outputspread, encoding='utf-8', index=False)
 	
 	
-dataadder('/Users/ps22344/Desktop/dataset_rounding/short_ue/1/1.csv', 'id', "/Users/ps22344/Desktop/hairbrush_measurements/", 'F1')
+dataadder('/Users/ps22344/Desktop/dataset_rounding/short_ue/16/16.csv', 'id', "/Users/ps22344/Desktop/16_measurements", 'F1')
