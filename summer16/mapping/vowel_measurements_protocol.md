@@ -4,6 +4,8 @@
 Logs are [here](www.utexas.edu)
 
 ###Measure in Praat using [Tyler's Script](http://lingtools.uoregon.edu/scripts/vowel_capture_aug09.praat) (adapted v on HD)
+If several tokens in one recording, use the first one. 
+
 Collect all output in a folder
 **To Do:**
 Add Textgridmaker to gildertfinder script
@@ -12,8 +14,16 @@ Make Praat match them automatically
 
 
 ###Use the [dataadder](https://raw.githubusercontent.com/patrickschu/tgdp/master/summer16/gilberttools/dataadder_0717.py) to automatically enter measurements into the spreadsheet.
+Upload files to [Box](https://utexas.box.com/s/avmuz7tr96lckzwu9xoogvbnh7x6ae0u)
+
 
 ###Plot vowel chart in R using the R script
+Make F1/F2 and F1/F3 plots
+
+
+###Notes
+the /r/ that follows makes things difficult
+
 
 ####Future
 Collect all in one spreadsheet for Gabmap
