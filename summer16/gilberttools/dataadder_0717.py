@@ -51,8 +51,8 @@ def dataadder(input_spread, file_name_column, input_folder, cat_to_add="new_colu
 			except UnicodeError, err:
 				print "\nUNICODE ISSUE -- FILE {} WAS NOT PROCESSED; probably need to re-create in Praat\n".format(fili), err			
 	print header, inputspread
-	with open("gilbertsound_111.csv", "w") as outputspread:
+	with open("gilbertsound_125.csv", "w") as outputspread:
 		inputspread.to_csv(outputspread, encoding='utf-8', index=False)
 	
 	
-dataadder('/Users/ps22344/Desktop/dataset_rounding/short_ue/111/111.csv', 'id', "/Users/ps22344/Desktop/111_measurements", 'F1')
+dataadder('/Users/ps22344/Desktop/dataset_rounding/short_ue/125/125.csv', 'id', "/Users/ps22344/Desktop/125_measurements/", 'F1')
