@@ -25,9 +25,14 @@ DONE
 ####II STEP 2
 Extracting files needed based on criteria (e.g. Fredericksburg files only)
 
+DONE
+
+
 
 ####III STEPS 
 Make measurements 
+
+
 Produce spreadsheet for Mapping application, e.g. Gabmap
 
 

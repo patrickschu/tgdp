@@ -6,6 +6,10 @@ Logs are [here](www.utexas.edu)
 ###Measure in Praat using [Tyler's Script](http://lingtools.uoregon.edu/scripts/vowel_capture_aug09.praat) (adapted v on HD)
 If several tokens in one recording, use the first one. 
 
+In Gluehwuermchen, the second vowel was extracted for short ue
+
+
+
 Collect all output in a folder
 **To Do:**
 Add Textgridmaker to gildertfinder script
