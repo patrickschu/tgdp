@@ -41,7 +41,7 @@ png(paste(outputfile, "F1_F3.png", sep="_"),  width=960, height=640, res=100);
 	plot(hair$oF3, hair$oF1, ylim=c(810, 370), xlim=c(3000,1000), xlab="F3", ylab="F1",
 	type="n", main=paste("Scatterplot of all tokens of /ue/ in ", outputfile));
 
-	text( hair$oF2, hair$oF1, labels=hair$speaker_number, col=c("red", "blue")[hair$gender]);
+	text( hair$oF3, hair$oF1, labels=hair$speaker_number, col=c("red", "blue")[hair$gender]);
 
 
 	points(2093.16, 511.64, col="green", pch="P", cex=2);
