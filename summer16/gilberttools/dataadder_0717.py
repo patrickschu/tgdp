@@ -43,15 +43,16 @@ def dataadder(input_spread, file_name_column, input_folder, cat_to_add="new_colu
 		if len(matches) > 1:
 			print header, "Warning! More than one match for file '{}' in '{}'".format(fili, input_spread) ,header
 		#investigate: will this break if the files does not exist?
-		try:
-			filiread=codecs.open(os.path.join(inputfolder, fili), "r", "utf-16").read()
-			print 'Length', len(filiread.rstrip("\n").split("\t")), "ought to be '18'"
-			inputspread.loc[inputspread[file_name_column]==matches[0], colheaders.rstrip("\n").split("\t")]=filiread.rstrip("\n").split("\t")[:18]
-		except UnicodeError, err:
-			print "\nUNICODE ISSUE -- FILE {} WAS NOT PROCESSED; probably need to re-create in Praat\n".format(fili), err			
+		if len(matches) == 1:
+			try:
+				filiread=codecs.open(os.path.join(inputfolder, fili), "r", "utf-16").read()
+				print 'Length', len(filiread.rstrip("\n").split("\t")), "ought to be '18'"
+				inputspread.loc[inputspread[file_name_column]==matches[0], colheaders.rstrip("\n").split("\t")]=filiread.rstrip("\n").split("\t")[:18]
+			except UnicodeError, err:
+				print "\nUNICODE ISSUE -- FILE {} WAS NOT PROCESSED; probably need to re-create in Praat\n".format(fili), err			
 	print header, inputspread
-	with open("gilbertsound_21.csv", "w") as outputspread:
+	with open("gilbertsound_111.csv", "w") as outputspread:
 		inputspread.to_csv(outputspread, encoding='utf-8', index=False)
 	
 	
-dataadder('/Users/ps22344/Desktop/dataset_rounding/short_ue/21/21.csv', 'id', "/Users/ps22344/Desktop/21_measurements", 'F1')
+dataadder('/Users/ps22344/Desktop/dataset_rounding/short_ue/111/111.csv', 'id', "/Users/ps22344/Desktop/111_measurements", 'F1')
