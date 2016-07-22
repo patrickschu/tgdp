@@ -48,10 +48,10 @@ def dataadder(input_spread, file_name_column, input_folder, cat_to_add="new_colu
 			print 'Length', len(filiread.rstrip("\n").split("\t")), "ought to be '18'"
 			inputspread.loc[inputspread[file_name_column]==matches[0], colheaders.rstrip("\n").split("\t")]=filiread.rstrip("\n").split("\t")[:18]
 		except UnicodeError, err:
-			print fili, "\nUNICODE ISSUE -- THIS SUCKS SO HARD:", err			
+			print "\nUNICODE ISSUE -- FILE {} WAS NOT PROCESSED; probably need to re-create in Praat\n".format(fili), err			
 	print header, inputspread
-	with open("gilbertsound_16.csv", "w") as outputspread:
+	with open("gilbertsound_21.csv", "w") as outputspread:
 		inputspread.to_csv(outputspread, encoding='utf-8', index=False)
 	
 	
-dataadder('/Users/ps22344/Desktop/dataset_rounding/short_ue/16/16.csv', 'id', "/Users/ps22344/Desktop/16_measurements", 'F1')
+dataadder('/Users/ps22344/Desktop/dataset_rounding/short_ue/21/21.csv', 'id', "/Users/ps22344/Desktop/21_measurements", 'F1')
