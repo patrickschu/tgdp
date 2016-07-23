@@ -17,8 +17,6 @@ import Tkinter
 import tkFileDialog
 
 
-#note the speaker regex requires a certain naming pattern. this might be unique. note that only valid for zip and and wav
-# if we add additional naming patterns, store them in regexdict
 ###global variables###
 
 regexdict={
