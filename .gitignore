@@ -1,4 +1,9 @@
+#R things
+.RHistory
 *(Autosaved).R
+
+
+
 *.DS_Store
 .AppleDouble
 .LSOverride
