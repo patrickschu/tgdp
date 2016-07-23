@@ -104,9 +104,9 @@ histogrammer = function (formant)
 	lines(xfit, yfit, col="blue", lwd=2)
 }
 
-
-histogrammer('gF1')
-
+png("histf1.png")
+histogrammer('oF1')
+dev.off()
 
 
 

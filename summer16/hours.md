@@ -40,3 +40,7 @@ building dataset byt location
 
 7/19: 4 Python Textgrid
 
+7/22: 4 plotting ue. measuring ue
+
+7/23: 6 stats for ue,  measruing i, 
+
