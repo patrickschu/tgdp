@@ -98,11 +98,15 @@ histogrammer = function (formant)
 	var=var[,formant];
 	histi=hist(var, main = paste("Histogram of ",formant ));
 	#this part stolen from http://www.statmethods.net/graphs/density.html
-	xfit<-seq(min(var),max(var),length=40) 
-	yfit<-dnorm(xfit,mean=mean(var),sd=sd(var)) 
-	yfit <- yfit*diff(histi$mids[1:2])*length(var) 
-	lines(xfit, yfit, col="blue", lwd=2)
+	xfit<-seq(min(var),max(var),length=40) ;
+	yfit<-dnorm(xfit,mean=mean(var),sd=sd(var)) ;
+	yfit <- yfit*diff(histi$mids[1:2])*length(var) ;
+	lines(xfit, yfit, col="blue", lwd=2);
+	points(x = 410, y = 5);
+	points(x = mean(var)-2*(sd(var)), y = 1, col="red", cex=3);
+	points(x = mean(var)+2*(sd(var)), y = 1, col="red", cex=3);
 }
+
 
 png("histf1.png")
 histogrammer('oF1')
