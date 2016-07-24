@@ -28,7 +28,7 @@ Make F1/F2 and F1/F3 plots
 ###Notes
 the /r/ that follows makes things difficult for all /ue/ words
 the /i/ in honig is variably followed by a /k/ or a /ch/, or zero. Zero was excluded, but not always obvious
-
+/i/: funeral is realized as begraebnis and beerdigung; the /g/ after /i/ can be plosive or fricative. 
 
 ####Future
 Collect all in one spreadsheet for Gabmap
