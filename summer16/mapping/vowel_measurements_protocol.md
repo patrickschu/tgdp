@@ -27,7 +27,7 @@ Make F1/F2 and F1/F3 plots
 
 ###Notes
 the /r/ that follows makes things difficult for all /ue/ words
-the /i/ in honig is variably followed by a /k/ or a /ch/
+the /i/ in honig is variably followed by a /k/ or a /ch/, or zero. Zero was excluded, but not always obvious
 
 
 ####Future
