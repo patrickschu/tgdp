@@ -11,6 +11,7 @@ def spreadmerger(spreadsheet_1, spreadsheet_2, filename=False):
 	"""
 	spreadsheet1=pandas.read_csv(spreadsheet_1, encoding="utf-8")
 	spreadsheet2=pandas.read_csv(spreadsheet_2, encoding="utf-8")
+	###THIS IS NOT RIGHT, INTRODUCES Nan, try" axis=1
 	outputspread=pandas.concat([spreadsheet1,spreadsheet2])
 	outputspread.to_csv(os.path.join(os.path.split(spreadsheet_1)[1]+os.path.split(spreadsheet_2)[1]+"_merged.csv"), encoding="utf-8", na_rep="NA", index=False, cols=spreadsheet2.columns)
 	print "File written to", os.path.join(os.path.split(spreadsheet_1)[1]+os.path.split(spreadsheet_2)[1]+"_merged.csv")
