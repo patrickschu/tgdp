@@ -30,6 +30,10 @@ the /r/ that follows makes things difficult for all /ue/ words
 the /i/ in honig is variably followed by a /k/ or a /ch/, or zero. Zero was excluded, but not always obvious
 /i/: funeral is realized as begraebnis and beerdigung; the /g/ after /i/ can be plosive, approximant or fricative, [g], [j], [ch]. 
 
+short i and short ue are done. all measurements are in the respective folder in dataset_rounding. All logs are [here](https://utexas.box.com/s/h7j7m0zw3ktgms9t20hdlfwdpvkm19s0).
+plots are in rplots on Box. 
+
 ####Future
+Invrstigate messiness in begraebnis/beerdigung
 Collect all in one spreadsheet for Gabmap
 Map it
