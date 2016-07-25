@@ -21,6 +21,12 @@ print (f3range)
 summary(hair);
 
 
+#Print
+tokens=nrow(hair)-summary(hair$oF1)[7];
+cat("# of tokens: ", tokens);
+tokens2=nrow(hair[complete.cases(hair$oF1),]);
+cat("# of tokens: ", tokens2);
+
 #Make F1 - F2 plot
 png(paste(outputfile, "F1_F2.png", sep="_"),  width=960, height=640, res=100);
 
