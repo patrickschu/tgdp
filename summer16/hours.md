@@ -44,3 +44,5 @@ building dataset byt location
 
 7/23: 6 stats for ue,  measruing i, 
 
+7/24: 4 measuring i, plotting i
+
