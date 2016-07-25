@@ -29,6 +29,7 @@ def dataadder(input_spread, file_name_column, input_folder, cat_to_add="new_colu
 	
 	
 	WHY DOES THIS PRODUCE SPREADSHEETs WITH NAs?
+	It does not. That happens sometime during spreadsheetmerger. 
 	"""
 	inputspread=pandas.read_csv(input_spread, encoding="utf-8")
 	for h in colheaders.rstrip("\n").split("\t"):
@@ -54,7 +55,7 @@ def dataadder(input_spread, file_name_column, input_folder, cat_to_add="new_colu
 			except UnicodeError, err:
 				print "\nUNICODE ISSUE -- FILE {} WAS NOT PROCESSED; probably need to re-create in Praat\n".format(fili), err			
 	print header, inputspread
-	with open("gilbertsound_125_shorti.csv", "w") as outputspread:
+	with open("gilbertsound_TEST_shorti.csv", "w") as outputspread:
 		inputspread.to_csv(outputspread, encoding='utf-8', index=False, na_rep="WARNING")
 	print header, "File written to", outputspread
 	
