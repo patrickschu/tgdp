@@ -9,12 +9,19 @@ import numpy as np
 
 
 #/home/ps/tgdp/summer16/mapping/shortishortue_merged.csv
-def outlierremover(spreadsheet, column_name, no_of_stdevs):
-	column_mean=np.mean(spreadsheet[column_name])
-	column_stdev=np.std(spreadsheet[column_name])
+def outlierremover(spreadsheet, variable, column_name, no_of_stdevs):
+	
+	#keep NAs in there
+	column_mean=np.mean(spreadsheet[spreadsheet['variable']==variable][column_name])
+	column_stdev=np.std(spreadsheet[spreadsheet['variable']==variable][column_name])
+	#from docs
+	# df1.loc[:, df1.loc['a'] > 0]
+	print spreadsheet.loc[spreadsheet['variable']==variable]
 	print "The mean is {}, the standard deviation is {} for column {}".format(column_mean, column_stdev, column_name)
-	outputspread=spreadsheet.loc[(spreadsheet[column_name] > column_mean - (2*column_stdev)) & (spreadsheet[column_name] < column_mean + (2*column_stdev)) ]
+	#x=t.loc[(t['oF1'] > 700) & (t['variable'] == 'ʏ')]
+	outputspread=spreadsheet.loc[(spreadsheet[column_name] > column_mean)]
 	print outputspread.describe()
+	print outputspread['oF1']
 	print "\n\n DIFFERENCE\n before:", spreadsheet.shape, "after", outputspread.shape
 	return outputspread
 
@@ -29,10 +36,11 @@ def distancecomputer(input_file, variable_1, variable_2, remove_outliers=True):
 	#	by speaker, compute distance btw i (oF1, oF2) and y (oF1, oF2) in variable
 	#print inputspread[inputspread['variable']==variable_2].describe()
 	if remove_outliers:
-		inputspread=outlierremover(inputspread[inputspread['variable']==variable_1], 'oF1', 2)
-		inputspread=outlierremover(inputspread[inputspread['variable']==variable_1], 'oF2', 2)
-		inputspread=outlierremover(inputspread[inputspread['variable']==variable_2], 'oF1', 2)
-		inputspread=outlierremover(inputspread[inputspread['variable']==variable_2], 'oF2', 2)
+		inputspread=outlierremover(inputspread, variable_1, 'oF1', 2)
+		#inputspread=outlierremover(inputspread, variable_1, 'oF2', 2)
+		#inputspread=outlierremover(inputspread, variable_2, 'oF1', 2)
+		#inputspread=outlierremover(inputspread, variable_2, 'oF2', 2)
+
 	# for speaker in inputspread.groupby(speaker):
 		# print speaker
 		#make mean F1, F2 of i, make mean F1, F2 of y
