@@ -24,6 +24,9 @@ Call it gilbertsound_X.csv
 ###Plot vowel chart in R using the R script
 Make F1/F2 and F1/F3 plots
 
+###Measure 
+Measure Euclidean distance btwn i and ue per speaker using compute_distance.py
+
 
 ###Notes
 the /r/ that follows makes things difficult for all /ue/ words
