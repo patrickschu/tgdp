@@ -24,9 +24,11 @@ Make measurements
 Produce spreadsheet for Mapping application, e.g. Gabmap
 
 
-TO DONE
+TO DO
 spreadsheets with vowel measurements have messed up lines: a filename - a " combination and nothing else. I think it might be from the measurment files 
 "Notes" section. THIS NEEDS TO BE FIXED
+
+Also NA uncertainties in spreadsheetmerger et al
 
 
 
