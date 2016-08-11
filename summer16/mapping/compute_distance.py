@@ -38,12 +38,28 @@ def distancecomputer(input_file, variable_1, variable_2, remove_outliers=True):
 		inputspread=outlierremover(inputspread, variable_1, 'oF2', 2)
 		inputspread=outlierremover(inputspread, variable_2, 'oF1', 2)
 		inputspread=outlierremover(inputspread, variable_2, 'oF2', 2)
+	#this makes a groupby object
+	#below equals inputspread.groupby(inputspread['speaker_number'])
+	t=inputspread.groupby('speaker_number')
+	for i in t:
+		#i[0] contains the speaker number, the i[1] is the data associated with it
+		print i[0]
+		print "F1s",  i[1]['oF1']
+		print "mean", i[1]['oF1'].mean()
+		print "mean", i[1]['oF1'].count()
+
+		
+		
+		
+	#print t.sum()
+	#
+	#t.to_csv("test.csv")
 	#this sseems terribly inelegant
-	for speaker in inputspread['speaker_number']:
-		print speaker
-		speakerdict[speaker]['f1']=inputspread[inputspread['speaker_number']==speaker]['oF1']
-		speakerdict[speaker]['f2']=inputspread[inputspread['speaker_number']==speaker]['oF2']
-	print speakerdict
+	#for speaker in inputspread['speaker_number']:
+	#	print speaker
+	#	speakerdict[speaker]['f1']=inputspread[inputspread['speaker_number']==speaker]['oF1']
+	#	speakerdict[speaker]['f2']=inputspread[inputspread['speaker_number']==speaker]['oF2']
+	#print speakerdict
 	
 	#inputspread.groupby(
 	# for speaker in inputspread.groupby(speaker):
@@ -55,4 +71,4 @@ def distancecomputer(input_file, variable_1, variable_2, remove_outliers=True):
 
 
 
-distancecomputer('/home/ps/tgdp/summer16/mapping/shortishortue_merged.csv', 'ʏ', 'ɪ', remove_outliers=False)
+distancecomputer('/home/ps/tgdp/summer16/mapping/shorti_final_FIXED.csvshortue_final_FIXED.csv_merged.csv', 'ʏ', 'ɪ', remove_outliers=False)
