@@ -41,11 +41,11 @@ def distancecomputer(input_file, variable_1, variable_2, remove_outliers=True):
 	#this makes a groupby object
 	#below equals inputspread.groupby(inputspread['speaker_number'])
 	t=inputspread.groupby('speaker_number')
-	t=t.groups
-	speakerdict={k:'assi' for k in t}
-	print speakerdict
-	#print t
-	print inputspread.iloc[0]
+	#we convert the k[1] dataframe into a dictionary
+	speakerdict={k[0]:k[1].to_dict(orient='list') for k in t}
+	for entry in speakerdict:
+		print entry, [i for i in speakerdict[entry]['oF1'] if not np.isnan(i)], np.mean(speakerdict[entry]['oF1']), [np.isnan(i) for i in speakerdict[entry]['oF1']]
+	#print inputspread.iloc[0]
 	#for i in t:
 	
 		#print i[1]['dob'].data()
