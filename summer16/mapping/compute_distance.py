@@ -11,6 +11,7 @@ from collections import defaultdict
 #/home/ps/tgdp/summer16/mapping/shortishortue_merged.csv
 def outlierremover(spreadsheet, variable, column_name, no_of_stdevs):
 	#keep NAs in there
+	#this is unfinished
 	print "Removing outliers {} stdevs from the mean".format(no_of_stdevs)
 	column_mean=np.mean(spreadsheet[spreadsheet['variable']==variable][column_name])
 	column_stdev=np.std(spreadsheet[spreadsheet['variable']==variable][column_name])
@@ -30,7 +31,7 @@ def outlierremover(spreadsheet, variable, column_name, no_of_stdevs):
 	
 	
 def distancecomputer(input_file, variable_1, variable_2, remove_outliers=True):
-	speakerdict=defaultdict()
+
 	with codecs.open(input_file, "r", "utf-8") as inputfile:
 		inputspread=pandas.read_csv(inputfile)
 	if remove_outliers:
@@ -40,6 +41,20 @@ def distancecomputer(input_file, variable_1, variable_2, remove_outliers=True):
 		inputspread=outlierremover(inputspread, variable_2, 'oF2', 2)
 	#this makes a groupby object
 	#below equals inputspread.groupby(inputspread['speaker_number'])
+	#split into i, ue here
+	var1dicti=dictmaker(variable_1)
+	var2dicti=dictmaker(variable_2)
+	
+
+	
+def dictmaker(inputspread):
+	"""
+	The dictmaker takes a spreadsheet with formant measurements per speaker.
+	It outputs a dictionary with
+	means for F1, F2, F3
+	coordinates for (F2, F1), (F3, F1)
+	"""
+	speakerdict=defaultdict()
 	t=inputspread.groupby('speaker_number')
 	#we convert the k[1] dataframe into a dictionary
 	speakerdict={k[0]:k[1].to_dict(orient='list') for k in t}
@@ -47,55 +62,37 @@ def distancecomputer(input_file, variable_1, variable_2, remove_outliers=True):
 		for f in ['oF1', 'oF2', 'oF3']:
 			speakerdict[entry][f]=[np.float64(i) for i in  speakerdict[entry][f]]
 			speakerdict[entry][f+"_mean"]=np.mean([i for i in speakerdict[entry][f] if not np.isnan(i)])
-		print speakerdict[entry]['oF1_mean']#speakerdict[entry]['oF2']=[np.float64(i) for i in  speakerdict[entry]['oF2']]
-			#speakerdict[entry]['oF1_mean']=np.mean([i for i in speakerdict[entry]['oF1'] if not np.isnan(i)])
-			#speakerdict[entry]['oF2']=[np.float64(i) for i in  speakerdict[entry]['oF2']]
-			#speakerdict[entry]['oF2_mean']=np.mean([i for i in speakerdict[entry]['oF2'] if not np.isnan(i)])
-			#speakerdict[entry]['oF3_mean']=np.mean([i for i in speakerdict[entry]['oF3'] if not np.isnan(i)])
-			#print entry, speakerdict[entry]['oF2'], [type(i) for i in speakerdict[entry]['oF2']] , np.mean([i for i in speakerdict[entry]['oF2'] if not np.isnan(i)]),  [np.isnan(i) for i in speakerdict[entry]['oF2']]
-	#print inputspread.iloc[0]
-	#for i in t:
+		speakerdict[entry]['oF2_oF1_coords']=(speakerdict[entry]['oF2_mean'], speakerdict[entry]['oF1_mean'])
+		speakerdict[entry]['oF3_oF1_coords']=(speakerdict[entry]['oF3_mean'], speakerdict[entry]['oF1_mean'])
+		for g in ['speaker_number', 'gender']:
+		#we might want to use set here if this gets expanded. for now, easier this way.
+			if len(set(speakerdict[entry][g])) > 1:
+				print "WARNING: MORE THAN ONE '{}' IN HERE".format(g)
+			speakerdict[entry][g]=speakerdict[entry][g][0]
+
+outi=pandas.DataFrame.from_dict(speakerdict, orient='index')	
+#F1 is on y axis
+#
+
+#print outi
+outi.to_csv("test.csv")	
 	
-		#print i[1]['dob'].data()
-		#i[0] contains the speaker number, the i[1] is the data associated with it
-		# speakerdict[i[0]]={
-		# 'raw_f1':i[1]['oF1'],
-		# 'raw_f2':i[1]['oF1'],
-		# 'raw_f3':i[1]['oF1'],
-		# 'mean_f1':i[1]['oF1'].mean(),
-		# #'mean_f2':i[1]['oF2'].mean(),
-		# #'mean_f3':i[1]['oF3'].mean(),
-		# #'count_f1':i[1]['oF1'].count(),
-		# #'count_f2':i[1]['oF2'].count(),
-		# #'count_f3':i[1]['oF3'].count(),
-		# #'location':i[1]['location'],
-		# 'dob':i[1]['dob']
-		# }
-	#print speakerdict
-	
-	outi=pandas.DataFrame.from_dict(speakerdict, orient='index')	
-	#speaker_nr, mean_x, mean_y
-	#
-	
-	#print outi
-	outi.to_csv("test.csv")	
-		
-	#print t.sum()
-	#
-	#t.to_csv("test.csv")
-	#this sseems terribly inelegant
-	#for speaker in inputspread['speaker_number']:
-	#	print speaker
-	#	speakerdict[speaker]['f1']=inputspread[inputspread['speaker_number']==speaker]['oF1']
-	#	speakerdict[speaker]['f2']=inputspread[inputspread['speaker_number']==speaker]['oF2']
-	#print speakerdict
-	
-	#inputspread.groupby(
-	# for speaker in inputspread.groupby(speaker):
-		# print speaker
-		#make mean F1, F2 of i, make mean F1, F2 of y
-		#compute distance
-		#also for f1 , f3 
+#print t.sum()
+#
+#t.to_csv("test.csv")
+#this sseems terribly inelegant
+#for speaker in inputspread['speaker_number']:
+#	print speaker
+#	speakerdict[speaker]['f1']=inputspread[inputspread['speaker_number']==speaker]['oF1']
+#	speakerdict[speaker]['f2']=inputspread[inputspread['speaker_number']==speaker]['oF2']
+#print speakerdict
+
+#inputspread.groupby(
+# for speaker in inputspread.groupby(speaker):
+	# print speaker
+	#make mean F1, F2 of i, make mean F1, F2 of y
+	#compute distance
+	#also for f1 , f3 
 
 
 
