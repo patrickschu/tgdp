@@ -44,7 +44,15 @@ def distancecomputer(input_file, variable_1, variable_2, remove_outliers=True):
 	#we convert the k[1] dataframe into a dictionary
 	speakerdict={k[0]:k[1].to_dict(orient='list') for k in t}
 	for entry in speakerdict:
-		print entry, [i for i in speakerdict[entry]['oF1'] if not np.isnan(i)], np.mean(speakerdict[entry]['oF1']), [np.isnan(i) for i in speakerdict[entry]['oF1']]
+		for f in ['oF1', 'oF2', 'oF3']:
+			speakerdict[entry][f]=[np.float64(i) for i in  speakerdict[entry][f]]
+			speakerdict[entry][f+"_mean"]=np.mean([i for i in speakerdict[entry][f] if not np.isnan(i)])
+		print speakerdict[entry]['oF1_mean']#speakerdict[entry]['oF2']=[np.float64(i) for i in  speakerdict[entry]['oF2']]
+			#speakerdict[entry]['oF1_mean']=np.mean([i for i in speakerdict[entry]['oF1'] if not np.isnan(i)])
+			#speakerdict[entry]['oF2']=[np.float64(i) for i in  speakerdict[entry]['oF2']]
+			#speakerdict[entry]['oF2_mean']=np.mean([i for i in speakerdict[entry]['oF2'] if not np.isnan(i)])
+			#speakerdict[entry]['oF3_mean']=np.mean([i for i in speakerdict[entry]['oF3'] if not np.isnan(i)])
+			#print entry, speakerdict[entry]['oF2'], [type(i) for i in speakerdict[entry]['oF2']] , np.mean([i for i in speakerdict[entry]['oF2'] if not np.isnan(i)]),  [np.isnan(i) for i in speakerdict[entry]['oF2']]
 	#print inputspread.iloc[0]
 	#for i in t:
 	
