@@ -30,7 +30,7 @@ def outlierremover(spreadsheet, variable, column_name, no_of_stdevs):
 	
 	
 def distancecomputer(input_file, variable_1, variable_2, remove_outliers=True):
-	speakerdict=defaultdict(dict)
+	speakerdict=defaultdict()
 	with codecs.open(input_file, "r", "utf-8") as inputfile:
 		inputspread=pandas.read_csv(inputfile)
 	if remove_outliers:
@@ -41,15 +41,36 @@ def distancecomputer(input_file, variable_1, variable_2, remove_outliers=True):
 	#this makes a groupby object
 	#below equals inputspread.groupby(inputspread['speaker_number'])
 	t=inputspread.groupby('speaker_number')
-	for i in t:
+	t=t.groups
+	speakerdict={k:'assi' for k in t}
+	print speakerdict
+	#print t
+	print inputspread.iloc[0]
+	#for i in t:
+	
+		#print i[1]['dob'].data()
 		#i[0] contains the speaker number, the i[1] is the data associated with it
-		print i[0]
-		print "F1s",  i[1]['oF1']
-		print "mean", i[1]['oF1'].mean()
-		print "mean", i[1]['oF1'].count()
-
-		
-		
+		# speakerdict[i[0]]={
+		# 'raw_f1':i[1]['oF1'],
+		# 'raw_f2':i[1]['oF1'],
+		# 'raw_f3':i[1]['oF1'],
+		# 'mean_f1':i[1]['oF1'].mean(),
+		# #'mean_f2':i[1]['oF2'].mean(),
+		# #'mean_f3':i[1]['oF3'].mean(),
+		# #'count_f1':i[1]['oF1'].count(),
+		# #'count_f2':i[1]['oF2'].count(),
+		# #'count_f3':i[1]['oF3'].count(),
+		# #'location':i[1]['location'],
+		# 'dob':i[1]['dob']
+		# }
+	#print speakerdict
+	
+	outi=pandas.DataFrame.from_dict(speakerdict, orient='index')	
+	#speaker_nr, mean_x, mean_y
+	#
+	
+	#print outi
+	outi.to_csv("test.csv")	
 		
 	#print t.sum()
 	#
