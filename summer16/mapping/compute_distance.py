@@ -6,7 +6,7 @@ import pandas
 import codecs
 import numpy as np
 from collections import defaultdict
-
+from scipy import spatial
 
 #/home/ps/tgdp/summer16/mapping/shortishortue_merged.csv
 def outlierremover(spreadsheet, variable, column_name, no_of_stdevs):
@@ -35,25 +35,48 @@ def distancecomputer(input_file, variable_1, variable_2, remove_outliers=True):
 	with codecs.open(input_file, "r", "utf-8") as inputfile:
 		inputspread=pandas.read_csv(inputfile)
 	if remove_outliers:
-		inputspread=outlierremover(inputspread, variable_1, 'oF1', 1)
+		inputspread=outlierremover(inputspread, variable_1, 'oF1', 2)
 		inputspread=outlierremover(inputspread, variable_1, 'oF2', 2)
 		inputspread=outlierremover(inputspread, variable_2, 'oF1', 2)
 		inputspread=outlierremover(inputspread, variable_2, 'oF2', 2)
 	#this makes a groupby object
 	#below equals inputspread.groupby(inputspread['speaker_number'])
 	#split into i, ue here
-	var1dicti=dictmaker(variable_1)
-	var2dicti=dictmaker(variable_2)
-	
-
+	print "total length", inputspread.shape
+	print "length for '{}' is {}".format(variable_1, inputspread[inputspread['variable']==variable_1].shape)
+	print "length for '{}' is {}".format(variable_2, inputspread[inputspread['variable']==variable_2].shape)
+	inputspread[inputspread['variable']==variable_1]
+	var1dicti=dictmaker(inputspread[inputspread['variable']==variable_1])
+	var2dicti=dictmaker(inputspread[inputspread['variable']==variable_2])
+	#for entry in var1dicti:
+	#	print entry
+	#	print var1dicti[entry].get('oF3', None)
+	#for entry in var2dicti:
+	#	print entry
+	#	print var2dicti[entry].get('oF3', None)
+	#combine the dictis
+	#update var2dicti, i.e. the distance is ue minus i
+	for entry in [i for i in var2dicti.keys() if not var1dicti.get(i,None)]:
+		print "entry not in the second dict", entry
+		var2dicti[entry]['oF3_oF1_distance']="NA"
+		var2dicti[entry]['oF2_oF1_distance']="NA"
+	for entry in [i for i in var2dicti if var1dicti.get(i,None)]:
+		#if var2dicti[entry].get('oF3_oF1_coords', None) and var1dicti[entry].get('oF3_oF1_coords', None):
+		#print scipy.spatial.distance.pdist([var2dicti[entry]['oF3_oF1_coords'],var1dicti[entry]['oF3_oF1_coords']], 'euclidean')[0]
+		var2dicti[entry]['oF3_oF1_distance']=scipy.spatial.distance.pdist([var2dicti[entry]['oF3_oF1_coords'],var1dicti[entry]['oF3_oF1_coords']], 'euclidean')[0]
+		var2dicti[entry]['oF2_oF1_distance']=scipy.spatial.distance.pdist([var2dicti[entry]['oF2_oF1_coords'],var1dicti[entry]['oF2_oF1_coords']], 'euclidean')[0]
+		print var2dicti[entry]['oF3_oF1_distance']
+	outi=pandas.DataFrame.from_dict(var2dicti, orient='index')
+	outi.to_csv('distances.csv')
 	
 def dictmaker(inputspread):
 	"""
-	The dictmaker takes a spreadsheet with formant measurements per speaker.
+	The dictmaker takes a spreadsheet with formant measurements per speaker. Needs to be one vowel only.
 	It outputs a dictionary with
 	means for F1, F2, F3
 	coordinates for (F2, F1), (F3, F1)
 	"""
+	print "Running the dictmaker"
 	speakerdict=defaultdict()
 	t=inputspread.groupby('speaker_number')
 	#we convert the k[1] dataframe into a dictionary
@@ -69,32 +92,11 @@ def dictmaker(inputspread):
 			if len(set(speakerdict[entry][g])) > 1:
 				print "WARNING: MORE THAN ONE '{}' IN HERE".format(g)
 			speakerdict[entry][g]=speakerdict[entry][g][0]
-
-outi=pandas.DataFrame.from_dict(speakerdict, orient='index')	
+	return speakerdict
+#	
 #F1 is on y axis
 #
 
-#print outi
-outi.to_csv("test.csv")	
-	
-#print t.sum()
-#
-#t.to_csv("test.csv")
-#this sseems terribly inelegant
-#for speaker in inputspread['speaker_number']:
-#	print speaker
-#	speakerdict[speaker]['f1']=inputspread[inputspread['speaker_number']==speaker]['oF1']
-#	speakerdict[speaker]['f2']=inputspread[inputspread['speaker_number']==speaker]['oF2']
-#print speakerdict
-
-#inputspread.groupby(
-# for speaker in inputspread.groupby(speaker):
-	# print speaker
-	#make mean F1, F2 of i, make mean F1, F2 of y
-	#compute distance
-	#also for f1 , f3 
 
 
-
-
-distancecomputer('/home/ps/tgdp/summer16/mapping/shorti_final_FIXED.csvshortue_final_FIXED.csv_merged.csv', 'ʏ', 'ɪ', remove_outliers=False)
+distancecomputer('/home/ps/tgdp/summer16/mapping/second_ue_plus_i.csv', 'ʏ', 'ɪ', remove_outliers=False)
