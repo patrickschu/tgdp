@@ -48,13 +48,6 @@ def distancecomputer(input_file, variable_1, variable_2, remove_outliers=True):
 	inputspread[inputspread['variable']==variable_1]
 	var1dicti=dictmaker(inputspread[inputspread['variable']==variable_1])
 	var2dicti=dictmaker(inputspread[inputspread['variable']==variable_2])
-	#for entry in var1dicti:
-	#	print entry
-	#	print var1dicti[entry].get('oF3', None)
-	#for entry in var2dicti:
-	#	print entry
-	#	print var2dicti[entry].get('oF3', None)
-	#combine the dictis
 	#update var2dicti, i.e. the distance is ue minus i
 	for entry in [i for i in var2dicti.keys() if not var1dicti.get(i,None)]:
 		print "entry not in the second dict", entry
@@ -67,7 +60,7 @@ def distancecomputer(input_file, variable_1, variable_2, remove_outliers=True):
 		var2dicti[entry]['oF2_oF1_distance']=scipy.spatial.distance.pdist([var2dicti[entry]['oF2_oF1_coords'],var1dicti[entry]['oF2_oF1_coords']], 'euclidean')[0]
 		print var2dicti[entry]['oF3_oF1_distance']
 	outi=pandas.DataFrame.from_dict(var2dicti, orient='index')
-	outi.to_csv('distances.csv')
+	outi.to_csv('distances_0813.csv')
 	
 def dictmaker(inputspread):
 	"""
@@ -87,7 +80,7 @@ def dictmaker(inputspread):
 			speakerdict[entry][f+"_mean"]=np.mean([i for i in speakerdict[entry][f] if not np.isnan(i)])
 		speakerdict[entry]['oF2_oF1_coords']=(speakerdict[entry]['oF2_mean'], speakerdict[entry]['oF1_mean'])
 		speakerdict[entry]['oF3_oF1_coords']=(speakerdict[entry]['oF3_mean'], speakerdict[entry]['oF1_mean'])
-		for g in ['speaker_number', 'gender']:
+		for g in ['speaker_number', 'gender', 'location', 'dob']:
 		#we might want to use set here if this gets expanded. for now, easier this way.
 			if len(set(speakerdict[entry][g])) > 1:
 				print "WARNING: MORE THAN ONE '{}' IN HERE".format(g)
