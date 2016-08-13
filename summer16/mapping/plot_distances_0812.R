@@ -158,3 +158,31 @@ factorplotter(disti, 'gender')
 
 
 ###LABEL BY DOB
+
+factorplotter=function (dataset, factor){
+
+for (level in levels(dataset[[factor]])){
+	cat ("working on level'", level,"'\n");
+	cat ("len initial dataset:", nrow(dataset), "\n");
+	disti=dataset[complete.cases(dataset[['oF3_oF1_distance']]),];
+	cat ("len dataset complete cases:", nrow(disti), "\n" );
+	disti2=disti[disti$gender==level,];
+	cat ("len dataset by factor", nrow(disti2), "\n");
+	png(paste("euclid_f1_f3_",factor, level, "_DOB.png")); 
+	plot(
+	disti2[order(disti2$oF3_oF1_distance),]$oF3_oF1_distance,
+	type='n', 
+	main=paste(
+	"Euclidean distance ? to ?, F1-F3, ", factor, ":", level, "speakers:", nrow(disti2), "by location"
+	),
+	ylim=c(range(disti$oF3_oF1_distance)[1],range(disti$oF3_oF1_distance)[2])
+	);
+	text(
+	disti2[order(disti2$oF3_oF1_distance),]$oF3_oF1_distance, 
+	labels=disti2[order(disti2$oF3_oF1_distance),]$dob, cex=0.8
+);
+	dev.off()
+}
+}
+
+factorplotter(disti, 'gender')
