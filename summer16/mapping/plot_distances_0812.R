@@ -28,7 +28,8 @@ for (level in levels(dataset[[factor]])){
 	disti2[order(disti2$oF3_oF1_distance),]$oF3_oF1_distance, 
 	labels=disti2[order(disti2$oF3_oF1_distance),]$speaker_number, cex=0.8
 );
-	dev.off()
+	dev.off(),
+
 }
 }
 
@@ -180,9 +181,12 @@ for (level in levels(dataset[[factor]])){
 	text(
 	disti2[order(disti2$oF3_oF1_distance),]$oF3_oF1_distance, 
 	labels=disti2[order(disti2$oF3_oF1_distance),]$dob, cex=0.8
-);
-	dev.off()
+	);
+	dev.off();
+	correlation=cor(disti2[['oF3_oF1_distance']],disti2[['oF2_oF1_distance']], method='spearman');
+	cat("correlation F1-F2 and F1-F3", level, correlation, "\n")
 }
 }
 
 factorplotter(disti, 'gender')
+
