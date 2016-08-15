@@ -2,6 +2,8 @@
 #this plots the euclidean distance between vowels
 #note that NAs are still in here
 setwd('C:/Users/ps/Documents/rplots')
+disti=read.csv('E:cygwin/home/ps/tgdp/summer16/mapping/distances_0813.csv', header=T)
+
 ##PER GENDER
 levels(disti2[['gender']])
 #female
