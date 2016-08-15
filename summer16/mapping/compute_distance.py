@@ -27,8 +27,6 @@ def outlierremover(spreadsheet, variable, column_name, no_of_stdevs):
 	outputspread.to_csv("CSVSCSV.csv")
 	return outputspread
 
-#df.loc[(df["B"] > 50) & (df["C"] == 900), "A"]	
-	
 	
 def distancecomputer(input_file, variable_1, variable_2, remove_outliers=True):
 
@@ -48,6 +46,8 @@ def distancecomputer(input_file, variable_1, variable_2, remove_outliers=True):
 	inputspread[inputspread['variable']==variable_1]
 	var1dicti=dictmaker(inputspread[inputspread['variable']==variable_1])
 	var2dicti=dictmaker(inputspread[inputspread['variable']==variable_2])
+	var1outi=pandas.DataFrame.from_dict(var1dicti, orient='index')
+	var1outi.to_csv('var1_only.csv')
 	#update var2dicti, i.e. the distance is ue minus i
 	for entry in [i for i in var2dicti.keys() if not var1dicti.get(i,None)]:
 		print "entry not in the second dict", entry
@@ -61,6 +61,7 @@ def distancecomputer(input_file, variable_1, variable_2, remove_outliers=True):
 		print var2dicti[entry]['oF3_oF1_distance']
 	outi=pandas.DataFrame.from_dict(var2dicti, orient='index')
 	outi.to_csv('distances_0813.csv')
+	
 	
 def dictmaker(inputspread):
 	"""
