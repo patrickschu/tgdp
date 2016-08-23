@@ -3,6 +3,8 @@ Takes a collection of zip or wav files and a [JSON](http://www.json.org/)-file w
 
 This is useful if you have a big corpus and would like to extract interviews by speaker characteristics, e.g. all speakers from one location, all speakers born before a certain date, speakers of a certain gender, or a combination of those. 
 
+Download the Corpusbuilder [here](https://raw.githubusercontent.com/patrickschu/tgdp/master/summer16/corpusbuilder/corpusbuilder_original.py). 
+
 ## Description
 The corpusbuilder takes the following arguments:
 
