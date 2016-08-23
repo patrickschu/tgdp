@@ -3,6 +3,7 @@ Takes a collection of recordings of Gilbert's interview questions and extracts f
 
 This is useful to extract all instances of a sentence, word or sound from the bigger corpus. 
 
+Download the script [here](https://raw.githubusercontent.com/patrickschu/tgdp/master/summer16/gilberttools/gilbertfinder_original.py).
 
 ## Description
 The gilbertfinder takes the following arguments:
