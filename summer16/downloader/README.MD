@@ -3,6 +3,8 @@
 ###Description
 The downloader downloads zipped files from a web site to a specified folder. It also returns a list containing the names of the files found. 
 
+Download the script [here](https://raw.githubusercontent.com/patrickschu/tgdp/master/summer16/downloader/downloader.py).
+
 Arguments:
 
     downloader(link, directory):
