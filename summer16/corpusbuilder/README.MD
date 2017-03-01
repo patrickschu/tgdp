@@ -38,7 +38,7 @@ This example shows the basic setup for the corpusbuilder:
 
 Since we specified that `--gender` should be `"=M"`, the corpusbuilder will search the metadata file and extract all the data associated with speakers that have gender set to "M", i.e. male speakers.  It then copies all matching files from the input_folder to the output_folder.
 
-This input needs to be formatted like this: `--criterion "operator, condition"`. See [here](https://github.com/patrickschu/tgdp/tree/master/summer16/corpusbuilder#notes) for a complete list of operators. The exact criteria you can use depend on the data in yout JSON file (e.g. if is does not have entries for "gender", the above will not work. The command `python corpusbuilder.py --help` will give you a list of all the criteria possible for your dataset and what input they take. 
+This input needs to be formatted like this: `--criterion "operator, condition"`. See [here](https://github.com/patrickschu/tgdp/tree/master/summer16/corpusbuilder#notes) for a complete list of operators. The exact criteria you can use depend on the data in yout JSON file (i.e. if it does not have entries for "gender", the above will not work). The command `python corpusbuilder.py --help` will give you a list of all the criteria possible for your dataset and what input they take. 
 
 More refined settings are possible. This example will extract all male speakers who currently live in Fredericksburg. 
 
