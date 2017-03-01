@@ -11,7 +11,7 @@ on Windows, using the [Windows shell]():
 
 Hint: type `cd ..` to take a step back, `ls` on a Mac and `dir` on Windows to look at the contents of the folder you are in. Basic shell commands are listed for the Mac [here](https://www.git-tower.com/blog/command-line-cheat-sheet/) and for Windows [here](http://www.cs.columbia.edu/~sedwards/classes/2016/1102-spring/Command%20Prompt%20Cheatsheet.pdf).
 
-If you are working on a Mac computer, Python will be already installed on your system. If you are working in Windows, install Python from [here](https://www.python.org/downloads/) and set the environment variables as explained [here](http://stackoverflow.com/questions/25153802/how-to-set-python-path-in-windows-7). 
+If you are working on a Mac computer, Python will be already installed on your system. If you are working in Windows, install Python from [here](https://www.python.org/downloads/) and set the environment variables as explained [here](http://superuser.com/questions/143119/how-to-add-python-to-the-windows-path). 
 
 Now you can run the script like so:
 
