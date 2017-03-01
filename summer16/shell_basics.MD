@@ -5,7 +5,7 @@ on the Mac, using the [Terminal](https://github.com/patrickschu/tgdp/blob/master
 
 `cd ~/User/Downloads`
 
-on Windows, using the [Windows shell]():
+on Windows, using the [Windows command prompt]():
 
 `cd \Users\YOURUSERNAME\Downloads`
 
