@@ -1,4 +1,4 @@
-#### Running scripts in a shell
+### Running scripts in a shell
 After navigating to the right version of the script, click on "Raw" on the top right of the screen. Download the resulting textfile. Use a shell to navigate to the folder you saved the script in. If it is in Downloads, for instance, do this:
 
 on the Mac, using the [Terminal](https://github.com/patrickschu/tgdp/blob/master/summer16/terminal_image.MD):
