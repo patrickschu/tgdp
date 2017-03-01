@@ -1,11 +1,11 @@
 #### Running scripts in a shell
 After navigating to the right version of the script, click on "Raw" on the top right of the screen. Download the resulting textfile. Use a shell to navigate to the folder you saved the script in. If it is in Downloads, for instance, do this:
 
-on the Mac, using the Terminal:
+on the Mac, using the [Terminal](https://github.com/patrickschu/tgdp/blob/master/summer16/Screen%20Shot%202017-03-01%20at%208.14.24%20AM.png):
 
 `cd ~/User/Downloads`
 
-on Windows, using the Windows shell:
+on Windows, using the [Windows shell]():
 
 `cd \Users\YOURUSERNAME\Downloads`
 
