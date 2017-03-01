@@ -31,7 +31,7 @@ All the possible criteria and their options for the specific setting are describ
     
 
 ## How to run it
-Run it in a shell. See here for instructions. 
+Run it in a shell. See [here](https://github.com/patrickschu/tgdp/blob/master/summer16/shell_basics.MD) for instructions. 
 
 #### The basics 
 
