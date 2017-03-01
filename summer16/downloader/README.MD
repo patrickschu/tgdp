@@ -12,7 +12,7 @@ Arguments:
     directory -- an existing folder, this is where the files will be downloaded to.
 
 ###How to use the Dataset Downloader
-Run it in an shell. Basic setup and shell operations are described here (XXX).
+Run it in an shell. Basic setup and shell operations are described [here](https://github.com/patrickschu/tgdp/blob/master/summer16/shell_basics.MD).
 
 The Downloader takes a URL and a target directory as input. Thus
 
