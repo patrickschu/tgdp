@@ -13,4 +13,8 @@ Hint: type `cd ..` to take a step back, `ls` on a Mac and `dir` on Windows to lo
 
 Now you can run the script like so:
 
-    python faveconverter_py2.py "Patrick"
+    python name_of_script settings
+
+For instance, if you have a script called *analyzer.py* that takes a file name as input. To make the script work on a file called "data.txt", which is stored in Downloads, you would type:
+
+    python analyzer.py ~/Downloads/data.txt 
